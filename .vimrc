@@ -1,1 +1,0 @@
-/home/mohamed/.vimrc
