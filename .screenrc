@@ -1,0 +1,55 @@
+# Use 256 colors
+term screen-256color
+
+# Status bar
+hardstatus off
+hardstatus alwayslastline '%{= g}[ %{G}%H %{g}][%= %{= G}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= G}%+Lw%?%= %{= g}][ %{y}Load: %l %{g}][ %{B}%Y-%m-%d %{W}%c:%s %{g}]'
+
+# Caption bar
+caption splitonly "%{= G} %= %?%F%{R}%?%3n %t%? [%h]%? %= %{G}"
+
+# Activity
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t"
+
+# Turn welcome message off
+startup_message off
+
+# Use X scrolling mechanism
+termcapinfo xterm* ti@:te@
+
+# Turn off visual bell
+vbell off
+
+# Fix for residual editor text
+altscreen on
+
+# Increase the scrollback buffer size
+defscrollback 30000
+
+# Reload screenrc
+bind R eval 'source $HOME/.screenrc' 'echo "reloaded!"'
+
+# Always start screen with utf8 enabled. (screen -U)
+defutf8 on
+
+# Shorten the time a message is displayed in seconds (well sometimes you want to see them).
+msgwait 2
+
+# Eliminate apparent delay when entering copy mode
+msgminwait 0
+
+# detach on disconnect
+autodetach on
+
+# make search case-insensitive
+ignorecase on
+
+# Suppress trailing blank lines when scrolling up in the history buffer.
+compacthist on
+
+# Enable activity monitoring for windows.
+defmonitor on
+
+# Deal with dead terminals.
+defnonblock on
