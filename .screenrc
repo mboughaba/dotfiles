@@ -3,10 +3,10 @@ term screen-256color
 
 # Status bar
 hardstatus off
-hardstatus alwayslastline '%{= g}[ %{G}%H %{g}][%= %{= G}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= G}%+Lw%?%= %{= g}][ %{y}Load: %l %{g}][ %{B}%Y-%m-%d %{W}%c:%s %{g}]'
+hardstatus alwayslastline "%{= G}[ %{M}%S %{G}]%{= G}[ %{b}$LOGNAME%{y}@%{b}%H %{G}]%{g}[%= %{= G}%?%-Lw%?%{= m}%n*%f %t%?%{= m}(%u)%?%{= G}%+Lw%?%= %{= g}][ %{y}Load: %l %{g}][ %{B}%Y-%m-%d %{W}%c:%s %{g}]"
 
 # Caption bar
-caption splitonly "%{= G} %= %?%F%{R}%?%3n %t%? [%h]%? %= %{G}"
+caption splitonly "%{= G} %= %?%F%{m}%?%3n %t%? [%h]%? %= %{G}"
 
 # Activity
 activity "%c activity -> %n%f %t"

@@ -33,6 +33,7 @@ Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'kshenoy/vim-signature'
+Plugin 'vim-multiple-cursors'
 
 " vim as an xml editor
 let g:xml_syntax_folding=1
