@@ -161,7 +161,7 @@ let mapleader=" "
 " Invisible Characters
 nmap <leader>l :set list!<CR>   " Toggle hidden characters
 set nolist                      " Hide by default
-set listchars=tab:â–¸\ ,trail:-,extends:>,precedes:<,nbsp:âŽµ,eol:Â¬
+set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
 
 " Completion Menu
 set completeopt=longest,menuone " Inserts the longest common text and
@@ -340,7 +340,7 @@ let g:airline_theme = 'base16'
 
 
 " IndentLine
-"let g:indentLine_char = 'â”†'                      " Change Indent Char
+"let g:indentLine_char = '┆'                      " Change Indent Char
 "let g:indentLine_color_term = 239
 
 
@@ -406,3 +406,4 @@ nnoremap <s-h> :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 "let g:haskellmode_completion_ghc = 0
 "autocmd Bufenter *.hs compiler ghc
 "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
