@@ -1,3 +1,9 @@
+# Disable process suspend so that we can use Ctrl-S in vim
+stty -ixon
+
+# Disable closing the terminal using Ctrl+D
+set -o ignoreeof
+
 # enable autocd
 setopt AUTO_CD
 
