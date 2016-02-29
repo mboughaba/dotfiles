@@ -1,9 +1,6 @@
 # enable autocd
 setopt AUTO_CD
 
-# source powerline
-. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -16,6 +13,14 @@ zstyle :compinstall filename '/home/mohamed/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Add Fish syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# customize prompt
+autoload -U promptinit
+promptinit
+prompt fade blue
 
 # Environment variables
 export VISUAL=vim
