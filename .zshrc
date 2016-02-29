@@ -32,10 +32,6 @@ prompt fade blue
 export VISUAL=vim
 export EDITOR=$VISUAL
 export DEFAULT_USER=mohamed
-export CPP_DEV=1
-export WEB_DEV=1
-export PYTHON_DEV=1
-export VIM_DEV=1
 export DEV_DIR=/home/mohamed/Projects
 
 # setup dircolors

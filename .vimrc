@@ -12,7 +12,8 @@ Plugin 'gmarik/Vundle.vim'
 
 
 " Plugins
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'felikz/ctrlp-py-matcher'
 Plugin 'godlygeek/tabular'
@@ -336,7 +337,10 @@ let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme = 'base16'
+let g:airline_theme = 'solarized'
+"let g:airline_theme = 'luna'
+"let g:airline_theme = 'papercolor'
+"let g:airline_theme = 'base16'
 
 
 " IndentLine
