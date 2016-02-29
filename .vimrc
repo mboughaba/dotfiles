@@ -1,118 +1,65 @@
 set nocompatible                " Be iMproved, required
 filetype off                    " Required
 
+
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+
 " Let Vundle manage itself
 Plugin 'gmarik/Vundle.vim'
+
 
 " Plugins
 Plugin 'bling/vim-airline'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'felikz/ctrlp-py-matcher'
 Plugin 'godlygeek/tabular'
-Plugin 'justinmk/vim-sneak'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'mattn/gist-vim'
-Plugin 'mattn/webapi-vim'
 Plugin 'mbbill/undotree'
 Plugin 'moll/vim-bbye'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-latex/vim-latex'
 Plugin 'mboughaba/edifact.vim'
+if $WORK_ENV
+    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
+    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
+endif
+Plugin 'kshenoy/vim-signature'
 Plugin 'djoshea/vim-autoread'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'kshenoy/vim-signature'
-Plugin 'vim-multiple-cursors'
-
-" vim as an xml editor
-let g:xml_syntax_folding=1
-au FileType xml setlocal foldmethod=syntax
-
-" Enable CtrlP caching
-let g:ctrlp_use_caching = 1
-" Scan dotfiles and dotdirs
-let g:ctrlp_show_hidden = 1
-" Excluding version control directories
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
-" Set the directory to store the cache files
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-" Enable cross-session caching by not deleting the cache files upon exiting
-let g:ctrlp_clear_cache_on_exit = 0
-
-" let controlPFunky do some nice highlighting
-let g:ctrlp_funky_matchtype = 'path'
-" make ctrlP funkier
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_funky_multi_buffers = 1
-let g:ctrlp_funky_sort_by_mru = 1
-let g:ctrlp_funky_use_cache = 1
-let g:ctrlp_funky_nolim = 1
-
-nnoremap <s-h> :CtrlPFunky<CR>
-" narrow the list down with a word under cursor
-nnoremap <c-h> :execute 'CtrlPFunky ' . expand('<cword>')<CR>
-
-" YouCompleteMe
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'altercation/vim-colors-solarized'
 if has("unix")
     if has("python")
         Plugin 'valloric/youcompleteme'
     endif
 endif
 
-" C and C++ Development
-if $CPPDEV
-    Plugin 'derekwyatt/vim-fswitch'
-    Plugin 'octol/vim-cpp-enhanced-highlight'
-endif
 
-" Go Development
-if $GODEV
-    Plugin 'fatih/vim-go'
-endif
+" Disabled plugins
+"Plugin 'mattn/gist-vim'
+"Plugin 'mattn/webapi-vim'
+"Plugin 'justinmk/vim-sneak'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'vim-latex/vim-latex'
+"Plugin 'tpope/vim-speeddating'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'tpope/vim-surround'
+"Plugin 'fatih/vim-go'
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'lukerandall/haskellmode-vim'
+"Plugin 'shougo/vimproc.vim'
+"Plugin 'marijnh/tern_for_vim'
+"Plugin 'nanotech/jellybeans.vim'
+"Plugin 'Yggdroot/indentLine'
 
-" Haskell Development
-if $HASKELLDEV
-    Plugin 'eagletmt/ghcmod-vim'
-    Plugin 'eagletmt/neco-ghc'
-    Plugin 'lukerandall/haskellmode-vim'
-    Plugin 'shougo/vimproc.vim'
-endif
-
-" Web Development
-if $WEBDEV
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'einars/js-beautify'
-    Plugin 'maksimr/vim-jsbeautify'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'airblade/vim-gitgutter'
-    Plugin 'moll/vim-node'
-    Plugin 'Yggdroot/indentLine'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'elzr/vim-json'
-    Plugin 'walm/jshint.vim'
-    Plugin 'Shutnik/jshint2.vim'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'MarcWeber/vim-addon-mw-utils'
-    Plugin 'tomtom/tlib_vim'
-    autocmd FileType javascript noremap <buffer>  <C-l> :call JsBeautify()<CR>
-    autocmd FileType html noremap <buffer> <C-l> :call HtmlBeautify()<CR>
-    autocmd FileType css noremap <buffer> <C-l> :call CSSBeautify()<CR>
-endif
-
-" Color Schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
 
 call vundle#end()               " Required
 filetype plugin indent on       " Required
@@ -128,26 +75,34 @@ set autoread                    " Auto reload
 set ttyfast                     " Fast terminal
 
 " Load non default configuration
-set exrc                        " Force vim to source vimrc if present in working dir.
+set exrc                        " Force vim to source vimrc if present in working directory.
 set secure                      " Restrict write & shell commands when non-default vimrc.
 
 " Temp Files
 set nobackup                    " No backup file
 set noswapfile                  " No swap file
 
-" Undo
-set undofile                    " Persistent undo
-set undodir=~/.vim/undo         " Location to store undo history
-set undolevels=1000             " Maximum number of changes
-set undoreload=10000            " Maximum number of lines to save for undo on a buffer reload
+" vim v7.3 specific options
+if version >= 703
+    " Undo
+    set undofile                    " Persistent undo
+    set undodir=~/.vim/undo         " Location to store undo history
+    set undolevels=1000             " Maximum number of changes
+    set undoreload=10000            " Maximum number of lines to save for undo on a buffer reload
+
+    " Joining
+    set formatoptions+=j            " Delete comment character when joining commented lines
+
+    " Line Numbers
+    "set rnu                        " Relative line numbers
+endif
 
 " Line Numbers
 set nu                          " Show line numbers
-"set rnu                        " Relative line numbers
 
 " Scrolling
 set scrolloff=5                 " Keep at least 5 lines above/below
-set sidescrolloff=5             " Keep at least 5 lines left/right
+set sidescrolloff=5             " Keep at least 5 columns left/right
 
 " Searching
 set incsearch                   " Incremental search
@@ -162,16 +117,15 @@ set smartindent                 " Inserts new level of indentation
 set autoindent                  " Copy indentation from previous line
 set tabstop=4                   " Columns a tab counts for
 set softtabstop=4               " Columns a tab inserts in insert mode
-set shiftwidth=4                " Columns inserted with the reindent operations
-set shiftround                  " Always indent by multiple of shiftwidth
+set shiftwidth=4                " Columns inserted with the re-indent operations
+set shiftround                  " Always indent by multiple of shift width
 set expandtab                   " Always use spaces instead of tabs
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
-set formatoptions+=j            " Delete comment character when joining commented lines
 
 " Key sequence timeout
-set ttimeout                    " Emable time out
+set ttimeout                    " Enable time out
 set ttimeoutlen=100             " Set timeout time to 100 ms
 
 " Backspace
@@ -187,6 +141,7 @@ cnoreabbrev Q q
 
 " Colors & Syntax
 set t_Co=256                    " Force 256 colors
+set term=xterm-256color
 let g:solarized_termtrans=1     " Support transparent terminal emulators
 syntax enable                   " Enable syntax highlighting
 set background=dark             " Dark background color
@@ -206,7 +161,7 @@ let mapleader=" "
 " Invisible Characters
 nmap <leader>l :set list!<CR>   " Toggle hidden characters
 set nolist                      " Hide by default
-set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+set listchars=tab:â–¸\ ,trail:-,extends:>,precedes:<,nbsp:âŽµ,eol:Â¬
 
 " Completion Menu
 set completeopt=longest,menuone " Inserts the longest common text and
@@ -228,9 +183,6 @@ autocmd FileType gitcommit setlocal spell
 set noeb vb t_vb=
 autocmd GUIEnter * set vb t_vb=
 
-" Treat underscore as a word boundary
-set iskeyword-=_
-
 " Wrapping Shortcuts
 vmap Q gq
 nmap Q gqap
@@ -247,53 +199,94 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_cpp_checkers = ['cppcheck']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_style_error_symbol = '☠'
-let g:syntastic_warning_symbol = '☢'
-let g:syntastic_style_warning_symbol = '☹'
-let g:syntastic_auto_jump = 0
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <ESC>:update<CR>
 
-" CTRL-P
-let g:ctrlp_max_files = 0       " Index all files
-let g:ctrlp_use_caching = 1     " Cache index
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" Use CTRL-Q to save and quit
+noremap <C-Q> :xa<CR>
+vnoremap <C-Q> <ESC> :xa<CR>
+inoremap <C-Q> <ESC> :xa<CR>
+
+" Distraction free mode
+nmap <silent> <Leader><space> :NERDTreeClose<CR> :TagbarClose<CR>
+
+"enable scroll bind
+nmap <silent> <Leader>scb :set scb!<CR>
+
+" vimdiff
+" next difference
+execute "set <M-n>=\en"
+nnoremap <M-n> ]c
+" previous difference
+execute "set <M-p>=\ep"
+nnoremap <M-p> [c
+
+" File utilities
+nmap <silent> <leader>ef :!echo %<CR>               " Print file path
+nmap <silent> <leader>cf :!cat %<CR>                " Echo file
+
+" Remap number increment and decrement to avoid coflicts with gnu screen
+execute "set <M-a>=\ea"
+nnoremap <M-a> <C-A>
+execute "set <M-x>=\ex"
+nnoremap <M-x> <C-X>
+
+" Remove Trailing Whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Watch $MYVIMRC
+augroup reload_myvimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
 
 " Ctags
 set tags=.tags;                 " Find .tags recursively
 
+
 " Undotree
 nnoremap <F5> :UndotreeToggle<CR>
+
 
 " Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 let g:tagbar_right = 1
 let g:tagbar_width = 35
-autocmd FileType * nested :call tagbar#autoopen(0)
+if !&diff
+    autocmd FileType * nested :call tagbar#autoopen(0)
+endif
+
 
 " FSwitch
-nmap <silent> <Leader>of :FSHere<CR>
-nmap <silent> <Leader>oL :FSSplitRight<CR>
-nmap <silent> <Leader>oH :FSSplitLeft<CR>
-nmap <silent> <Leader>oK :FSSplitAbove<CR>
-nmap <silent> <Leader>oj :FSBelow<CR>
+execute "set <M-z>=\ez"
+nnoremap <M-z> :FSHere<CR>
+nmap <silent> <Leader>oL :FSSplitRight<cr>
+nmap <silent> <Leader>oH :FSSplitLeft<cr>
+nmap <silent> <Leader>oK :FSSplitAbove<cr>
+nmap <silent> <Leader>oj :FSBelow<cr>
 
+" Insert date
+execute "set <M-d>=\ed"
+nnoremap <M-d> "=strftime("%c")<CR>P
+execute "set <M-d>=\ed"
+inoremap <M-d> <C-R>=strftime("%c")<CR>
+
+" keymap (habit breaking)
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+nnoremap <Esc><Esc> :nohl<CR>
 
 " NERDTree
 let NERDTreeShowHidden=1                " show dotfiles and dotdirs
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
-let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$']
+let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.playconf$']
 let g:NERDTreeDirArrows = 0
 let g:NERDTreeStatusline = "%f"
 nnoremap <F9> :NERDTreeFind<CR>
@@ -303,6 +296,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open NERDTree when no file is selected
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -323,63 +317,92 @@ let g:ycm_filetype_blacklist = {
     \ 'vimwiki' : 1,
     \ 'pandoc' : 1,
     \ 'infolog' : 1,
+    \ 'tts' : 1,
+    \ 'edi' : 1,
     \ 'mail' : 1
     \}
 nnoremap <F12> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <C-LeftMouse> :YcmCompleter GoTo<CR>
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+"let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
 
 " Auto Format
 let g:formatdef_clangformat_objc = '"clang-format-3.6 -style=file"'
 
+
 " Airline
-set laststatus=2                " Alwasy display statusline
+set laststatus=2                " Always display status line
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#close_symbol = '✘'
 let g:airline_theme = 'base16'
 
+
+" IndentLine
+"let g:indentLine_char = 'â”†'                      " Change Indent Char
+"let g:indentLine_color_term = 239
+
+
+" CtrlP
+let g:ctrlp_max_files = 0                        " Index all files
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_use_caching = 1                      " Enable CtrlP caching
+let g:ctrlp_show_hidden = 1                      " Scan dotfiles and dotdirs
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX, Excluding version control directories
+set wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf
+let g:ctrlp_custom_ignore = {
+    \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
+    \ }
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'     " Set the directory to store the cache files
+let g:ctrlp_clear_cache_on_exit = 0               " Enable cross-session caching by not deleting the cache files upon exiting
+
+
+" CtrlP Funcky
+let g:ctrlp_funky_matchtype = 'path'              " let CtrlP Funky do some nice highlighting
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_multi_buffers = 1
+let g:ctrlp_funky_sort_by_mru = 1
+let g:ctrlp_funky_use_cache = 1
+let g:ctrlp_funky_nolim = 1
+nnoremap <c-h> :CtrlPFunky<Cr>
+nnoremap <s-h> :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+
+" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_cpp_checkers = ['cppcheck']
+"let g:syntastic_python_checkers = ['pylint']
+
+
 " LaTeX
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-let g:Imap_FreezeImap=1         " Disable mappings
-let Tex_FoldedSections=''       " Disable folding sections
-let Tex_FoldedEnvironments=''   " Disable folding environments
-let Tex_FoldedMisc=''           " Disable folding miscellaneous
-if has("win32")
-    let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
-endif
+"let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_MultipleCompileFormats='pdf, aux'
+"let g:Imap_FreezeImap=1         " Disable mappings
+"let Tex_FoldedSections=''       " Disable folding sections
+"let Tex_FoldedEnvironments=''   " Disable folding environments
+"let Tex_FoldedMisc=''           " Disable folding miscellaneous
+"if has("win32")
+    "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
+"endif
+
 
 " Markdown
-let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_folding_disabled = 1
 
 " Gist
-let g:gist_post_private = 1     " Private by default
-let g:gist_detect_filetype = 1  " Detect type from the file name
-let g:gist_update_on_write = 2  " Only :w! updates a gist
+"let g:gist_post_private = 1     " Private by default
+"let g:gist_detect_filetype = 1  " Detect type from the file name
+"let g:gist_update_on_write = 2  " Only :w! updates a gist
 
-" Remove Trailing Whitespace
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Haskell
-let g:haddock_browser = 'chrome'
-let g:necoghc_enable_detailed_browse = 1
-let g:haskellmode_completion_ghc = 0
-autocmd Bufenter *.hs compiler ghc
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-" Watch $MYVIMRC
-augroup reload_myvimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-
-" keymap (habbit beaking)
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-nnoremap <Esc><Esc> :nohl<CR>
+"let g:haddock_browser = 'chrome'
+"let g:necoghc_enable_detailed_browse = 1
+"let g:haskellmode_completion_ghc = 0
+"autocmd Bufenter *.hs compiler ghc
+"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
