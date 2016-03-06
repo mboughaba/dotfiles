@@ -1,6 +1,6 @@
 #!/bin/zsh
 setxkbmap be
-compton -b &
+compton -b -f &
 dunst &
 batterymon &
 exec i3

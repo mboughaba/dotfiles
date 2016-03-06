@@ -26,13 +26,13 @@ TEXT
     "separator": false,
     "separator_block_width": 6
   },\
-  
+
   #Pacman
   {
     "full_text": " ",
     "color":
-      ${if_match ${execi 200 checkupdates | wc -l} != 0} "\#00FF00"
-      ${else} "\#FFFFFF"
+      ${if_match ${execi 200 checkupdates | wc -l} != 0} "\#29a329"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -40,8 +40,8 @@ TEXT
   {
     "full_text": "${execi 200 checkupdates | wc -l} ",
     "color":
-      ${if_match ${execi 200 checkupdates | wc -l} != 0} "\#00FF00"
-      ${else} "\#FFFFFF"
+      ${if_match ${execi 200 checkupdates | wc -l} != 0} "\#29a329"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -52,7 +52,7 @@ TEXT
     "full_text": " ",
     "color":
       ${if_match ${execi 1900 cower -u | wc -l} != 0} "\#FFA500"
-      ${else} "\#FFFFFF"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -61,7 +61,7 @@ TEXT
     "full_text": "${execi 1900 cower -u | wc -l} ",
     "color":
       ${if_match ${execi 1900 cower -u | wc -l} != 0} "\#FFA500"
-      ${else} "\#FFFFFF"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -70,15 +70,15 @@ TEXT
   #Wifi
   {
     "full_text": ${if_up wlp2s0} " " ${else} " " ${endif},
-    "color": 
-      ${if_match ${wireless_link_qual_perc wlp2s0} < 21 } "\#FF0000" 
+    "color":
+      ${if_match ${wireless_link_qual_perc wlp2s0} < 21 } "\#FF0000"
       ${else}
         ${if_match ${wireless_link_qual_perc wlp2s0} < 41 } "\#FFA500"
         ${else}
          ${if_match ${wireless_link_qual_perc wlp2s0} < 61 } "\#FFFF00"
          ${else}
-           ${if_match ${wireless_link_qual_perc wlp2s0} < 81 } "\#00FF00"
-           ${else} "\#0000FF" 
+           ${if_match ${wireless_link_qual_perc wlp2s0} < 81 } "\#29a329"
+           ${else} "\#268bd2"
            ${endif}
          ${endif}
         ${endif}
@@ -88,20 +88,20 @@ TEXT
   },\
   {
     "full_text": ${if_up wlp2s0} "${upspeed wlp2s0} " ${else} "${upspeed eth0} " ${endif},
-    "color": 
-      ${if_match ${wireless_link_qual_perc wlp2s0} < 21 } "\#FF0000" 
+    "color":
+      ${if_match ${wireless_link_qual_perc wlp2s0} < 21 } "\#FF0000"
       ${else}
         ${if_match ${wireless_link_qual_perc wlp2s0} < 41 } "\#FFA500"
         ${else}
          ${if_match ${wireless_link_qual_perc wlp2s0} < 61 } "\#FFFF00"
          ${else}
-           ${if_match ${wireless_link_qual_perc wlp2s0} < 81 } "\#00FF00"
-           ${else} "\#0000FF" 
+           ${if_match ${wireless_link_qual_perc wlp2s0} < 81 } "\#29a329"
+           ${else} "\#268bd2"
            ${endif}
          ${endif}
         ${endif}
       ${endif},
-    "separator": false, 
+    "separator": false,
     "separator_block_width": 6
   },\
 
@@ -109,8 +109,8 @@ TEXT
   {
     "full_text": " ",
     "color":
-      ${if_match ${exec xbacklight| awk '{printf("%d\n",$1 + 0.5)}'} > 60} "\#0000FF"
-      ${else} "\#FFFFFF"
+      ${if_match ${exec xbacklight| awk '{printf("%d\n",$1 + 0.5)}'} > 60} "\#268bd2"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -118,8 +118,8 @@ TEXT
   {
     "full_text": "${exec xbacklight| awk '{printf("%d\n",$1 + 0.5)}'}% ",
     "color":
-      ${if_match ${exec xbacklight| awk '{printf("%d\n",$1 + 0.5)}'} > 60} "\#0000FF"
-      ${else} "\#FFFFFF"
+      ${if_match ${exec xbacklight| awk '{printf("%d\n",$1 + 0.5)}'} > 60} "\#268bd2"
+      ${else} "\#BAC3CF"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -127,18 +127,18 @@ TEXT
 
   #Volume
   {
-    "full_text": 
+    "full_text":
       ${if_match "${exec amixer -c 0 get Headphone | grep 'Front Left:' | cut -d " " -f9 | cut -d "]" -f1 | cut -d "[" -f2}" == "on"} " "
       ${else}
         ${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | cut -d "]" -f1 | cut -d "[" -f2}" == "on"} " "
         ${else} " "
         ${endif}
       ${endif},
-    "color": 
+    "color":
       ${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | cut -d "]" -f1 | cut -d "[" -f2}" != "on"} "\#FFA500"
       ${else}
         ${if_match ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6 | cut -d "]" -f1 | cut -d "[" -f2 | cut -d "%" -f1} > 70} "\#FF0000"
-        ${else} "\#FFFFFF"
+        ${else} "\#BAC3CF"
         ${endif}
       ${endif},
     "separator": false,
@@ -150,7 +150,7 @@ TEXT
       ${if_match ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6 | cut -d "]" -f1 | cut -d "[" -f2 | cut -d "%" -f1} > 70} "\#FF0000"
       ${else}
         ${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | cut -d "]" -f1 | cut -d "[" -f2}" != "on"} "\#FFA500"
-        ${else} "\#FFFFFF"
+        ${else} "\#BAC3CF"
         ${endif}
       ${endif},
     "separator": false,
@@ -160,18 +160,18 @@ TEXT
   #CPU
   {
     "full_text": " ",
-    "color": 
-      ${if_match ${cpu} < 60 } "\#FFFFFF" 
-      ${else} "\#F44336" 
+    "color":
+      ${if_match ${cpu} < 60 } "\#BAC3CF"
+      ${else} "\#F44336"
       ${endif},
     "separator": false,
     "separator_block_width": 6
   },\
   {
     "full_text": ${if_match $cpu < 10 } "0$cpu% " ${else} "$cpu% " ${endif},
-    "color": 
-      ${if_match ${cpu} < 60 } "\#FFFFFF" 
-      ${else} "\#F44336" 
+    "color":
+      ${if_match ${cpu} < 60 } "\#BAC3CF"
+      ${else} "\#F44336"
       ${endif},
     "separator": false,
     "separator_block_width": 6
@@ -180,8 +180,8 @@ TEXT
   #RAM
   {
     "full_text": " ",
-    "color": 
-      ${if_match $memperc < 60 } "\#FFFFFF"
+    "color":
+      ${if_match $memperc < 60 } "\#BAC3CF"
       ${else} "\#FF0000"
       ${endif},
     "separator": false,
@@ -189,8 +189,8 @@ TEXT
   },\
   {
     "full_text": ${if_match $memperc < 10 } "0$memperc% " ${else} "$memperc% " ${endif},
-    "color": 
-      ${if_match $memperc < 60 } "\#FFFFFF"
+    "color":
+      ${if_match $memperc < 60 } "\#BAC3CF"
       ${else} "\#FF0000"
       ${endif},
     "separator": false,
@@ -200,8 +200,8 @@ TEXT
   #SWAP
   {
     "full_text": " ",
-    "color": 
-      ${if_match $swapperc < 20 } "\#FFFFFF"
+    "color":
+      ${if_match $swapperc < 20 } "\#BAC3CF"
       ${else} "\#FF0000"
       ${endif},
     "separator": false,
@@ -209,8 +209,8 @@ TEXT
   },\
   {
     "full_text": "${swapperc}% ",
-    "color": 
-      ${if_match $swapperc < 20 } "\#FFFFFF"
+    "color":
+      ${if_match $swapperc < 20 } "\#BAC3CF"
       ${else} "\#FF0000"
       ${endif},
     "separator": false,
@@ -220,14 +220,14 @@ TEXT
   #Battery
   {
     "full_text": " ",
-    "color": 
-      ${if_match ${battery_percent BAT0} < 21 } "\#FF0000" 
+    "color":
+      ${if_match ${battery_percent BAT0} < 21 } "\#FF0000"
       ${else}
         ${if_match ${battery_percent BAT0} < 41 } "\#FFA500"
         ${else}
-         ${if_match ${battery_percent BAT0} < 61 } "\#00FF00"
+         ${if_match ${battery_percent BAT0} < 61 } "\#29a329"
          ${else}
-           ${if_match ${battery_percent BAT0} < 81 } "\#0000FF"
+           ${if_match ${battery_percent BAT0} < 81 } "\#268bd2"
            ${else} "\#FFFF00"
            ${endif}
          ${endif}
@@ -238,14 +238,14 @@ TEXT
   },\
   {
     "full_text": "${battery_percent BAT0}% ",
-    "color": 
-      ${if_match ${battery_percent BAT0} < 21 } "\#FF0000" 
+    "color":
+      ${if_match ${battery_percent BAT0} < 21 } "\#FF0000"
       ${else}
         ${if_match ${battery_percent BAT0} < 41 } "\#FFA500"
         ${else}
-         ${if_match ${battery_percent BAT0} < 61 } "\#00FF00" 
+         ${if_match ${battery_percent BAT0} < 61 } "\#29a329"
          ${else}
-           ${if_match ${battery_percent BAT0} < 81 } "\#0000FF"
+           ${if_match ${battery_percent BAT0} < 81 } "\#268bd2"
            ${else} "\#FFFF00"
            ${endif}
          ${endif}
@@ -258,13 +258,13 @@ TEXT
   #Calender/time
   {
     "full_text": " ",
-    "color": "\#FFFFFF",
+    "color": "\#BAC3CF",
     "separator": false,
     "separator_block_width": 6
   },\
   {
     "full_text": "${time %a %b %d %Y  %H:%M:%S}",
-    "color": "\#FFFFFF",
+    "color": "\#BAC3CF",
     "separator": false
   }
 ],

@@ -25,6 +25,7 @@ Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mboughaba/edifact.vim'
+Plugin 'PotatoesMaster/i3-vim-syntax'
 if $WORK_ENV
     Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
     Plugin 'file:///remote/users1/mboughaba/prj/ttser'
