@@ -33,6 +33,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export DEFAULT_USER=mohamed
 export DEV_DIR=/home/mohamed/Projects
+export TERM=xterm-256color
 
 # setup dircolors
 eval $(dircolors ~/.dircolors)
