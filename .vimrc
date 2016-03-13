@@ -24,9 +24,10 @@ Plugin 'moll/vim-bbye'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mboughaba/edifact.vim'
 Plugin 'file:///home/mohamed/Repositories/i3config.vim'
+"Plugin 'mboughaba/i3config.vim'
 if $WORK_ENV
+    Plugin 'mboughaba/edifact.vim'
     Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
     Plugin 'file:///remote/users1/mboughaba/prj/ttser'
 endif
