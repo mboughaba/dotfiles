@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'file:///home/mohamed/Repositories/i3config.vim'
 "Plugin 'mboughaba/i3config.vim'
+Plugin 'smancill/conky-syntax.vim'
 if $WORK_ENV
     Plugin 'mboughaba/edifact.vim'
     Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
