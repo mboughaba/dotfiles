@@ -68,19 +68,3 @@
 *color13:                 S_violet
 *color14:                 S_base1
 *color15:                 S_base3
-
-!
-!Rofi
-!
-rofi.background: #2f343f
-rofi.foreground: #f3f4f5
-rofi.bordercolor: #2f343f
-rofi.highlightbg: #2f343f
-rofi.highlightfg: #5294E2
-rofi.opacity: 85
-rofi.lines: 3
-rofi.eh: 2
-rofi.width: 100
-rofi.padding:340
-rofi.bw: 0
-rofi.font: System San Francisco Display 20
