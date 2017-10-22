@@ -69,6 +69,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mattn/gist-vim'
 Plugin 'vim-latex/vim-latex'
 Plugin 'tpope/vim-dispatch'
+Plugin 'bronson/vim-visual-star-search'
 if has("gui_running")
     Plugin 'derekmcloughlin/gvimfullscreen_win32'
 endif
