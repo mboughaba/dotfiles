@@ -313,7 +313,7 @@ execute "set <M-x>=\ex"
 nnoremap <M-x> <C-X>
 
 " Remove Trailing Whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e | retab
 
 " Watch $MYVIMRC
 augroup reload_myvimrc
