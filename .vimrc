@@ -46,7 +46,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'shougo/vimproc.vim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'maksimr/vim-jsbeautify'
@@ -70,6 +69,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'vim-latex/vim-latex'
 Plugin 'tpope/vim-dispatch'
 Plugin 'bronson/vim-visual-star-search'
+Plugin 'mboughaba/vim-lessmess'
 if has("gui_running")
     Plugin 'derekmcloughlin/gvimfullscreen_win32'
 endif
@@ -212,6 +212,7 @@ highlight clear SignColumn      " Sign column same background as line numbers
 highlight LineNr ctermfg=219 guifg=#d78787
 highlight Cursor ctermbg=198 guibg=#D13A82
 highlight iCursor ctermbg=201 guibg=#D13A82
+"highlight NonText ctermfg=234 guifg=#404235
 highlight NonText ctermfg=234 guifg=bg
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver100-iCursor
@@ -234,12 +235,6 @@ set wrapmargin=0                " Turn off physical line wrapping
 
 " Map leader key to space
 let mapleader=" "
-
-" Invisible Characters
-" TODO: listchars are not displayed because of `highlight NonText guifg=bg`
-nmap <leader>l :set list!<CR> :highlight NonText guifg=fg<CR>   " Toggle hidden characters
-set nolist                      " Hide by default
-set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
 
 " Completion Menu
 set completeopt=longest,menuone " Inserts the longest common text and
@@ -264,6 +259,11 @@ autocmd GUIEnter * set vb t_vb=
 " Wrapping Shortcuts
 vmap Q gq
 nmap Q gqap
+
+" Lessmess
+let g:enable_lessmess_onsave = 1
+let g:enable_lessmess_highlighting = 1
+let g:lessmess_highlighting_map = '<leader>l'
 
 " Buffers & Window Navigation
 nnoremap <silent> <Tab> :bnext<CR>
@@ -312,13 +312,12 @@ nnoremap <M-a> <C-A>
 execute "set <M-x>=\ex"
 nnoremap <M-x> <C-X>
 
-" Remove Trailing Whitespace
-autocmd BufWritePre * :%s/\s\+$//e | retab
-
 " Watch $MYVIMRC
 augroup reload_myvimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    " Refresh Airline to avoid messy display
+    au BufWritePost $MYVIMRC :AirlineRefresh
 augroup END
 
 " Ctags
@@ -536,10 +535,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 
-" Open Grok
-"let g:ogs_app_url = 'http://grok.nce.amadeus.net/Platinum/'
-"let g:ogs_app_url = '/mid'
-
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -561,12 +556,6 @@ let Tex_FoldedMisc=''           " Disable folding miscellaneous
 if has("win32")
     let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
 endif
-
-" Markdown
-let g:vim_markdown_folding_disabled = 1
-"autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-"let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
-"let g:markdown_minlines = 100
 
 " Gist
 let g:gist_post_private = 1     " Private by default
