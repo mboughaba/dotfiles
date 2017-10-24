@@ -317,7 +317,7 @@ augroup reload_myvimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
     " Refresh Airline to avoid messy display
-    au BufWritePost $MYVIMRC :AirlineRefresh
+    au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en
 augroup END
 
 " Ctags
