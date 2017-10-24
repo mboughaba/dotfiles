@@ -1,3 +1,21 @@
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ "           888     888 8888888 888b     d888 8888888b.   .d8888b.             "
+ "           888     888   888   8888b   d8888 888   Y88b d88P  Y88b            "
+ "           888     888   888   88888b.d88888 888    888 888    888            "
+ "           Y88b   d88P   888   888Y88888P888 888   d88P 888                   "
+ "            Y88b d88P    888   888 Y888P 888 8888888P ' 888                   "
+ "             Y88o88P     888   888  Y8P  888 888 T88b   888    888            "
+ "              Y888P      888   888   '   888 888  T88b  Y88b  d88P            "
+ "               Y8P     8888888 888       888 888   T88b  'Y8888P'             "
+ "                                                                  by          "
+" ███╗   ███╗██████╗  ██████╗ ██╗   ██╗ ██████╗ ██╗  ██╗ █████╗ ██████╗  █████╗  "
+" ████╗ ████║██╔══██╗██╔═══██╗██║   ██║██╔════╝ ██║  ██║██╔══██╗██╔══██╗██╔══██╗ "
+" ██╔████╔██║██████╔╝██║   ██║██║   ██║██║  ███╗███████║███████║██████╔╝███████║ "
+" ██║╚██╔╝██║██╔══██╗██║   ██║██║   ██║██║   ██║██╔══██║██╔══██║██╔══██╗██╔══██║ "
+" ██║ ╚═╝ ██║██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝██║  ██║ "
+" ╚═╝     ╚═╝╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 se nocompatible                " Be iMproved, required
 filet off                    " Required
 
@@ -24,7 +42,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
-Plugin 'Yggdroot/indentLine'
 Plugin 'marijnh/tern_for_vim'
 " TODO: Reactivate signature, we need it, it is because of conflict with git gutter
 "Plugin 'kshenoy/vim-signature'
@@ -83,6 +100,9 @@ if has("unix")
 el
     Plugin 'vim-scripts/OmniCppComplete'
     Plugin 'ervandew/supertab'
+en
+if has("gui_running")
+    Plugin 'Yggdroot/indentLine'
 en
 if $WORK_ENV
     Plugin 'mboughaba/edifact.vim'
