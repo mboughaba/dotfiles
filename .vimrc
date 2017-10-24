@@ -28,8 +28,194 @@
 " ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││
 " ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘
 "
+" ViMproved {{{
 se nocompatible
 filet off
+" }}}
+" Map Leader {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ╔╦╗┌─┐┌─┐╦  ┌─┐┌─┐┌┬┐┌─┐┬─┐
+" ║║║├─┤├─┘║  ├┤ ├─┤ ││├┤ ├┬┘
+" ╩ ╩┴ ┴┴  ╩═╝└─┘┴ ┴─┴┘└─┘┴└─
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map leader key to space
+let mapleader=" "
+let g:mapleader=" "
+" }}}
+" Vundle {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ╦  ╦┬ ┬┌┐┌┌┬┐┬  ┌─┐┌─┐
+" ╚╗╔╝│ ││││ │││  ├┤ └─┐
+"  ╚╝ └─┘┘└┘─┴┘┴─┘└─┘└─┘
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+se rtp+=~/.vim/bundle/Vundle.vim
+cal vundle#begin()
+"
+" Let Vundle manage itself
+"
+Plugin 'gmarik/Vundle.vim'
+"
+" Custom Plugins
+"
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'felikz/ctrlp-py-matcher'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'mbbill/undotree'
+Plugin 'moll/vim-bbye'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'marijnh/tern_for_vim'
+" TODO: Reactivate signature, currently crashes with gitgutter
+"Plugin 'kshenoy/vim-signature'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'djoshea/vim-autoread'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+if has("gui_running")
+    Plugin 'tomasr/molokai'
+el
+    Plugin 'altercation/vim-colors-solarized'
+en
+Plugin 'will133/vim-dirdiff'
+Plugin 'tpope/vim-repeat'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-gtest'
+Plugin 'wimproved.vim'
+Plugin 'johngrib/vim-game-code-break'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'marcweber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'shougo/vimproc.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/html5.vim'
+Plugin 'hushicai/tagbar-javascript.vim'
+Plugin 'isRuslan/vim-es6'
+Plugin 'elzr/vim-json'
+Plugin 'quramy/tsuquyomi'
+Plugin 'herringtondarkholme/yats.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+Plugin 'mattn/emmet-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'groenewege/vim-less'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'taiansu/nerdtree-ag'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'mattn/gist-vim'
+Plugin 'vim-latex/vim-latex'
+Plugin 'tpope/vim-dispatch'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'mboughaba/vim-lessmess'
+Plugin 'airblade/vim-rooter'
+if has("gui_running")
+    Plugin 'derekmcloughlin/gvimfullscreen_win32'
+en
+if has("unix")
+    if has("python")
+        Plugin 'valloric/youcompleteme'
+    el
+        Plugin 'vim-scripts/OmniCppComplete'
+        Plugin 'ervandew/supertab'
+    en
+el
+    Plugin 'vim-scripts/OmniCppComplete'
+    Plugin 'ervandew/supertab'
+en
+if has("gui_running")
+    Plugin 'Yggdroot/indentLine'
+en
+if $WORK_ENV
+    Plugin 'mboughaba/edifact.vim'
+    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
+    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
+en
+"
+" Let there be dragons
+"
+cal vundle#end()
+filet plugin indent on
+" }}}
+" Eye Candy {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ╔═╗┬ ┬┌─┐  ┌─┐┌─┐┌┐┌┌┬┐┬ ┬
+" ║╣ └┬┘├┤   │  ├─┤│││ ││└┬┘
+" ╚═╝ ┴ └─┘  └─┘┴ ┴┘└┘─┴┘ ┴
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Color
+"
+if has("gui_running")
+    se guioptions-=T
+    se guioptions-=m
+    se guioptions-=r
+    "remove menu bar
+    se guioptions-=m
+    "remove left-hand scroll bar
+    se guioptions-=L
+    se guifont=InconsolataGo\ NF:h12
+    au GUIEnter * simalt ~x
+    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+el
+    " Force 256 colors
+    se t_Co=256
+    se term=xterm-256color
+en
+"
+" Colorscheme
+"
+syn enable                   " Enable syntax highlighting
+se background=dark             " Dark background color
+" Set color scheme
+if has("gui_running")
+    colo molokai
+el
+    colo solarized
+en
+"
+" Cursor, Line & Sign
+"
+" Line number column same background as vim itself
+hi clear LineNr
+" Sign column same background as line numbers
+hi clear SignColumn
+hi LineNr ctermfg=219 guifg=#d78787
+hi Cursor ctermbg=198 guibg=#D13A82
+hi iCursor ctermbg=201 guibg=#D13A82
+"hi NonText ctermfg=234 guifg=#404235
+hi NonText ctermfg=234 guifg=bg
+se guicursor=n-v-c:block-Cursor
+se guicursor+=i:ver100-iCursor
+se guicursor+=n-v-c:blinkon0
+se guicursor+=i:blinkwait10
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Vim Settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
@@ -221,17 +407,15 @@ se statusline+=%*
 "
 cnorea W w
 cnorea Q q
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" Grep vs Ag
 "
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔╦╗┌─┐┌─┐╦  ┌─┐┌─┐┌┬┐┌─┐┬─┐
-" ║║║├─┤├─┘║  ├┤ ├─┤ ││├┤ ├┬┘
-" ╩ ╩┴ ┴┴  ╩═╝└─┘┴ ┴─┴┘└─┘┴└─
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map leader key to space
-let mapleader=" "
+if executable('ag')
+  " Use ag over grep
+  se grepprg=ag\ --nogroup\ --nocolor
+en
+" }}}
+" Plugin Settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
@@ -247,6 +431,7 @@ let mapleader=" "
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
+let g:gitgutter_max_signs = 500
 "
 " Molokai
 "
@@ -387,6 +572,7 @@ if has("gui_running")
 el
     let g:airline_theme = 'solarized'
 en
+let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 "
 " Devicons
 "
@@ -408,6 +594,16 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_use_caching = 1
 " Scan dotfiles and dotdirs
 let g:ctrlp_show_hidden = 1
+if executable('ag')
+    " Make CtrlP even faster using the silver search
+    "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+en
+" Make CtrlP open files in new buffer
+let g:ctrlp_switch_buffer = 0
+" Make CtrlP follow CWD
+let g:ctrlp_working_path_mode = 0
+" Lagacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
 let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -491,7 +687,19 @@ let g:gist_update_on_write = 2
 "
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-
+" source: https://github.com/pangloss/vim-javascript/issues/101#issuecomment-45543789
+set cole=0
+" Enable javascript concealing
+"let g:javascript_conceal = 1
+"let g:javascript_conceal_function   = 'ƒ'
+"let g:javascript_conceal_null       = 'ø'
+"let g:javascript_conceal_this       = '@'
+"let g:javascript_conceal_return     = '⇚'
+"let g:javascript_conceal_undefined  = '¿'
+"let g:javascript_conceal_NaN        = 'ℕ'
+"let g:javascript_conceal_prototype  = '¶'
+" }}}
+" Keymap {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
@@ -603,7 +811,8 @@ nn <F10> :NERDTreeToggle<CR>
 "vm <C-x> "+c
 "vm <C-v> c<ESC>"+p
 "im <C-v> <ESC>"+pa
-
+" }}}
+" Autocommand {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
@@ -654,181 +863,4 @@ aug reload_myvimrc
     " Refresh Airline to avoid messy display
     au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en
 aug END
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╦  ╦┬ ┬┌┐┌┌┬┐┬  ┌─┐┌─┐
-" ╚╗╔╝│ ││││ │││  ├┤ └─┐
-"  ╚╝ └─┘┘└┘─┴┘┴─┘└─┘└─┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-se rtp+=~/.vim/bundle/Vundle.vim
-cal vundle#begin()
-"
-" Let Vundle manage itself
-"
-Plugin 'gmarik/Vundle.vim'
-"
-" Custom Plugins
-"
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'felikz/ctrlp-py-matcher'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'godlygeek/tabular'
-Plugin 'majutsushi/tagbar'
-Plugin 'mbbill/undotree'
-Plugin 'moll/vim-bbye'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'marijnh/tern_for_vim'
-" TODO: Reactivate signature, currently crashes with gitgutter
-"Plugin 'kshenoy/vim-signature'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'djoshea/vim-autoread'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-if has("gui_running")
-    Plugin 'tomasr/molokai'
-el
-    Plugin 'altercation/vim-colors-solarized'
-en
-Plugin 'will133/vim-dirdiff'
-Plugin 'tpope/vim-repeat'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-gtest'
-Plugin 'wimproved.vim'
-Plugin 'johngrib/vim-game-code-break'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'marcweber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'shougo/vimproc.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/html5.vim'
-Plugin 'hushicai/tagbar-javascript.vim'
-Plugin 'isRuslan/vim-es6'
-Plugin 'elzr/vim-json'
-Plugin 'quramy/tsuquyomi'
-Plugin 'herringtondarkholme/yats.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'ap/vim-css-color'
-Plugin 'mattn/emmet-vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'groenewege/vim-less'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'taiansu/nerdtree-ag'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mattn/gist-vim'
-Plugin 'vim-latex/vim-latex'
-Plugin 'tpope/vim-dispatch'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'mboughaba/vim-lessmess'
-Plugin 'airblade/vim-rooter'
-if has("gui_running")
-    Plugin 'derekmcloughlin/gvimfullscreen_win32'
-en
-if has("unix")
-    if has("python")
-        Plugin 'valloric/youcompleteme'
-    el
-        Plugin 'vim-scripts/OmniCppComplete'
-        Plugin 'ervandew/supertab'
-    en
-el
-    Plugin 'vim-scripts/OmniCppComplete'
-    Plugin 'ervandew/supertab'
-en
-if has("gui_running")
-    Plugin 'Yggdroot/indentLine'
-en
-if $WORK_ENV
-    Plugin 'mboughaba/edifact.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
-en
-"
-" Let there be dragons
-"
-cal vundle#end()
-filet plugin indent on
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬  ┬ ┬┌─┐┬┌┐┌  ╔═╗┌─┐┌─┐┌┬┐  ┌─┐┌─┐┌┬┐┌┬┐┬┌┐┌┌─┐
-" ╠═╝│  │ ││ ┬││││  ╠═╝│ │└─┐ │───└─┐├┤  │  │ │││││ ┬
-" ╩  ┴─┘└─┘└─┘┴┘└┘  ╩  └─┘└─┘ ┴   └─┘└─┘ ┴  ┴ ┴┘└┘└─┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Airline post-config
-"
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬ ┬┌─┐  ┌─┐┌─┐┌┐┌┌┬┐┬ ┬
-" ║╣ └┬┘├┤   │  ├─┤│││ ││└┬┘
-" ╚═╝ ┴ └─┘  └─┘┴ ┴┘└┘─┴┘ ┴
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Color
-"
-if has("gui_running")
-    se guioptions-=T
-    se guioptions-=m
-    se guioptions-=r
-    "remove menu bar
-    se guioptions-=m
-    "remove left-hand scroll bar
-    se guioptions-=L
-    se guifont=InconsolataGo\ NF:h12
-    au GUIEnter * simalt ~x
-    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-el
-    " Force 256 colors
-    se t_Co=256
-    se term=xterm-256color
-en
-"
-" Colorscheme
-"
-syn enable                   " Enable syntax highlighting
-se background=dark             " Dark background color
-" Set color scheme
-if has("gui_running")
-    colo molokai
-el
-    colo solarized
-en
-"
-" Cursor, Line & Sign
-"
-" Line number column same background as vim itself
-hi clear LineNr
-" Sign column same background as line numbers
-hi clear SignColumn
-hi LineNr ctermfg=219 guifg=#d78787
-hi Cursor ctermbg=198 guibg=#D13A82
-hi iCursor ctermbg=201 guibg=#D13A82
-"hi NonText ctermfg=234 guifg=#404235
-hi NonText ctermfg=234 guifg=bg
-se guicursor=n-v-c:block-Cursor
-se guicursor+=i:ver100-iCursor
-se guicursor+=n-v-c:blinkon0
-se guicursor+=i:blinkwait10
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
