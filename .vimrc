@@ -96,8 +96,10 @@ en
 Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-repeat'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-gtest'
-Plugin 'wimproved.vim'
+Plugin 'alepez/vim-gtest'
+if has("gui_running")
+    Plugin 'kkoenig/wimproved.vim'
+en
 Plugin 'johngrib/vim-game-code-break'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -442,6 +444,7 @@ let g:rehash256 = 1
 " Solarized
 "
 let g:solarized_termtrans=1     " Support transparent terminal emulators
+"let g:solarized_termcolors=256
 "
 " C++ Syntax highlighting
 "
@@ -855,6 +858,10 @@ au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
 " Pretty print xml
 "
 au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<cr>
+" Fix display gliches on Windows?
+if has("gui_running")
+    au GUIEnter * silent! WToggleClean
+en
 "
 " Watch $MYVIMRC
 "
