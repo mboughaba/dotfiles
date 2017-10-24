@@ -129,6 +129,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'mboughaba/vim-lessmess'
 Plugin 'airblade/vim-rooter'
+Plugin 'jeetsukumaran/vim-buffergator'
 if has("gui_running")
     Plugin 'derekmcloughlin/gvimfullscreen_win32'
 en
