@@ -96,7 +96,6 @@ en
 Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-repeat'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'alepez/vim-gtest'
 if has("gui_running")
     Plugin 'kkoenig/wimproved.vim'
 en
@@ -130,7 +129,6 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'tpope/vim-dispatch'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'mboughaba/vim-lessmess'
-Plugin 'airblade/vim-rooter'
 Plugin 'jeetsukumaran/vim-buffergator'
 if has("gui_running")
     Plugin 'derekmcloughlin/gvimfullscreen_win32'
@@ -532,7 +530,7 @@ if has("unix")
         let g:ycm_min_num_identifier_candidate_chars = 0
         let g:ycm_auto_trigger = 1
         let g:ycm_register_as_syntastic_checker = 0
-        let g:ycm_use_ultisnips_completer = 0
+        let g:ycm_use_ultisnips_completer = 1
         let g:ycm_filetype_blacklist = {
             \ 'vim' : 1,
             \ 'tagbar' : 1,
