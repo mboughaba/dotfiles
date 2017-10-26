@@ -88,6 +88,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'mboughaba/vim-lessmess'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'junegunn/goyo.vim'
 if empty($WORK_ENV)
     Plugin 'scrooloose/syntastic'
     Plugin 'marijnh/tern_for_vim'
@@ -431,8 +432,8 @@ let g:gitgutter_max_signs = 500
 "
 " Molokai
 "
-let g:molokai_original = 1
-let g:rehash256 = 1
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 "
 " Solarized
 "
