@@ -79,59 +79,62 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'marijnh/tern_for_vim'
-" TODO: Reactivate signature, currently crashes with gitgutter
-"Plugin 'kshenoy/vim-signature'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'djoshea/vim-autoread'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-if has("gui_running")
-    Plugin 'tomasr/molokai'
-el
-    Plugin 'altercation/vim-colors-solarized'
-en
 Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-repeat'
-Plugin 'jiangmiao/auto-pairs'
-if has("gui_running")
-    Plugin 'kkoenig/wimproved.vim'
-en
-Plugin 'johngrib/vim-game-code-break'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'marcweber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'shougo/vimproc.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/html5.vim'
-Plugin 'hushicai/tagbar-javascript.vim'
-Plugin 'isRuslan/vim-es6'
-Plugin 'elzr/vim-json'
-Plugin 'quramy/tsuquyomi'
-Plugin 'herringtondarkholme/yats.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'ap/vim-css-color'
-Plugin 'mattn/emmet-vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'groenewege/vim-less'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'taiansu/nerdtree-ag'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mattn/gist-vim'
-Plugin 'vim-latex/vim-latex'
-Plugin 'tpope/vim-dispatch'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'mboughaba/vim-lessmess'
 Plugin 'jeetsukumaran/vim-buffergator'
+if empty($WORK_ENV)
+    Plugin 'scrooloose/syntastic'
+    Plugin 'marijnh/tern_for_vim'
+    Plugin 'airblade/vim-gitgutter'
+    " TODO: Reactivate signature, currently crashes with gitgutter
+    "Plugin 'kshenoy/vim-signature'
+    Plugin 'jiangmiao/auto-pairs'
+    Plugin 'johngrib/vim-game-code-break'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
+    Plugin 'marcweber/vim-addon-mw-utils'
+    Plugin 'tomtom/tlib_vim'
+    Plugin 'shougo/vimproc.vim'
+    Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'Shutnik/jshint2.vim'
+    Plugin 'maksimr/vim-jsbeautify'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'othree/html5.vim'
+    Plugin 'hushicai/tagbar-javascript.vim'
+    Plugin 'isRuslan/vim-es6'
+    Plugin 'elzr/vim-json'
+    Plugin 'quramy/tsuquyomi'
+    Plugin 'herringtondarkholme/yats.vim'
+    Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'ap/vim-css-color'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'mattn/webapi-vim'
+    Plugin 'groenewege/vim-less'
+    Plugin 'ryanoasis/vim-devicons'
+    Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plugin 'taiansu/nerdtree-ag'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plugin 'mattn/gist-vim'
+    Plugin 'vim-latex/vim-latex'
+    Plugin 'tpope/vim-dispatch'
+el
+    Plugin 'mboughaba/edifact.vim'
+    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
+    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
+en
 if has("gui_running")
+    Plugin 'Yggdroot/indentLine'
     Plugin 'derekmcloughlin/gvimfullscreen_win32'
+    Plugin 'kkoenig/wimproved.vim'
+    Plugin 'tomasr/molokai'
+el
+    Plugin 'altercation/vim-colors-solarized'
 en
 if has("unix")
     if has("python")
@@ -143,14 +146,6 @@ if has("unix")
 el
     Plugin 'vim-scripts/OmniCppComplete'
     Plugin 'ervandew/supertab'
-en
-if has("gui_running")
-    Plugin 'Yggdroot/indentLine'
-en
-if $WORK_ENV
-    Plugin 'mboughaba/edifact.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
 en
 "
 " Let there be dragons
@@ -605,6 +600,8 @@ en
 let g:ctrlp_switch_buffer = 0
 " Make CtrlP follow CWD
 let g:ctrlp_working_path_mode = 0
+" Enable searching by filename instead of full path
+let g:ctrlp_by_filename = 1
 " Lagacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
 let g:ctrlp_dont_split = 'nerdtree'
