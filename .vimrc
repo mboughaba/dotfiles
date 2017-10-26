@@ -87,7 +87,6 @@ Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-repeat'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'mboughaba/vim-lessmess'
-Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'junegunn/goyo.vim'
 if empty($WORK_ENV)
     Plugin 'scrooloose/syntastic'
@@ -186,8 +185,10 @@ en
 "
 " Colorscheme
 "
-syn enable                   " Enable syntax highlighting
-se background=dark             " Dark background color
+" Enable syntax highlighting
+syn enable
+" Dark background color
+se background=dark
 " Set color scheme
 if has("gui_running")
     colo molokai
@@ -201,11 +202,12 @@ en
 hi clear LineNr
 " Sign column same background as line numbers
 hi clear SignColumn
+" Hide '~' character at the end of buffer
+hi EndOfBuffer ctermfg=234 guifg=bg
+" Make cursor stand out
 hi LineNr ctermfg=219 guifg=#d78787
 hi Cursor ctermbg=198 guibg=#D13A82
 hi iCursor ctermbg=201 guibg=#D13A82
-"hi NonText ctermfg=234 guifg=#404235
-hi NonText ctermfg=234 guifg=bg
 se guicursor=n-v-c:block-Cursor
 se guicursor+=i:ver100-iCursor
 se guicursor+=n-v-c:blinkon0
@@ -714,8 +716,9 @@ set cole=0
 "
 nn <F2> :se invpaste paste?<CR>
 "
-" CtrlP Funky
+" CtrlP & CtrlPFunky
 "
+nn <silent> <Leader>p :CtrlPBuffer<Cr>
 nn <c-h> :CtrlPFunky<Cr>
 nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
 "
@@ -798,7 +801,10 @@ nn <Esc><Esc> :nohl<CR>
 "
 " Distraction free mode
 "
-nm <silent> <Leader><space> :NERDTreeClose<CR> :TagbarClose<CR>
+exe "se <M-l>=\el"
+nn <M-l> :Goyo<CR>
+exe "se <M-t>=\et"
+nn <M-t> :NERDTreeClose<CR> :TagbarClose<CR>
 "
 " NERDTree
 "
