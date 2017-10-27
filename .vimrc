@@ -123,6 +123,7 @@ if empty($WORK_ENV)
     Plugin 'mattn/gist-vim'
     Plugin 'vim-latex/vim-latex'
     Plugin 'tpope/vim-dispatch'
+    Plugin 'mboughaba/i3config.vim'
 el
     Plugin 'mboughaba/edifact.vim'
     Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
@@ -442,7 +443,8 @@ let g:gitgutter_max_signs = 500
 "
 " Solarized
 "
-let g:solarized_termtrans=1     " Support transparent terminal emulators
+" Support transparent terminal emulators
+let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
 "
 " C++ Syntax highlighting
@@ -834,38 +836,59 @@ nn <F10> :NERDTreeToggle<CR>
 "
 " Spell
 "
+aug set_spell
+    au!
 au BufRead,BufNewFile *.md  setlocal spell
 au BufRead,BufNewFile *.tex setlocal spell
 au FileType gitcommit setlocal spell
+aug end
 "
 " Disable Bells
 "
+aug disable_bell
+    au!
+aug end
 if has("gui_running")
-    au GUIEnter * se vb t_vb=
+    au disable_bell GUIEnter * se vb t_vb=
 el
-    au VimEnter * set vb t_vb=
+    au disable_bell VimEnter * se vb t_vb=
 en
 "
 " codingame cpp merge
 "
+aug merge_code
+    au!
+aug end
 if $CODING_GAME
-    au BufWritePost * silent! exe "! codingame-merge >/dev/null 2>&1" | redraw!
+    au merge_code BufWritePost * silent! exe "! codingame-merge >/dev/null 2>&1" | redraw!
 en
 "
 " NERDTree
 "
+aug nerdtree_custom
+    au!
+aug end
 " Close vim if NERDTree is the only window left
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
+au nerdtree_custom bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
 " Open NERDTree when no file is selected
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+au nerdtree_custom StdinReadPre * let s:std_in=1
+au nerdtree_custom VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
 "
 " Pretty print xml
 "
+aug pretty_print
+    au!
 au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<cr>
+aug end
+"
+" Windows gliches patch
+"
+aug windows_gliches
+    au!
+aug end
 " Fix display gliches on Windows?
 if has("gui_running")
-    au GUIEnter * silent! WToggleClean
+    au windows_gliches GUIEnter * silent! WToggleClean
 en
 "
 " Re-patch colorscheme
@@ -873,14 +896,14 @@ en
 aug patch_colors
   au!
   au ColorScheme * call s:patch_colorscheme()
-aug END
+aug end
 "
 " Watch $MYVIMRC
 "
 aug reload_myvimrc
     au!
-    au BufWritePost $MYVIMRC source $MYVIMRC
+    au BufWritePost $MYVIMRC so $MYVIMRC
     " Refresh Airline to avoid messy display
     au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en
-aug END
+aug end
 " }}}
