@@ -183,6 +183,25 @@ el
     se term=xterm-256color
 en
 "
+" Cursor, Line & Sign
+"
+fun! s:patch_colorscheme()
+    " Line number column same background as vim itself
+    hi clear LineNr
+    " Sign column same background as line numbers
+    hi clear SignColumn
+    " Hide '~' character at the end of buffer
+    hi EndOfBuffer ctermfg=234 guifg=bg
+    " Make cursor stand out
+    hi LineNr ctermfg=219 guifg=#d78787
+    hi Cursor ctermbg=198 guibg=#D13A82
+    hi iCursor ctermbg=201 guibg=#D13A82
+    se guicursor=n-v-c:block-Cursor
+    se guicursor+=i:ver100-iCursor
+    se guicursor+=n-v-c:blinkon0
+    se guicursor+=i:blinkwait10
+endf
+"
 " Colorscheme
 "
 " Enable syntax highlighting
@@ -195,23 +214,7 @@ if has("gui_running")
 el
     colo solarized
 en
-"
-" Cursor, Line & Sign
-"
-" Line number column same background as vim itself
-hi clear LineNr
-" Sign column same background as line numbers
-hi clear SignColumn
-" Hide '~' character at the end of buffer
-hi EndOfBuffer ctermfg=234 guifg=bg
-" Make cursor stand out
-hi LineNr ctermfg=219 guifg=#d78787
-hi Cursor ctermbg=198 guibg=#D13A82
-hi iCursor ctermbg=201 guibg=#D13A82
-se guicursor=n-v-c:block-Cursor
-se guicursor+=i:ver100-iCursor
-se guicursor+=n-v-c:blinkon0
-se guicursor+=i:blinkwait10
+call s:patch_colorscheme()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 " Vim Settings {{{
@@ -864,6 +867,13 @@ au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmll
 if has("gui_running")
     au GUIEnter * silent! WToggleClean
 en
+"
+" Re-patch colorscheme
+"
+aug patch_colors
+  au!
+  au ColorScheme * call s:patch_colorscheme()
+aug END
 "
 " Watch $MYVIMRC
 "
