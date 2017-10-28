@@ -74,7 +74,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'moll/vim-bbye'
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
@@ -429,6 +429,18 @@ en
 " ╩  ┴─┘└─┘└─┘┴┘└┘  ╚═╝└─┘ ┴  ┴ ┴┘└┘└─┘└─┘
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" Ack & Ag
+"
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+en
+" Ag deprecated so let's use Ack
+cnorea ag Ack!
+cnorea aG Ack!
+cnorea Ag Ack!
+cnorea AG Ack!
+cnorea Ack Ack!
+"
 " GitGutter & Signature
 "
 let g:gitgutter_override_sign_column_highlight = 0
@@ -716,6 +728,10 @@ set cole=0
 " ╠╩╗├┤ └┬┘│││├─┤├─┘
 " ╩ ╩└─┘ ┴ ┴ ┴┴ ┴┴
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Ack
+"
+nn <Leader>a :Ack!<Space>
 "
 " Paste Toggle
 "
