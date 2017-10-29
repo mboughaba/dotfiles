@@ -189,6 +189,8 @@ en
 fun! s:patch_colorscheme()
     " Line number column same background as vim itself
     hi clear LineNr
+    " Vertical split line same background as vim itself
+    hi clear VertSplit
     " Sign column same background as line numbers
     hi clear SignColumn
     " Hide '~' character at the end of buffer
@@ -432,8 +434,12 @@ en
 " Ack & Ag
 "
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --smart-case'
 en
+" Make ack run search in background
+"let g:ack_use_dispatch = 1
+" Make Ack highlight results
+let g:ackhighlight = 1
 " Ag deprecated so let's use Ack
 cnorea ag Ack!
 cnorea aG Ack!
@@ -918,8 +924,9 @@ aug end
 "
 aug reload_myvimrc
     au!
-    au BufWritePost $MYVIMRC so $MYVIMRC
     " Refresh Airline to avoid messy display
-    au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en
+    " tabline extension requires AirlineRefresh to be called twice
+    " source: https://github.com/vim-airline/vim-airline/issues/539
+    au BufWritePost $MYVIMRC so $MYVIMRC | AirlineRefresh | AirlineRefresh
 aug end
 " }}}
