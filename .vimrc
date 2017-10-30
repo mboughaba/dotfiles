@@ -1,13 +1,13 @@
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "           888     888 8888888 888b     d888 8888888b.   .d8888b.             "
- "           888     888   888   8888b   d8888 888   Y88b d88P  Y88b            "
- "           888     888   888   88888b.d88888 888    888 888    888            "
- "           Y88b   d88P   888   888Y88888P888 888   d88P 888                   "
- "            Y88b d88P    888   888 Y888P 888 8888888P ' 888                   "
- "             Y88o88P     888   888  Y8P  888 888 T88b   888    888            "
- "              Y888P      888   888   '   888 888  T88b  Y88b  d88P            "
- "               Y8P     8888888 888       888 888   T88b  'Y8888P'             "
- "                                                                  by          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"           888     888 8888888 888b     d888 8888888b.   .d8888b.               "
+"           888     888   888   8888b   d8888 888   Y88b d88P  Y88b              "
+"           888     888   888   88888b.d88888 888    888 888    888              "
+"           Y88b   d88P   888   888Y88888P888 888   d88P 888                     "
+"            Y88b d88P    888   888 Y888P 888 8888888P ' 888                     "
+"             Y88o88P     888   888  Y8P  888 888 T88b   888    888              "
+"              Y888P      888   888   '   888 888  T88b  Y88b  d88P              "
+"               Y8P     8888888 888       888 888   T88b  'Y8888P'               "
+"                                                                  by            "
 " ███╗   ███╗██████╗  ██████╗ ██╗   ██╗ ██████╗ ██╗  ██╗ █████╗ ██████╗  █████╗  "
 " ████╗ ████║██╔══██╗██╔═══██╗██║   ██║██╔════╝ ██║  ██║██╔══██╗██╔══██╗██╔══██╗ "
 " ██╔████╔██║██████╔╝██║   ██║██║   ██║██║  ███╗███████║███████║██████╔╝███████║ "
@@ -52,106 +52,99 @@ let g:mapleader=" "
 "
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╦  ╦┬ ┬┌┐┌┌┬┐┬  ┌─┐┌─┐
-" ╚╗╔╝│ ││││ │││  ├┤ └─┐
-"  ╚╝ └─┘┘└┘─┴┘┴─┘└─┘└─┘
+" ╔═╗┬  ┬ ┬┌─┐┌─┐
+" ╠═╝│  │ ││ ┬└─┐
+" ╩  ┴─┘└─┘└─┘└─┘
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-se rtp+=~/.vim/bundle/Vundle.vim
-cal vundle#begin()
-"
-" Let Vundle manage itself
-"
-Plugin 'gmarik/Vundle.vim'
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
 "
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'felikz/ctrlp-py-matcher'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'godlygeek/tabular'
-Plugin 'majutsushi/tagbar'
-Plugin 'mbbill/undotree'
-Plugin 'moll/vim-bbye'
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'djoshea/vim-autoread'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'will133/vim-dirdiff'
-Plugin 'tpope/vim-repeat'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'mboughaba/vim-lessmess'
-Plugin 'junegunn/goyo.vim'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'djoshea/vim-autoread'
+Plug 'moll/vim-bbye'
+Plug 'tpope/vim-repeat'
+Plug 'will133/vim-dirdiff'
+Plug 'bronson/vim-visual-star-search'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mboughaba/vim-lessmess'
+Plug 'felikz/ctrlp-py-matcher'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
+Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
+Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
+Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'Ack!'] }
+Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
+Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 if empty($WORK_ENV)
-    Plugin 'scrooloose/syntastic'
-    Plugin 'marijnh/tern_for_vim'
-    Plugin 'airblade/vim-gitgutter'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/syntastic'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'taiansu/nerdtree-ag'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'ap/vim-css-color'
+    Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
+    Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
+    Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
+    Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
+    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
+    Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
+    Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
+    Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
+    Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
+    Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
+    Plug 'elzr/vim-json',                           { 'for': ['json', 'javascript'] }
+    Plug 'groenewege/vim-less',                     { 'for': ['less', 'css'] }
+    Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
+    Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
+    Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
+    Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+    "
+    " Disabled Plugs
+    "
     " TODO: Reactivate signature, currently crashes with gitgutter
-    "Plugin 'kshenoy/vim-signature'
-    Plugin 'jiangmiao/auto-pairs'
-    Plugin 'johngrib/vim-game-code-break'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-surround'
-    Plugin 'marcweber/vim-addon-mw-utils'
-    Plugin 'tomtom/tlib_vim'
-    Plugin 'shougo/vimproc.vim'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'Shutnik/jshint2.vim'
-    Plugin 'maksimr/vim-jsbeautify'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'othree/html5.vim'
-    Plugin 'hushicai/tagbar-javascript.vim'
-    Plugin 'isRuslan/vim-es6'
-    Plugin 'elzr/vim-json'
-    Plugin 'quramy/tsuquyomi'
-    Plugin 'herringtondarkholme/yats.vim'
-    Plugin 'hail2u/vim-css3-syntax'
-    Plugin 'ap/vim-css-color'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'mattn/webapi-vim'
-    Plugin 'groenewege/vim-less'
-    Plugin 'ryanoasis/vim-devicons'
-    Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plugin 'taiansu/nerdtree-ag'
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
-    Plugin 'mattn/gist-vim'
-    Plugin 'vim-latex/vim-latex'
-    Plugin 'tpope/vim-dispatch'
-    Plugin 'mboughaba/i3config.vim'
+    "Plug 'kshenoy/vim-signature'
+    "Plug 'mattn/webapi-vim'
+    "Plug 'tpope/vim-dispatch'
+    "Plug 'vim-latex/vim-latex'
 el
-    Plugin 'mboughaba/edifact.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/tts.vim'
-    Plugin 'file:///remote/users1/mboughaba/prj/ttser'
+    Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
+    Plug '~/prj/tts.vim',         { 'for': ['edi', 'play', 'gsv'] }
+    Plug '~/prj/ttser',           { 'for': ['edi', 'play', 'gsv'] }
 en
 if has("gui_running")
-    Plugin 'Yggdroot/indentLine'
-    Plugin 'derekmcloughlin/gvimfullscreen_win32'
-    Plugin 'kkoenig/wimproved.vim'
-    Plugin 'tomasr/molokai'
+    Plug 'Yggdroot/indentLine'
+    Plug 'derekmcloughlin/gvimfullscreen_win32'
+    Plug 'kkoenig/wimproved.vim'
+    Plug 'tomasr/molokai'
 el
-    Plugin 'altercation/vim-colors-solarized'
+    Plug 'altercation/vim-colors-solarized'
 en
 if has("unix")
     if has("python")
-        Plugin 'valloric/youcompleteme'
+        Plug 'valloric/youcompleteme', { 'for': ['cpp', 'c'] }
     el
-        Plugin 'vim-scripts/OmniCppComplete'
-        Plugin 'ervandew/supertab'
+        Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     en
 el
-    Plugin 'vim-scripts/OmniCppComplete'
-    Plugin 'ervandew/supertab'
+    Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
 en
 "
 " Let there be dragons
 "
-cal vundle#end()
+" Initialize plugin system
+call plug#end()
 filet plugin indent on
 " }}}
 " Eye Candy {{{
@@ -316,6 +309,10 @@ se ignorecase
 se smartcase
 " Show matching bracket
 se showmatch
+if has("gui_running")
+    " Hack to make multiple cursor highlight work properly in gvim
+    se selection=inclusive
+en
 "
 " Indentation
 "
@@ -416,8 +413,8 @@ cnorea Q q
 " Grep vs Ag
 "
 if executable('ag')
-  " Use ag over grep
-  se grepprg=ag\ --nogroup\ --nocolor
+    " Use ag over grep
+    se grepprg=ag\ --nogroup\ --nocolor
 en
 " }}}
 " Plugin Settings {{{
@@ -434,17 +431,12 @@ en
 " Ack & Ag
 "
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
+    let g:ackprg = 'ag --vimgrep --smart-case'
+el
+    echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
-" Make ack run search in background
-"let g:ack_use_dispatch = 1
 " Make Ack highlight results
 let g:ackhighlight = 1
-" Ag deprecated so let's use Ack
-cnorea ag Ack!
-cnorea aG Ack!
-cnorea Ag Ack!
-cnorea AG Ack!
 cnorea Ack Ack!
 "
 " GitGutter & Signature
@@ -553,22 +545,22 @@ if has("unix")
         let g:ycm_register_as_syntastic_checker = 0
         let g:ycm_use_ultisnips_completer = 1
         let g:ycm_filetype_blacklist = {
-            \ 'vim' : 1,
-            \ 'tagbar' : 1,
-            \ 'qf' : 1,
-            \ 'notes' : 1,
-            \ 'markdown' : 1,
-            \ 'md' : 1,
-            \ 'unite' : 1,
-            \ 'text' : 1,
-            \ 'vimwiki' : 1,
-            \ 'pandoc' : 1,
-            \ 'infolog' : 1,
-            \ 'tts' : 1,
-            \ 'edi' : 1,
-            \ 'valgrind' : 1,
-            \ 'mail' : 1
-            \}
+                    \ 'vim' : 1,
+                    \ 'tagbar' : 1,
+                    \ 'qf' : 1,
+                    \ 'notes' : 1,
+                    \ 'markdown' : 1,
+                    \ 'md' : 1,
+                    \ 'unite' : 1,
+                    \ 'text' : 1,
+                    \ 'vimwiki' : 1,
+                    \ 'pandoc' : 1,
+                    \ 'infolog' : 1,
+                    \ 'tts' : 1,
+                    \ 'edi' : 1,
+                    \ 'valgrind' : 1,
+                    \ 'mail' : 1
+                    \}
         nn <F12> :YcmForceCompileAndDiagnostics<CR>
         nn <C-LeftMouse> :YcmCompleter GoTo<CR>
     el
@@ -644,8 +636,8 @@ fun! CtrlPCommand()
 endf
 let g:ctrlp_cmd = 'cal CtrlPCommand()'
 let g:ctrlp_custom_ignore = {
-    \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
-    \ }
+            \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
+            \ }
 " Set the directory to store the cache files
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 " Enable cross-session caching by not deleting the cache files upon exiting
@@ -680,6 +672,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_python_checkers = ['pylint']
 "
@@ -734,6 +727,10 @@ set cole=0
 " ╠╩╗├┤ └┬┘│││├─┤├─┘
 " ╩ ╩└─┘ ┴ ┴ ┴┴ ┴┴
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Basic indentation fix
+"
+map <leader>i mzgg=G`z
 "
 " Ack
 "
@@ -802,9 +799,6 @@ nn <F5> :UndotreeToggle<CR>
 " Tagbar
 "
 nn <F8> :TagbarToggle<CR>
-if !&diff
-    au FileType * nested :cal tagbar#autoopen(0)
-en
 "
 " FSwitch
 "
@@ -855,14 +849,20 @@ nn <F10> :NERDTreeToggle<CR>
 " ╠═╣│ │ │ │ ││  │ │││││││├─┤│││ ││
 " ╩ ╩└─┘ ┴ └─┘└─┘└─┘┴ ┴┴ ┴┴ ┴┘└┘─┴┘
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if !&diff
+"aug toggle_tagbar
+"au!
+"au FileType * nested :cal tagbar#autoopen(0)
+"aug end
+"en
 "
 " Spell
 "
 aug set_spell
     au!
-au BufRead,BufNewFile *.md  setlocal spell
-au BufRead,BufNewFile *.tex setlocal spell
-au FileType gitcommit setlocal spell
+    au BufRead,BufNewFile *.md      setlocal spell
+    au BufRead,BufNewFile *.tex     setlocal spell
+    au FileType           gitcommit setlocal spell
 aug end
 "
 " Disable Bells
@@ -900,7 +900,7 @@ au nerdtree_custom VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree |
 "
 aug pretty_print
     au!
-au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<cr>
+    au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<cr>
 aug end
 "
 " Windows gliches patch
@@ -916,17 +916,18 @@ en
 " Re-patch colorscheme
 "
 aug patch_colors
-  au!
-  au ColorScheme * call s:patch_colorscheme()
+    au!
+    au ColorScheme * call s:patch_colorscheme()
 aug end
 "
 " Watch $MYVIMRC
 "
 aug reload_myvimrc
     au!
+    au BufWritePost $MYVIMRC so $MYVIMRC
     " Refresh Airline to avoid messy display
     " tabline extension requires AirlineRefresh to be called twice
     " source: https://github.com/vim-airline/vim-airline/issues/539
-    au BufWritePost $MYVIMRC so $MYVIMRC | AirlineRefresh | AirlineRefresh
+    au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en | if exists(":AirlineRefresh") | :AirlineRefresh | en
 aug end
 " }}}
