@@ -75,14 +75,17 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mboughaba/vim-lessmess'
 Plug 'felikz/ctrlp-py-matcher'
-"Plug 'derekwyatt/vim-fswitch'
-Plug 'mboughaba/vim-fswitch'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'Ack!'] }
 Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
+Plug 'mboughaba/vim-fswitch'
+"
+" Disabled Plugs until PR from my fork is merged
+"
+"Plug 'derekwyatt/vim-fswitch'
 if empty($WORK_ENV)
     Plug 'jiangmiao/auto-pairs'
     Plug 'ryanoasis/vim-devicons'
@@ -126,10 +129,13 @@ el
     Plug '~/prj/ttser',           { 'for': ['edi', 'play', 'gsv'] }
 en
 if has("gui_running")
-    Plug 'Yggdroot/indentLine'
     Plug 'derekmcloughlin/gvimfullscreen_win32'
     Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
+    "
+    " Disabled Plugs
+    "
+    "Plug 'Yggdroot/indentLine'
 el
     Plug 'altercation/vim-colors-solarized'
 en
@@ -491,6 +497,7 @@ let g:tagbar_width = 35
 "
 " show dotfiles and dotdirs
 "let NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer = 1
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.playconf$']
@@ -607,13 +614,13 @@ hi! def link jsonKeyword Identifier
 "
 " IndentLine
 "
-if has("gui_running")
-    " Change Indent Char
-    let g:indentLine_char = '┆'
-    " Make vim-json and indentLine behave well together
-    " source: https://github.com/elzr/vim-json/issues/23
-    let g:indentLine_concealcursor=''
-en
+"if has("gui_running")
+"" Change Indent Char
+"let g:indentLine_char = '┆'
+"" Make vim-json and indentLine behave well together
+"" source: https://github.com/elzr/vim-json/issues/23
+"let g:indentLine_concealcursor=''
+"en
 "
 " CtrlP
 "
