@@ -75,7 +75,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mboughaba/vim-lessmess'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'derekwyatt/vim-fswitch'
+"Plug 'derekwyatt/vim-fswitch'
+Plug 'mboughaba/vim-fswitch'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
@@ -104,12 +105,13 @@ if empty($WORK_ENV)
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
-    Plug 'elzr/vim-json',                           { 'for': ['json', 'javascript'] }
-    Plug 'groenewege/vim-less',                     { 'for': ['less', 'css'] }
+    Plug 'groenewege/vim-less',                     { 'for': ['less'] }
     Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
     Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
     Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+    Plug 'elzr/vim-json',                           { 'for': 'json' }
+    Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
     "
     " Disabled Plugs
     "
@@ -428,6 +430,11 @@ en
 " ╩  ┴─┘└─┘└─┘┴┘└┘  ╚═╝└─┘ ┴  ┴ ┴┘└┘└─┘└─┘
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" Goyo
+"
+"let g:goyo_linenr = 1
+let g:goyo_width = 160
+"
 " Ack & Ag
 "
 if executable('ag')
@@ -470,7 +477,6 @@ let g:cpp_concepts_highlight = 1
 "
 let g:enable_lessmess_onsave = 1
 let g:enable_lessmess_highlighting = 1
-let g:lessmess_highlighting_map = '<leader>l'
 "
 " vimdiff
 "
@@ -593,11 +599,20 @@ let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linen
 "
 let g:webdevicons_enable_denite = 0
 "
+" JSON
+"
+" Syntax not working for certain colorscheme
+" source: https://github.com/elzr/vim-json/issues/50
+hi! def link jsonKeyword Identifier
+"
 " IndentLine
 "
 if has("gui_running")
     " Change Indent Char
     let g:indentLine_char = '┆'
+    " Make vim-json and indentLine behave well together
+    " source: https://github.com/elzr/vim-json/issues/23
+    let g:indentLine_concealcursor=''
 en
 "
 " CtrlP
@@ -728,6 +743,10 @@ set cole=0
 " ╩ ╩└─┘ ┴ ┴ ┴┴ ┴┴
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+" lessmess
+"
+nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
+"
 " Basic indentation fix
 "
 map <leader>i mzgg=G`z
@@ -742,9 +761,9 @@ nn <F2> :se invpaste paste?<CR>
 "
 " CtrlP & CtrlPFunky
 "
-nn <silent> <Leader>p :CtrlPBuffer<Cr>
-nn <c-h> :CtrlPFunky<Cr>
-nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
+nn <silent> <Leader>p :CtrlPBuffer<CR>
+nn <c-h> :CtrlPFunky<CR>
+nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<CR>
 "
 " Spell Checking
 "
@@ -804,10 +823,10 @@ nn <F8> :TagbarToggle<CR>
 "
 exe "se <M-z>=\ez"
 nn <M-z> :FSHere<CR>
-nm <silent> <Leader>oL :FSSplitRight<cr>
-nm <silent> <Leader>oH :FSSplitLeft<cr>
-nm <silent> <Leader>oK :FSSplitAbove<cr>
-nm <silent> <Leader>oj :FSBelow<cr>
+nm <silent> <Leader>oL :FSSplitRight<CR>
+nm <silent> <Leader>oH :FSSplitLeft<CR>
+nm <silent> <Leader>oK :FSSplitAbove<CR>
+nm <silent> <Leader>oj :FSBelow<CR>
 "
 " keymap (habit breaking)
 "
@@ -900,7 +919,7 @@ au nerdtree_custom VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree |
 "
 aug pretty_print
     au!
-    au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<cr>
+    au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
 aug end
 "
 " Windows gliches patch
@@ -912,7 +931,6 @@ aug end
 if has("gui_running")
     au windows_gliches GUIEnter * silent! WToggleClean
 en
-"
 " Re-patch colorscheme
 "
 aug patch_colors
