@@ -546,6 +546,20 @@ let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
 let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
 let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
 "
+" NERDTree git plugin
+"
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "*",
+    \ "Staged"    : "Ă",
+    \ "Untracked" : "?",
+    \ "Renamed"   : "Ř",
+    \ "Unmerged"  : "Û",
+    \ "Deleted"   : "Ð",
+    \ 'Ignored'   : '‼',
+    \ "Dirty"     : "Ø",
+    \ "Clean"     : "⌐",
+    \ "Unknown"   : "¿"
+    \ }
 " YouCompleteMe
 "
 if has("unix")
@@ -752,7 +766,7 @@ set cole=0
 "
 " lessmess
 "
-nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
+nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 " Basic indentation fix
 "
@@ -956,3 +970,24 @@ aug reload_myvimrc
     au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en | if exists(":AirlineRefresh") | :AirlineRefresh | en
 aug end
 " }}}
+"
+" Bracketed paste for ViM within GNU Screen
+"
+let s:screen  = &term =~ 'screen'
+let s:xterm   = &term =~ 'xterm'
+if s:screen || s:xterm
+    let &t_ti .= "\<Esc>P\<Esc>[?2004h\<Esc>\\"
+    let &t_te .= "\<Esc>P\<Esc>[?2004l\<Esc>\\"
+    fun! XTermPasteBegin(ret)
+        setl pastetoggle=<f29>
+        setl paste
+        retu a:ret
+    endf
+    exe "setl <f28>=\<Esc>[200~"
+    exe "setl <f29>=\<Esc>[201~"
+    map <expr> <f28> XTermPasteBegin("i")
+    im <expr> <f28> XTermPasteBegin("")
+    vm <expr> <f28> XTermPasteBegin("c")
+    cm <f28> <NOP>
+    cm <f29> <NOP>
+en
