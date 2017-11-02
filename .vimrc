@@ -644,11 +644,10 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " Enable CtrlP caching
 let g:ctrlp_use_caching = 1
 " Scan dotfiles and dotdirs
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden = 0
 if executable('ag')
     " Make CtrlP even faster using the silver search
-    "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 en
 " Make CtrlP open files in new buffer
 let g:ctrlp_switch_buffer = 0
@@ -656,21 +655,6 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 " Enable searching by filename instead of full path
 let g:ctrlp_by_filename = 1
-" Lagacy hack to avoid opening files in NERDTree split
-let g:ctrlp_dont_split = 'NERD'
-let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_dont_split = 'NERD_tree_2'
-fun! CtrlPCommand()
-    let c = 0
-    let wincount = winnr('$')
-    " Don't open it here if current buffer is not writable (e.g. NERDTree)
-    wh !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
-        exe 'wincmd w'
-        let c = c + 1
-    endw
-    exe 'CtrlP'
-endf
-let g:ctrlp_cmd = 'cal CtrlPCommand()'
 let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
             \ }
@@ -678,6 +662,11 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 " Enable cross-session caching by not deleting the cache files upon exiting
 let g:ctrlp_clear_cache_on_exit = 0
+" Legacy hack to avoid opening files in NERDTree split
+let g:ctrlp_dont_split = 'NERD'
+let g:ctrlp_dont_split = 'nerdtree'
+let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
 "
 " CtrlP Funcky
 "
@@ -809,15 +798,12 @@ nm <silent> <Leader>scb :se scb!<CR>
 " Vimdiff
 "
 " next difference
-exe "se <M-n>=\en"
-nn <M-n> ]c
+nn dj ]c
 " previous difference
-exe "se <M-p>=\ep"
-nn <M-p> [c
+nn dk [c
 " de-hexify
 if $WORK_ENV
-    exe "se <M-h>=\eh"
-    nn <M-h> :%s/\\x1D/+/ge <CR> :%s/\\x1F/:/ge <CR> :%s/\\x1C/'/ge <CR> :%s/\\x19/*/ge <CR> :diffupdate<CR>
+    nn dh :%s/\\x1D/+/ge <CR> :%s/\\x1F/:/ge <CR> :%s/\\x1C/'/ge <CR> :%s/\\x19/*/ge <CR> :diffupdate<CR>
 en
 "
 " File utilities
@@ -825,8 +811,9 @@ en
 nm <silent> <leader>ef :!echo %<CR>               " Print file path
 nm <silent> <leader>cf :!cat %<CR>                " Echo file
 "
-" Remap number increment and decrement to avoid coflicts with gnu screen
+" Remap number increment and decrement to avoid conflicts with gnu screen
 "
+" I use Alt+a Alt+x because it is convenient to hold Alt while inc/dec multiple times.
 exe "se <M-a>=\ea"
 nn <M-a> <C-A>
 exe "se <M-x>=\ex"
@@ -842,6 +829,7 @@ nn <F8> :TagbarToggle<CR>
 "
 " FSwitch
 "
+" I use Alt+z because it is convenient to hold Alt while switching between companions.
 exe "se <M-z>=\ez"
 nn <M-z> :FSHere<CR>
 nm <silent> <Leader>oL :FSSplitRight<CR>
@@ -862,10 +850,8 @@ nn <Esc><Esc> :nohl<CR>
 "
 " Distraction free mode
 "
-exe "se <M-l>=\el"
-nn <M-l> :Goyo<CR>
-exe "se <M-t>=\et"
-nn <M-t> :NERDTreeClose<CR> :TagbarClose<CR>
+nn <leader>g :Goyo<CR>
+nn <leader>t :NERDTreeClose<CR> :TagbarClose<CR>
 "
 " NERDTree
 "
@@ -970,6 +956,7 @@ aug reload_myvimrc
     au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en | if exists(":AirlineRefresh") | :AirlineRefresh | en
 aug end
 " }}}
+" Custom functions {{{
 "
 " Bracketed paste for ViM within GNU Screen
 "
@@ -991,3 +978,18 @@ if s:screen || s:xterm
     cm <f28> <NOP>
     cm <f29> <NOP>
 en
+"
+" CtrlP & NERDTree hack
+"
+" Legacy hack to avoid opening files in NERDTree split
+fun! CtrlPCustomCommand()
+    let c = 0
+    let wincount = winnr('$')
+    " Don't open it here if current buffer is not writable (e.g. NERDTree)
+    wh !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
+        exe 'wincmd w'
+        let c = c + 1
+    endw
+    exe 'CtrlP'
+endf
+" }}}
