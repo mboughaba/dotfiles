@@ -1,61 +1,33 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"           888     888 8888888 888b     d888 8888888b.   .d8888b.               "
-"           888     888   888   8888b   d8888 888   Y88b d88P  Y88b              "
-"           888     888   888   88888b.d88888 888    888 888    888              "
-"           Y88b   d88P   888   888Y88888P888 888   d88P 888                     "
-"            Y88b d88P    888   888 Y888P 888 8888888P ' 888                     "
-"             Y88o88P     888   888  Y8P  888 888 T88b   888    888              "
-"              Y888P      888   888   '   888 888  T88b  Y88b  d88P              "
-"               Y8P     8888888 888       888 888   T88b  'Y8888P'               "
-"                                                                  by            "
-" ███╗   ███╗██████╗  ██████╗ ██╗   ██╗ ██████╗ ██╗  ██╗ █████╗ ██████╗  █████╗  "
-" ████╗ ████║██╔══██╗██╔═══██╗██║   ██║██╔════╝ ██║  ██║██╔══██╗██╔══██╗██╔══██╗ "
-" ██╔████╔██║██████╔╝██║   ██║██║   ██║██║  ███╗███████║███████║██████╔╝███████║ "
-" ██║╚██╔╝██║██╔══██╗██║   ██║██║   ██║██║   ██║██╔══██║██╔══██║██╔══██╗██╔══██║ "
-" ██║ ╚═╝ ██║██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝██║  ██║ "
-" ╚═╝     ╚═╝╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Author: Mohamed Boughaba
-" Repository: https://github.com/mboughaba/dotfiles
-" Description: My own taste of dotfiles
-"
-"
-"
-"
-"
-"
-" ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐
-" ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││
-" ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘
-"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Author: Mohamed Boughaba                           "
+"              Repository: https://github.com/mboughaba/dotfiles               "
+"                     Description: My own taste of dotfiles                    "
+"                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        "
+"                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        "
+"                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " ViMproved {{{
+"
+"
+"
 se nocompatible
 filet off
 " }}}
+
 " Map Leader {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔╦╗┌─┐┌─┐╦  ┌─┐┌─┐┌┬┐┌─┐┬─┐
-" ║║║├─┤├─┘║  ├┤ ├─┤ ││├┤ ├┬┘
-" ╩ ╩┴ ┴┴  ╩═╝└─┘┴ ┴─┴┘└─┘┴└─
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map leader key to space
 let mapleader=" "
 let g:mapleader=" "
 " }}}
-" Vundle {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plug {{{
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬  ┬ ┬┌─┐┌─┐
-" ╠═╝│  │ ││ ┬└─┐
-" ╩  ┴─┘└─┘└─┘└─┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
@@ -74,6 +46,7 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mboughaba/vim-lessmess'
+Plug 'mboughaba/vim-autopastetoggle'
 Plug 'felikz/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
@@ -87,13 +60,10 @@ Plug 'mboughaba/vim-fswitch'
 "
 "Plug 'derekwyatt/vim-fswitch'
 if empty($WORK_ENV)
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'ryanoasis/vim-devicons'
+    Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'scrooloose/syntastic'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'taiansu/nerdtree-ag'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'ap/vim-css-color'
     Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
@@ -115,11 +85,15 @@ if empty($WORK_ENV)
     Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
     Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
+    Plug 'davidhalter/jedi-vim',                    { 'for': 'vim' }
     "
     " Disabled Plugs
     "
     " TODO: Reactivate signature, currently crashes with gitgutter
     "Plug 'kshenoy/vim-signature'
+    "Plug 'ryanoasis/vim-devicons'
+    "Plug 'taiansu/nerdtree-ag'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'mattn/webapi-vim'
     "Plug 'tpope/vim-dispatch'
     "Plug 'vim-latex/vim-latex'
@@ -132,6 +106,7 @@ if has("gui_running")
     Plug 'derekmcloughlin/gvimfullscreen_win32'
     Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
+    "Plug 'dracula/vim'
     "
     " Disabled Plugs
     "
@@ -155,16 +130,11 @@ en
 call plug#end()
 filet plugin indent on
 " }}}
+
 " Eye Candy {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬ ┬┌─┐  ┌─┐┌─┐┌┐┌┌┬┐┬ ┬
-" ║╣ └┬┘├┤   │  ├─┤│││ ││└┬┘
-" ╚═╝ ┴ └─┘  └─┘┴ ┴┘└┘─┴┘ ┴
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Color
 "
@@ -182,7 +152,9 @@ if has("gui_running")
 el
     " Force 256 colors
     se t_Co=256
-    se term=xterm-256color
+    " We shouldn't force xterm because we want it to be set to screen-256color
+    " when using gnu screen.
+    "se term=xterm-256color
 en
 "
 " Cursor, Line & Sign
@@ -215,22 +187,17 @@ se background=dark
 " Set color scheme
 if has("gui_running")
     colo molokai
+    "colo dracula
 el
     colo solarized
 en
 call s:patch_colorscheme()
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
+
 " Vim Settings {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╦  ╦╦╔╦╗  ╔═╗┌─┐┌┬┐┌┬┐┬┌┐┌┌─┐┌─┐
-" ╚╗╔╝║║║║  ╚═╗├┤  │  │ │││││ ┬└─┐
-"  ╚╝ ╩╩ ╩  ╚═╝└─┘ ┴  ┴ ┴┘└┘└─┘└─┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Hide buffers
 "
@@ -348,8 +315,10 @@ se nojoinspaces
 " Key sequence timeout
 " Enable time out
 se ttimeout
-" Set timeout time to 100 ms
-se ttimeoutlen=100
+" Set timeout time to 80 ms
+se ttimeoutlen=80
+" Set default timeout for CursorHold
+se updatetime=250
 " Backspace Delete over line breaks
 se backspace=indent,eol,start
 " String at start of lines that have been wrapped.
@@ -425,16 +394,11 @@ if executable('ag')
     se grepprg=ag\ --nogroup\ --nocolor
 en
 " }}}
+
 " Plugin Settings {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬  ┬ ┬┌─┐┬┌┐┌  ╔═╗┌─┐┌┬┐┌┬┐┬┌┐┌┌─┐┌─┐
-" ╠═╝│  │ ││ ┬││││  ╚═╗├┤  │  │ │││││ ┬└─┐
-" ╩  ┴─┘└─┘└─┘┴┘└┘  ╚═╝└─┘ ┴  ┴ ┴┘└┘└─┘└─┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Goyo
 "
@@ -458,6 +422,7 @@ let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 let g:gitgutter_max_signs = 500
+let g:gitgutter_grep_command="ag --nocolor"
 "
 " Molokai
 "
@@ -496,70 +461,72 @@ let g:tagbar_width = 35
 " NERDTree
 "
 " show dotfiles and dotdirs
-"let NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer = 1
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.playconf$']
-let g:NERDTreeDirArrows = 0
 let g:NERDTreeStatusline = "%f"
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+" source: https://github.com/scrooloose/nerdtree/issues/636
+let NERDTreeDirArrowExpandable = " "
+let NERDTreeDirArrowCollapsible = " "
+"let g:NERDTreeDirArrowExpandable = ''
+"let g:NERDTreeDirArrowCollapsible = ''
+"let NERDTreeShowHidden=1
 "
 " NERDTree File highlighting
 "
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error"
-let g:NERDTreePatternMatchHighlightColor['src\/'] = s:blue
-let g:NERDTreePatternMatchHighlightColor['include\/'] = s:green
-let g:NERDTreePatternMatchHighlightColor['test\/'] = s:salmon
-let g:NERDTreePatternMatchHighlightColor['demo\/'] = s:beige
-let g:NERDTreePatternMatchHighlightColor['obj\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['lib\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['bin\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['links\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['logs\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['etc\/'] = s:green
-let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
-let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
+"let g:NERDTreeFileExtensionHighlightFullName = 1
+"let g:NERDTreeExactMatchHighlightFullName = 1
+"let g:NERDTreePatternMatchHighlightFullName = 1
+"let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+"let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+"let s:brown = "905532"
+"let s:aqua =  "3AFFDB"
+"let s:blue = "689FB6"
+"let s:darkBlue = "44788E"
+"let s:purple = "834F79"
+"let s:lightPurple = "834F79"
+"let s:red = "AE403F"
+"let s:beige = "F5C06F"
+"let s:yellow = "F09F17"
+"let s:orange = "D4843E"
+"let s:darkOrange = "F16529"
+"let s:pink = "CB6F6F"
+"let s:salmon = "EE6E73"
+"let s:green = "8FAA54"
+"let s:lightGreen = "31B53E"
+"let s:white = "FFFFFF"
+"let s:rspec_red = 'FE405F'
+"let s:git_orange = 'F54D27'
+"let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error"
+"let g:NERDTreePatternMatchHighlightColor['src\/'] = s:blue
+"let g:NERDTreePatternMatchHighlightColor['include\/'] = s:green
+"let g:NERDTreePatternMatchHighlightColor['test\/'] = s:salmon
+"let g:NERDTreePatternMatchHighlightColor['demo\/'] = s:beige
+"let g:NERDTreePatternMatchHighlightColor['obj\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['lib\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['bin\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['links\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['logs\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['etc\/'] = s:green
+"let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
+"let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
+"let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
 "
 " NERDTree git plugin
 "
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "Ă",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "Ř",
-    \ "Unmerged"  : "Û",
-    \ "Deleted"   : "Ð",
-    \ 'Ignored'   : '‼',
-    \ "Dirty"     : "Ø",
-    \ "Clean"     : "⌐",
-    \ "Unknown"   : "¿"
-    \ }
+"let g:NERDTreeIndicatorMapCustom = {
+"\ "Modified"  : "*",
+"\ "Staged"    : "Ă",
+"\ "Untracked" : "?",
+"\ "Renamed"   : "Ř",
+"\ "Unmerged"  : "Û",
+"\ "Deleted"   : "Ð",
+"\ 'Ignored'   : '‼',
+"\ "Dirty"     : "Ø",
+"\ "Clean"     : "⌐",
+"\ "Unknown"   : "¿"
+"\ }
 " YouCompleteMe
 "
 if has("unix")
@@ -611,6 +578,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 if has("gui_running")
     let g:airline_theme = 'molokai'
+    "let g:airline_theme = 'dracula'
 el
     let g:airline_theme = 'solarized'
 en
@@ -618,12 +586,14 @@ let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linen
 "
 " Devicons
 "
-let g:webdevicons_enable_denite = 0
+"let g:webdevicons_enable_denite = 0
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 "
 " JSON
 "
 " Syntax not working for certain colorscheme
 " source: https://github.com/elzr/vim-json/issues/50
+" FIXME: only apply to json
 hi! def link jsonKeyword Identifier
 "
 " IndentLine
@@ -742,16 +712,15 @@ set cole=0
 "let g:javascript_conceal_NaN        = 'ℕ'
 "let g:javascript_conceal_prototype  = '¶'
 " }}}
+
 " Keymap {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╦╔═┌─┐┬ ┬┌┬┐┌─┐┌─┐
-" ╠╩╗├┤ └┬┘│││├─┤├─┘
-" ╩ ╩└─┘ ┴ ┴ ┴┴ ┴┴
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" View .vimrc
+"
+nn <silent> <leader>v :e! $MYVIMRC<CR>
 "
 " lessmess
 "
@@ -865,16 +834,11 @@ nn <F10> :NERDTreeToggle<CR>
 "vm <C-v> c<ESC>"+p
 "im <C-v> <ESC>"+pa
 " }}}
+
 " Autocommand {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ╔═╗┬ ┬┌┬┐┌─┐┌─┐┌─┐┌┬┐┌┬┐┌─┐┌┐┌┌┬┐
-" ╠═╣│ │ │ │ ││  │ │││││││├─┤│││ ││
-" ╩ ╩└─┘ ┴ └─┘└─┘└─┘┴ ┴┴ ┴┴ ┴┘└┘─┴┘
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if !&diff
 "aug toggle_tagbar
 "au!
@@ -921,6 +885,7 @@ au nerdtree_custom bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
 " Open NERDTree when no file is selected
 au nerdtree_custom StdinReadPre * let s:std_in=1
 au nerdtree_custom VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+au nerdtree_custom FileType nerdtree setl nolist
 "
 " Pretty print xml
 "
@@ -956,28 +921,10 @@ aug reload_myvimrc
     au BufWritePost $MYVIMRC if exists(":AirlineRefresh") | :AirlineRefresh | en | if exists(":AirlineRefresh") | :AirlineRefresh | en
 aug end
 " }}}
+
 " Custom functions {{{
 "
-" Bracketed paste for ViM within GNU Screen
 "
-let s:screen  = &term =~ 'screen'
-let s:xterm   = &term =~ 'xterm'
-if s:screen || s:xterm
-    let &t_ti .= "\<Esc>P\<Esc>[?2004h\<Esc>\\"
-    let &t_te .= "\<Esc>P\<Esc>[?2004l\<Esc>\\"
-    fun! XTermPasteBegin(ret)
-        setl pastetoggle=<f29>
-        setl paste
-        retu a:ret
-    endf
-    exe "setl <f28>=\<Esc>[200~"
-    exe "setl <f29>=\<Esc>[201~"
-    map <expr> <f28> XTermPasteBegin("i")
-    im <expr> <f28> XTermPasteBegin("")
-    vm <expr> <f28> XTermPasteBegin("c")
-    cm <f28> <NOP>
-    cm <f29> <NOP>
-en
 "
 " CtrlP & NERDTree hack
 "
@@ -993,3 +940,4 @@ fun! CtrlPCustomCommand()
     exe 'CtrlP'
 endf
 " }}}
+" vim: set sw=4 sts=4 et fdm=marker:
