@@ -46,7 +46,6 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mboughaba/vim-lessmess'
-Plug 'mboughaba/vim-autopastetoggle'
 Plug 'felikz/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
@@ -145,7 +144,8 @@ if has("gui_running")
     se guioptions-=m
     "remove left-hand scroll bar
     se guioptions-=L
-    se guifont=InconsolataGo\ NF:h12
+    "se guifont=InconsolataGo\ NF:h12
+    se guifont=Meslo_LG_S_for_Powerline:h10
     au GUIEnter * simalt ~x
     map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 el
@@ -413,6 +413,7 @@ el
 en
 " Make Ack highlight results
 let g:ackhighlight = 1
+let g:ack_qhandler = "copen"
 cnorea Ack Ack!
 "
 " GitGutter & Signature
