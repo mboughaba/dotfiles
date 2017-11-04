@@ -846,6 +846,10 @@ nn <F10> :NERDTreeToggle<CR>
 "aug end
 "en
 "
+" Lessmess disable by FileType
+"
+au FileType vader let b:lessmess_disable_buffer = 1
+"
 " Spell
 "
 aug set_spell
