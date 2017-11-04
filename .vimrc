@@ -85,7 +85,6 @@ if empty($WORK_ENV)
     Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
     Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    Plug 'davidhalter/jedi-vim',                    { 'for': 'vim' }
     "
     " Disabled Plugs
     "
