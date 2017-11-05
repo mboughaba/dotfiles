@@ -706,11 +706,11 @@ no <CR> :
 "
 " View .vimrc
 "
-nn <Silent> <Leader>v :e! $MYVIMRC<CR>
+nn <silent> <Leader>v :e! $MYVIMRC<CR>
 "
 " lessmess
 "
-nn <Silent> <Leader>l :LessmessDisplayToggle<CR>
+nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 " Basic indentation fix
 "
@@ -728,13 +728,13 @@ nn <F2> :se invpaste paste?<CR>
 "
 " CtrlP & CtrlPFunky
 "
-nn <Silent> <Leader>p :CtrlPBuffer<CR>
+nn <silent> <Leader>p :CtrlPBuffer<CR>
 nn <c-h> :CtrlPFunky<CR>
 nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<CR>
 "
 " Spell Checking
 "
-nn <Silent> <F7> :se spell!<CR>
+nn <silent> <F7> :se spell!<CR>
 "
 " Wrapping Shortcuts
 "
@@ -743,14 +743,14 @@ nm Q gqap
 "
 " Buffers & Window Navigation
 "
-nn <Silent> <Tab> :bnext<CR>
-nn <Silent> <S-Tab> :bprevious<CR>
-nn <Silent> <F4>    :Bdelete<CR>
-nn <Silent> <F3>  <C-w>q
+nn <silent> <Tab> :bnext<CR>
+nn <silent> <S-Tab> :bprevious<CR>
+nn <silent> <F4>    :Bdelete<CR>
+nn <silent> <F3>  <C-w>q
 "
 " Enable scroll bind
 "
-nm <Silent> <Leader>scb :se scb!<CR>
+nm <silent> <Leader>scb :se scb!<CR>
 "
 " Vimdiff
 "
@@ -765,8 +765,8 @@ en
 "
 " File utilities
 "
-nm <Silent> <Leader>ef :!echo %<CR>               " Print file path
-nm <Silent> <Leader>cf :!cat %<CR>                " Echo file
+nm <silent> <Leader>ef :!echo %<CR>               " Print file path
+nm <silent> <Leader>cf :!cat %<CR>                " Echo file
 "
 " Remap number increment and decrement to avoid conflicts with gnu screen
 "
@@ -787,10 +787,10 @@ nn <F8> :TagbarToggle<CR>
 " FSwitch
 "
 nm <C-m> :FSHere<CR>
-nm <Silent> <Leader>mL :FSSplitRight<CR>
-nm <Silent> <Leader>mH :FSSplitLeft<CR>
-nm <Silent> <Leader>mK :FSSplitAbove<CR>
-nm <Silent> <Leader>mj :FSBelow<CR>
+nm <silent> <Leader>mL :FSSplitRight<CR>
+nm <silent> <Leader>mH :FSSplitLeft<CR>
+nm <silent> <Leader>mK :FSSplitAbove<CR>
+nm <silent> <Leader>mj :FSBelow<CR>
 "
 " keymap (habit breaking)
 "
@@ -874,7 +874,7 @@ en
 if $CODING_GAME
     aug merge_code
         au!
-        au BufWritePost * Silent! exe "! codingame-merge >/dev/null 2>&1" | redraw!
+        au BufWritePost * sil! exe "! codingame-merge >/dev/null 2>&1" | redraw!
     aug end
 en
 "
@@ -894,7 +894,7 @@ aug end
 "
 aug pretty_print
     au!
-    au BufNewFile,BufRead *.xml nm <Silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
+    au BufNewFile,BufRead *.xml nm <silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
 aug end
 "
 " Windows gliches patch
@@ -903,7 +903,7 @@ aug end
 if has("gui_running")
     aug windows_gliches
         au!
-        au GUIEnter * Silent! WToggleClean
+        au GUIEnter * sil! WToggleClean
     aug end
 en
 " Re-patch colorscheme
