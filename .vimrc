@@ -38,26 +38,28 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'djoshea/vim-autoread'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-repeat'
 Plug 'will133/vim-dirdiff'
 Plug 'bronson/vim-visual-star-search'
+Plug 'mboughaba/vim-lessmess'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mboughaba/vim-lessmess'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
+Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'Ack!'] }
 Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
-Plug 'mboughaba/vim-fswitch'
-"
-" Disabled Plugs until PR from my fork is merged
-"
+" waiting for my PR to be merged
 "Plug 'derekwyatt/vim-fswitch'
+Plug 'mboughaba/vim-fswitch'
+if v:version >= 800
+    Plug 'chrisbra/vim-autoread'
+el
+    Plug 'djoshea/vim-autoread'
+en
 if empty($WORK_ENV)
     Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
@@ -97,24 +99,20 @@ if empty($WORK_ENV)
     "Plug 'vim-latex/vim-latex'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
-    Plug '~/prj/tts.vim',         { 'for': ['edi', 'play', 'gsv'] }
-    Plug '~/prj/ttser',           { 'for': ['edi', 'play', 'gsv'] }
+    Plug '~/prj/tts.vim'
+    Plug '~/prj/ttser'
 en
 if has("gui_running")
     Plug 'derekmcloughlin/gvimfullscreen_win32'
     Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
     "Plug 'dracula/vim'
-    "
-    " Disabled Plugs
-    "
-    "Plug 'Yggdroot/indentLine'
 el
     Plug 'altercation/vim-colors-solarized'
 en
 if has("unix")
     if has("python")
-        Plug 'valloric/youcompleteme', { 'for': ['cpp', 'c'] }
+        Plug 'valloric/youcompleteme'
     el
         Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     en
@@ -144,8 +142,7 @@ if has("gui_running")
     se guioptions-=m
     "remove left-hand scroll bar
     se guioptions-=L
-    "se guifont=InconsolataGo\ NF:h12
-    se guifont=Meslo_LG_S_for_Powerline:h10
+    se guifont=InconsolataGo\ NF:h12
     au GUIEnter * simalt ~x
     map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 el
@@ -166,9 +163,10 @@ fun! s:patch_colorscheme()
     " Sign column same background as line numbers
     hi clear SignColumn
     " Hide '~' character at the end of buffer
-    hi EndOfBuffer ctermfg=234 guifg=bg
+    hi EndOfBuffer ctermfg=240 guifg=bg
+    " customize linenr on gui only
+    hi LineNr guifg=#d78787
     " Make cursor stand out
-    hi LineNr ctermfg=219 guifg=#d78787
     hi Cursor ctermbg=198 guibg=#D13A82
     hi iCursor ctermbg=201 guibg=#D13A82
     se guicursor=n-v-c:block-Cursor
@@ -412,8 +410,8 @@ el
     echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
 " Make Ack highlight results
-let g:ackhighlight = 1
 let g:ack_qhandler = "copen"
+"let g:ackhighlight = 1
 cnorea Ack Ack!
 "
 " GitGutter & Signature
@@ -460,7 +458,6 @@ let g:tagbar_width = 35
 "
 " NERDTree
 "
-" show dotfiles and dotdirs
 let g:NERDTreeAutoDeleteBuffer = 1
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
@@ -469,8 +466,6 @@ let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
 let NERDTreeDirArrowExpandable = " "
 let NERDTreeDirArrowCollapsible = " "
-"let g:NERDTreeDirArrowExpandable = ''
-"let g:NERDTreeDirArrowCollapsible = ''
 "let NERDTreeShowHidden=1
 "
 " NERDTree File highlighting
@@ -848,7 +843,10 @@ nn <F10> :NERDTreeToggle<CR>
 "
 " Lessmess disable by FileType
 "
-au FileType vader let b:lessmess_disable_buffer = 1
+aug disable_lessmess
+    au!
+    au FileType vader let b:lessmess_disable_buffer = 1
+aug end
 "
 " Spell
 "
