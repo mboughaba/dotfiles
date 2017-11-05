@@ -35,27 +35,28 @@ call plug#begin('~/.vim/plugged')
 " Custom Plugins
 "
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'moll/vim-bbye'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'moll/vim-bbye'
 Plug 'tpope/vim-repeat'
 Plug 'will133/vim-dirdiff'
 Plug 'bronson/vim-visual-star-search'
 Plug 'mboughaba/vim-lessmess'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
-Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
-Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
-Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'Ack!'] }
-Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
-Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 " waiting for my PR to be merged
 "Plug 'derekwyatt/vim-fswitch'
 Plug 'mboughaba/vim-fswitch'
+Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
+Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
+Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
+Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
+Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
+Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 if v:version >= 800
+    " Autoloaded and uses Vim 800 async jobs
     Plug 'chrisbra/vim-autoread'
 el
     Plug 'djoshea/vim-autoread'
@@ -79,7 +80,7 @@ if empty($WORK_ENV)
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
-    Plug 'groenewege/vim-less',                     { 'for': ['less'] }
+    Plug 'groenewege/vim-less',                     { 'for': 'less' }
     Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
     Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
@@ -89,8 +90,9 @@ if empty($WORK_ENV)
     "
     " Disabled Plugs
     "
-    " TODO: Reactivate signature, currently crashes with gitgutter
+    " Signature currently crashes with gitgutter
     "Plug 'kshenoy/vim-signature'
+    " those are a bit too much
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'taiansu/nerdtree-ag'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -103,21 +105,16 @@ el
     Plug '~/prj/ttser'
 en
 if has("gui_running")
+    Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     Plug 'derekmcloughlin/gvimfullscreen_win32'
     Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
     "Plug 'dracula/vim'
 el
     Plug 'altercation/vim-colors-solarized'
-en
-if has("unix")
-    if has("python")
+    if has("unix") && has("python")
         Plug 'valloric/youcompleteme'
-    el
-        Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     en
-el
-    Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
 en
 "
 " Let there be dragons
@@ -410,9 +407,8 @@ el
     echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
 " Make Ack highlight results
-let g:ack_qhandler = "copen"
-"let g:ackhighlight = 1
-cnorea Ack Ack!
+let g:ackhighlight = 1
+"let g:ack_qhandler = "copen"
 "
 " GitGutter & Signature
 "
@@ -571,6 +567,8 @@ let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+" This is handled by lessmess
+let g:airline#extensions#whitespace#enabled = 0
 if has("gui_running")
     let g:airline_theme = 'molokai'
     "let g:airline_theme = 'dracula'
@@ -584,23 +582,6 @@ let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linen
 "let g:webdevicons_enable_denite = 0
 "let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 "
-" JSON
-"
-" Syntax not working for certain colorscheme
-" source: https://github.com/elzr/vim-json/issues/50
-" FIXME: only apply to json
-hi! def link jsonKeyword Identifier
-"
-" IndentLine
-"
-"if has("gui_running")
-"" Change Indent Char
-"let g:indentLine_char = '┆'
-"" Make vim-json and indentLine behave well together
-"" source: https://github.com/elzr/vim-json/issues/23
-"let g:indentLine_concealcursor=''
-"en
-"
 " CtrlP
 "
 " Index all files
@@ -608,11 +589,23 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " Enable CtrlP caching
 let g:ctrlp_use_caching = 1
+" Set the directory to store the cache files
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+" Enable cross-session caching by not deleting the cache files upon exiting
+let g:ctrlp_clear_cache_on_exit = 0
 " Scan dotfiles and dotdirs
 let g:ctrlp_show_hidden = 0
 if executable('ag')
     " Make CtrlP even faster using the silver search
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+    " Who needs caching? Ag is fast enough
+    "let g:ctrlp_use_caching = 0
+    let g:ctrlp_clear_cache_on_exit = 1
+elsei executable('ack')
+    let g:ctrlp_user_command = 'ack -k --nocolor -g "" %s'
+    " Who needs caching? Ack is fast enough
+    "let g:ctrlp_use_caching = 0
+    let g:ctrlp_clear_cache_on_exit = 1
 en
 " Make CtrlP open files in new buffer
 let g:ctrlp_switch_buffer = 0
@@ -623,10 +616,6 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
             \ }
-" Set the directory to store the cache files
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-" Enable cross-session caching by not deleting the cache files upon exiting
-let g:ctrlp_clear_cache_on_exit = 0
 " Legacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
 let g:ctrlp_dont_split = 'nerdtree'
@@ -711,23 +700,27 @@ set cole=0
 " Keymap {{{
 "
 "
+" In and out of command mode quickly, less pain.
 "
+no <CR> :
 "
 " View .vimrc
 "
-nn <silent> <leader>v :e! $MYVIMRC<CR>
+nn <Silent> <Leader>v :e! $MYVIMRC<CR>
 "
 " lessmess
 "
-nn <silent> <Leader>l :LessmessDisplayToggle<CR>
+nn <Silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 " Basic indentation fix
 "
-map <leader>i mzgg=G`z
+map <Leader>i mzgg=G`z
 "
 " Ack
 "
-nn <Leader>a :Ack!<Space>
+nn <Leader>a :Ack!<Space>''<Left>
+nn <Leader>A :AckWindow!<Space>''<Left>
+nn <Leader>n AckFromSearch!<CR>
 "
 " Paste Toggle
 "
@@ -735,13 +728,13 @@ nn <F2> :se invpaste paste?<CR>
 "
 " CtrlP & CtrlPFunky
 "
-nn <silent> <Leader>p :CtrlPBuffer<CR>
+nn <Silent> <Leader>p :CtrlPBuffer<CR>
 nn <c-h> :CtrlPFunky<CR>
 nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<CR>
 "
 " Spell Checking
 "
-nn <silent> <F7> :se spell!<CR>
+nn <Silent> <F7> :se spell!<CR>
 "
 " Wrapping Shortcuts
 "
@@ -750,14 +743,14 @@ nm Q gqap
 "
 " Buffers & Window Navigation
 "
-nn <silent> <Tab> :bnext<CR>
-nn <silent> <S-Tab> :bprevious<CR>
-nn <silent> <F4>    :Bdelete<CR>
-nn <silent> <F3>  <C-w>q
+nn <Silent> <Tab> :bnext<CR>
+nn <Silent> <S-Tab> :bprevious<CR>
+nn <Silent> <F4>    :Bdelete<CR>
+nn <Silent> <F3>  <C-w>q
 "
 " Enable scroll bind
 "
-nm <silent> <Leader>scb :se scb!<CR>
+nm <Silent> <Leader>scb :se scb!<CR>
 "
 " Vimdiff
 "
@@ -772,8 +765,8 @@ en
 "
 " File utilities
 "
-nm <silent> <leader>ef :!echo %<CR>               " Print file path
-nm <silent> <leader>cf :!cat %<CR>                " Echo file
+nm <Silent> <Leader>ef :!echo %<CR>               " Print file path
+nm <Silent> <Leader>cf :!cat %<CR>                " Echo file
 "
 " Remap number increment and decrement to avoid conflicts with gnu screen
 "
@@ -793,13 +786,11 @@ nn <F8> :TagbarToggle<CR>
 "
 " FSwitch
 "
-" I use Alt+z because it is convenient to hold Alt while switching between companions.
-exe "se <M-z>=\ez"
-nn <M-z> :FSHere<CR>
-nm <silent> <Leader>oL :FSSplitRight<CR>
-nm <silent> <Leader>oH :FSSplitLeft<CR>
-nm <silent> <Leader>oK :FSSplitAbove<CR>
-nm <silent> <Leader>oj :FSBelow<CR>
+nm <C-m> :FSHere<CR>
+nm <Silent> <Leader>mL :FSSplitRight<CR>
+nm <Silent> <Leader>mH :FSSplitLeft<CR>
+nm <Silent> <Leader>mK :FSSplitAbove<CR>
+nm <Silent> <Leader>mj :FSBelow<CR>
 "
 " keymap (habit breaking)
 "
@@ -814,8 +805,8 @@ nn <Esc><Esc> :nohl<CR>
 "
 " Distraction free mode
 "
-nn <leader>g :Goyo<CR>
-nn <leader>t :NERDTreeClose<CR> :TagbarClose<CR>
+nn <Leader>g :NERDTreeClose<CR> :TagbarClose<CR>
+nn <Leader>G :Goyo<CR>
 "
 " NERDTree
 "
@@ -841,6 +832,15 @@ nn <F10> :NERDTreeToggle<CR>
 "aug end
 "en
 "
+" JSON
+"
+" Syntax not working for certain colorscheme
+" source: https://github.com/elzr/vim-json/issues/50
+aug patch_json_syntax_hi
+    au!
+    au FileType json hi! def link jsonKeyword Identifier
+aug end
+"
 " Lessmess disable by FileType
 "
 aug disable_lessmess
@@ -854,6 +854,7 @@ aug set_spell
     au!
     au BufRead,BufNewFile *.md      setlocal spell
     au BufRead,BufNewFile *.tex     setlocal spell
+    au BufRead,BufNewFile *.txt     setlocal spell
     au FileType           gitcommit setlocal spell
 aug end
 "
@@ -870,40 +871,40 @@ en
 "
 " codingame cpp merge
 "
-aug merge_code
-    au!
-aug end
 if $CODING_GAME
-    au merge_code BufWritePost * silent! exe "! codingame-merge >/dev/null 2>&1" | redraw!
+    aug merge_code
+        au!
+        au BufWritePost * Silent! exe "! codingame-merge >/dev/null 2>&1" | redraw!
+    aug end
 en
 "
 " NERDTree
 "
 aug nerdtree_custom
     au!
+    " Close vim if NERDTree is the only window left
+    au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
+    " Open NERDTree when no file is selected
+    au StdinReadPre * let s:std_in=1
+    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+    au FileType nerdtree setl nolist
 aug end
-" Close vim if NERDTree is the only window left
-au nerdtree_custom bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
-" Open NERDTree when no file is selected
-au nerdtree_custom StdinReadPre * let s:std_in=1
-au nerdtree_custom VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
-au nerdtree_custom FileType nerdtree setl nolist
 "
 " Pretty print xml
 "
 aug pretty_print
     au!
-    au BufNewFile,BufRead *.xml nm <silent> <leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
+    au BufNewFile,BufRead *.xml nm <Silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
 aug end
 "
 " Windows gliches patch
 "
-aug windows_gliches
-    au!
-aug end
 " Fix display gliches on Windows?
 if has("gui_running")
-    au windows_gliches GUIEnter * silent! WToggleClean
+    aug windows_gliches
+        au!
+        au GUIEnter * Silent! WToggleClean
+    aug end
 en
 " Re-patch colorscheme
 "
