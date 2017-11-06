@@ -543,7 +543,7 @@ if has("unix")
         let g:ycm_min_num_identifier_candidate_chars = 0
         let g:ycm_auto_trigger = 1
         let g:ycm_register_as_syntastic_checker = 0
-        let g:ycm_use_ultisnips_completer = 1
+        let g:ycm_use_ultisnips_completer = 0
         let g:ycm_filetype_blacklist = {
                     \ 'vim' : 1,
                     \ 'tagbar' : 1,
