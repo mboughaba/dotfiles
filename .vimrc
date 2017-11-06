@@ -55,18 +55,12 @@ Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
 Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
-if v:version >= 800
-    " Autoloaded and uses Vim 800 async jobs
-    Plug 'chrisbra/vim-autoread'
-el
-    Plug 'djoshea/vim-autoread'
-en
+Plug 'chrisbra/vim-autoread'
 if empty($WORK_ENV)
     Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'scrooloose/syntastic'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'ap/vim-css-color'
     Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
     Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
@@ -92,12 +86,14 @@ if empty($WORK_ENV)
     "
     " Signature currently crashes with gitgutter
     "Plug 'kshenoy/vim-signature'
+    " Ack can be slow sometime, let dispath search in background
+    "Plug 'tpope/vim-dispatch'
     " those are a bit too much
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'taiansu/nerdtree-ag'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     "Plug 'mattn/webapi-vim'
-    "Plug 'tpope/vim-dispatch'
     "Plug 'vim-latex/vim-latex'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
@@ -163,6 +159,7 @@ fun! s:patch_colorscheme()
     hi EndOfBuffer ctermfg=240 guifg=bg
     " customize linenr on gui only
     hi LineNr guifg=#d78787
+    hi SignColumn guibg=bg
     " Make cursor stand out
     hi Cursor ctermbg=198 guibg=#D13A82
     hi iCursor ctermbg=201 guibg=#D13A82
@@ -249,6 +246,8 @@ if version >= 703
     " Joining
     " Delete comment character when joining commented lines
     se formatoptions+=j
+    " Dont continue comments when pushing o/O
+    set formatoptions-=o
     " Line Numbers
     " Relative line numbers, no thanks :)
     "se rnu
@@ -278,6 +277,8 @@ se ignorecase
 se smartcase
 " Show matching bracket
 se showmatch
+" Searches wrap around the end of the file.
+se wrapscan
 if has("gui_running")
     " Hack to make multiple cursor highlight work properly in gvim
     se selection=inclusive
@@ -315,8 +316,6 @@ se ttimeoutlen=80
 se updatetime=250
 " Backspace Delete over line breaks
 se backspace=indent,eol,start
-" String at start of lines that have been wrapped.
-set showbreak="↪ "
 "
 " Mouse
 "
@@ -329,14 +328,20 @@ se signcolumn=yes
 "
 " Wrapping
 "
-" No wrapping
-se nowrap
+" Enable better wrapping
+se wrap
 " When wrapping, only at certain characters
 se linebreak
 " Turn off physical line wrapping
 se textwidth=0
 " Turn off physical line wrapping
 se wrapmargin=0
+" Make sure soft line break is done properly.
+se nolist
+" Customized characters to be shown when list is on
+se listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:⎵,eol:¬
+" String at start of lines that have been wrapped.
+se showbreak=↳
 "
 " Completion Menu
 "
@@ -407,7 +412,8 @@ el
     echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
 " Make Ack highlight results
-let g:ackhighlight = 1
+"let g:ackhighlight = 1
+"let g:ack_use_dispatch = 1
 "let g:ack_qhandler = "copen"
 "
 " GitGutter & Signature
@@ -451,6 +457,15 @@ let g:DirDiffDynamicDiffText = 1
 "
 let g:tagbar_right = 1
 let g:tagbar_width = 35
+"
+" NetRW
+"
+"let g:netrw_preview = 1
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 15
 "
 " NERDTree
 "
@@ -616,7 +631,7 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
             \ }
-" Legacy hack to avoid opening files in NERDTree split
+" HACK: Legacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
 let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -685,7 +700,7 @@ let g:gist_update_on_write = 2
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 " source: https://github.com/pangloss/vim-javascript/issues/101#issuecomment-45543789
-set cole=0
+se cole=0
 " Enable javascript concealing
 "let g:javascript_conceal = 1
 "let g:javascript_conceal_function   = 'ƒ'
@@ -704,6 +719,18 @@ set cole=0
 "
 no <CR> :
 "
+" Precision marks
+" back tick jumps to the exact location (line, col)
+" whereas tick jumps to only to the line.
+"
+no ' `
+no ` '
+"
+" Keep search matches in the middle of the window and pulse the line when moving to them.
+"
+nn n nzzzv
+nn N Nzzzv
+"
 " View .vimrc
 "
 nn <silent> <Leader>v :e! $MYVIMRC<CR>
@@ -721,6 +748,13 @@ map <Leader>i mzgg=G`z
 nn <Leader>a :Ack!<Space>''<Left>
 nn <Leader>A :AckWindow!<Space>''<Left>
 nn <Leader>n AckFromSearch!<CR>
+"
+" View Tasks
+"
+" In file
+nn <Leader>t /\vFIXME\|TODO\|HACK\|NOTE<CR>
+" In cwd
+nn <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK\|NOTE"<CR>
 "
 " Paste Toggle
 "
@@ -765,8 +799,10 @@ en
 "
 " File utilities
 "
-nm <silent> <Leader>ef :!echo %<CR>               " Print file path
-nm <silent> <Leader>cf :!cat %<CR>                " Echo file
+" Print file path
+nm <silent> <Leader>ef :!echo %<CR>
+" Echo file
+nm <silent> <Leader>cf :!cat %<CR>
 "
 " Remap number increment and decrement to avoid conflicts with gnu screen
 "
@@ -786,11 +822,15 @@ nn <F8> :TagbarToggle<CR>
 "
 " FSwitch
 "
-nm <C-m> :FSHere<CR>
-nm <silent> <Leader>mL :FSSplitRight<CR>
-nm <silent> <Leader>mH :FSSplitLeft<CR>
-nm <silent> <Leader>mK :FSSplitAbove<CR>
-nm <silent> <Leader>mj :FSBelow<CR>
+nm <silent> <Leader>zz :FSHere<CR>
+nm <silent> <Leader>zl :FSSplitRight<CR>
+nm <silent> <Leader>zL :FSRight<CR>
+nm <silent> <Leader>zh :FSSplitLeft<CR>
+nm <silent> <Leader>zH :FSLeft<CR>
+nm <silent> <Leader>zk :FSSplitAbove<CR>
+nm <silent> <Leader>zK :FSAbove<CR>
+nm <silent> <Leader>mj :FSSplitBelow<CR>
+nm <silent> <Leader>mJ :FSBelow<CR>
 "
 " keymap (habit breaking)
 "
@@ -878,6 +918,15 @@ if $CODING_GAME
     aug end
 en
 "
+" NetRW
+"
+"aug netrw_project_drawer
+    "au!
+    "" Open NetRW when no file is selected
+    "au StdinReadPre * let s:std_in = 1
+    "au VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | en
+"aug end
+"
 " NERDTree
 "
 aug nerdtree_custom
@@ -931,7 +980,7 @@ aug end
 "
 " CtrlP & NERDTree hack
 "
-" Legacy hack to avoid opening files in NERDTree split
+" HACK: Legacy hack to avoid opening files in NERDTree split
 fun! CtrlPCustomCommand()
     let c = 0
     let wincount = winnr('$')
@@ -943,4 +992,4 @@ fun! CtrlPCustomCommand()
     exe 'CtrlP'
 endf
 " }}}
-" vim: set sw=4 sts=4 et fdm=marker:
+" vim: se sw=4 sts=4 et fdm=marker:
