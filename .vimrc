@@ -49,13 +49,13 @@ Plug 'felikz/ctrlp-py-matcher'
 " waiting for my PR to be merged
 "Plug 'derekwyatt/vim-fswitch'
 Plug 'mboughaba/vim-fswitch'
+Plug 'chrisbra/vim-autoread'
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
 Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
-Plug 'chrisbra/vim-autoread'
 if empty($WORK_ENV)
     Plug 'Raimondi/delimitMate'
     Plug 'airblade/vim-gitgutter'
