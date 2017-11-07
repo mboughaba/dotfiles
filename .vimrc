@@ -958,6 +958,7 @@ if has("gui_running")
         au GUIEnter * sil! WToggleClean
     aug end
 en
+"
 " Re-patch colorscheme
 "
 aug patch_colors
