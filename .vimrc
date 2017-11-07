@@ -313,7 +313,8 @@ se ttimeout
 " Set timeout time to 80 ms
 se ttimeoutlen=80
 " Set default timeout for CursorHold
-se updatetime=250
+" We should keep default value which is 4s to limit performance impact.
+"se updatetime=250
 " Backspace Delete over line breaks
 se backspace=indent,eol,start
 "
@@ -436,13 +437,14 @@ let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
 "
 " C++ Syntax highlighting
+" Extended c++ Syntax highlighting is very heavy on scrolling
 "
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-"let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
+"let g:cpp_class_scope_highlight = 1
+"let g:cpp_member_variable_highlight = 1
+"let g:cpp_class_decl_highlight = 1
+"let g:cpp_experimental_simple_template_highlight = 1
+""let g:cpp_experimental_template_highlight = 1
+"let g:cpp_concepts_highlight = 1
 "
 " Lessmess
 "
@@ -591,6 +593,7 @@ el
     let g:airline_theme = 'solarized'
 en
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_highlighting_cache = 1
 "
 " Devicons
 "
