@@ -543,6 +543,7 @@ if has("unix")
         let g:ycm_max_diagnostics_to_display = 1000
         let g:ycm_min_num_of_chars_for_completion = 0
         let g:ycm_min_num_identifier_candidate_chars = 0
+        let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_auto_trigger = 1
         let g:ycm_register_as_syntastic_checker = 0
         let g:ycm_use_ultisnips_completer = 0
@@ -718,9 +719,6 @@ se cole=0
 " Keymap {{{
 "
 "
-" In and out of command mode quickly, less pain.
-"
-no <CR> :
 "
 " Precision marks
 " back tick jumps to the exact location (line, col)
@@ -744,20 +742,20 @@ nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 " Basic indentation fix
 "
-map <Leader>i mzgg=G`z
+map <silent> <Leader>i mzgg=G`z
 "
 " Ack
 "
-nn <Leader>a :Ack!<Space>''<Left>
-nn <Leader>A :AckWindow!<Space>''<Left>
-nn <Leader>n AckFromSearch!<CR>
+nn <silent> <Leader>a :Ack!<Space>''<Left>
+nn <silent> <Leader>A :AckWindow!<Space>''<Left>
+nn <silent> <Leader>n AckFromSearch!<CR>
 "
 " View Tasks
 "
 " In file
-nn <Leader>t /\vFIXME\|TODO\|HACK\|NOTE<CR>
+nn <silent> <Leader>t /\vFIXME\|TODO\|HACK\|NOTE<CR>
 " In cwd
-nn <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK\|NOTE"<CR>
+nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK\|NOTE"<CR>
 "
 " Paste Toggle
 "
@@ -848,8 +846,8 @@ nn <Esc><Esc> :nohl<CR>
 "
 " Distraction free mode
 "
-nn <Leader>g :NERDTreeClose<CR> :TagbarClose<CR>
-nn <Leader>G :Goyo<CR>
+nn <silent> <Leader>g :cal DistractionFeeMode()<CR>
+nn <silent> <Leader>G :Goyo<CR>
 "
 " NERDTree
 "
@@ -924,10 +922,10 @@ en
 " NetRW
 "
 "aug netrw_project_drawer
-    "au!
-    "" Open NetRW when no file is selected
-    "au StdinReadPre * let s:std_in = 1
-    "au VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | en
+"au!
+"" Open NetRW when no file is selected
+"au StdinReadPre * let s:std_in = 1
+"au VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | en
 "aug end
 "
 " NERDTree
@@ -994,6 +992,17 @@ fun! CtrlPCustomCommand()
         let c = c + 1
     endw
     exe 'CtrlP'
+endf
+"
+" Custom distraction free mode enable
+"
+fun! DistractionFeeMode()
+    if exists(":NERDTreeClose")
+        :NERDTreeClose
+    en
+    if exists(":TagbarClose")
+        :TagbarClose
+    en
 endf
 " }}}
 " vim: se sw=4 sts=4 et fdm=marker:
