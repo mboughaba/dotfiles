@@ -446,11 +446,6 @@ let g:solarized_termtrans=1
 ""let g:cpp_experimental_template_highlight = 1
 "let g:cpp_concepts_highlight = 1
 "
-" Lessmess
-"
-let g:enable_lessmess_onsave = 1
-let g:enable_lessmess_highlighting = 1
-"
 " vimdiff
 "
 let g:DirDiffDynamicDiffText = 1
@@ -746,8 +741,8 @@ map <silent> <Leader>i mzgg=G`z
 "
 " Ack
 "
-nn <silent> <Leader>a :Ack!<Space>''<Left>
-nn <silent> <Leader>A :AckWindow!<Space>''<Left>
+nn <Leader>a :Ack!<Space>''<Left>
+nn <Leader>A :AckWindow!<Space>''<Left>
 nn <silent> <Leader>n AckFromSearch!<CR>
 "
 " View Tasks
