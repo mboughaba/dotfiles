@@ -46,9 +46,7 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'mboughaba/vim-lessmess'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-" waiting for my PR to be merged
-"Plug 'derekwyatt/vim-fswitch'
-Plug 'mboughaba/vim-fswitch'
+Plug 'tpope/vim-projectionist'
 Plug 'chrisbra/vim-autoread'
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
@@ -401,6 +399,41 @@ en
 "
 "
 "
+" Projectionist
+"
+let g:projectionist_heuristics = {
+            \ "*": {
+            \  "src/*.cpp": {
+            \   "alternate": ["include/{}.hpp","test/src/{}Test.cpp"],
+            \   "type": "source"
+            \  },
+            \  "include/*.hpp": {
+            \   "alternate": ["test/src/{}Test.cpp","src/{}.cpp"],
+            \   "type": "header"
+            \  },
+            \  "test/src/*Test.cpp": {
+            \   "alternate": ["src/{}.cpp","include/{}.hpp"],
+            \   "type": "test"
+            \  },
+            \  "plugin/*.vim": {
+            \   "alternate": ["autoload/{}.vim","test/{}.vader","doc/{}.txt"],
+            \   "type": "plugin"
+            \  },
+            \  "autoload/*.vim": {
+            \   "alternate": ["test/{}.vader","doc/{}.txt","plugin/{}.vim"],
+            \   "type": "autoload"
+            \  },
+            \  "test/*.vader": {
+            \   "alternate": ["doc/{}.txt","autoload/{}.vim","plugin/{}.vim"],
+            \   "type": "test"
+            \  },
+            \  "doc/*.txt": {
+            \   "alternate": ["plugin/{}.vim","autoload/{}.vim","test/{}.vader"],
+            \   "type": "doc"
+            \  },
+            \ }
+            \}
+"
 " Goyo
 "
 "let g:goyo_linenr = 1
@@ -671,19 +704,19 @@ let g:syntastic_python_checkers = ['pylint']
 "
 " LaTeX
 "
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-" Disable mappings
-let g:Imap_FreezeImap=1
-" Disable folding sections
-let Tex_FoldedSections=''
-" Disable folding environments
-let Tex_FoldedEnvironments=''
-" Disable folding miscellaneous
-let Tex_FoldedMisc=''
-if has("win32")
-    let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
-en
+"let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_MultipleCompileFormats='pdf, aux'
+"" Disable mappings
+"let g:Imap_FreezeImap=1
+"" Disable folding sections
+"let Tex_FoldedSections=''
+"" Disable folding environments
+"let Tex_FoldedEnvironments=''
+"" Disable folding miscellaneous
+"let Tex_FoldedMisc=''
+"if has("win32")
+    "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
+"en
 "
 " Gist
 "
@@ -822,17 +855,11 @@ nn <F5> :UndotreeToggle<CR>
 "
 nn <F8> :TagbarToggle<CR>
 "
-" FSwitch
+" Projectionist
 "
-nm <silent> <Leader>zz :FSHere<CR>
-nm <silent> <Leader>zl :FSSplitRight<CR>
-nm <silent> <Leader>zL :FSRight<CR>
-nm <silent> <Leader>zh :FSSplitLeft<CR>
-nm <silent> <Leader>zH :FSLeft<CR>
-nm <silent> <Leader>zk :FSSplitAbove<CR>
-nm <silent> <Leader>zK :FSAbove<CR>
-nm <silent> <Leader>mj :FSSplitBelow<CR>
-nm <silent> <Leader>mJ :FSBelow<CR>
+" I use Alt+z because it is convenient to hold Alt while switching between companions.
+exe "se <M-z>=\ez"
+nn <M-z> :A<CR>
 "
 " keymap (habit breaking)
 "
