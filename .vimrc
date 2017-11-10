@@ -727,7 +727,11 @@ no ` '
 nn n nzzzv
 nn N Nzzzv
 "
-" View .vimrc
+" Edit .notes
+"
+nn <silent> <Leader>0 :e! ~/.notes<CR>
+"
+" Edit .vimrc
 "
 nn <silent> <Leader>v :e! $MYVIMRC<CR>
 "
