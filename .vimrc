@@ -136,7 +136,7 @@ if has("gui_running")
     se guioptions-=m
     "remove left-hand scroll bar
     se guioptions-=L
-    se guifont=InconsolataGo\ NF:h12
+    se guifont=InconsolataGo\ NF:h10
     au GUIEnter * simalt ~x
     map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 el
@@ -805,8 +805,10 @@ nm <silent> <Leader>cf :!cat %<CR>
 " I use Alt+a Alt+x because it is convenient to hold Alt while inc/dec multiple times.
 exe "se <M-a>=\ea"
 nn <M-a> <C-A>
+no <C-a> <NOP>
 exe "se <M-x>=\ex"
 nn <M-x> <C-X>
+no <C-x> <NOP>
 "
 " Undotree
 "
