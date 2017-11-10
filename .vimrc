@@ -99,6 +99,7 @@ el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
     Plug '~/prj/ttser'
+    Plug 'm42e/vim-gcov-marker'
 en
 if has("gui_running")
     Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
@@ -649,10 +650,9 @@ let g:ctrlp_funky_nolim = 1
 " UltiSnips
 "
 if has("unix")
-    let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+    let g:UltiSnipsSnippetDirectories = [$HOME . '/.vim/UltiSnips', 'UltiSnips']
 el
-    " TODO: I can't get custom snippets to work on windows
-    let g:UltiSnipsSnippetDirectories = ['~\.vim\UltiSnips\', 'UltiSnips']
+    let g:UltiSnipsSnippetDirectories = [$HOME . '/vimfiles/UltiSnips', 'UltiSnips']
 en
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger="<c-j>"
