@@ -431,6 +431,14 @@ let g:projectionist_heuristics = {
             \   "alternate": ["plugin/{}.vim","autoload/{}.vim","test/{}.vader"],
             \   "type": "doc"
             \  },
+            \  "*.play": {
+            \   "alternate": ["{}.gsv"],
+            \   "type": "play"
+            \  },
+            \  "*.gsv": {
+            \   "alternate": ["{}.play"],
+            \   "type": "ghost"
+            \  },
             \ }
             \}
 "
