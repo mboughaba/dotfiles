@@ -46,8 +46,11 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'mboughaba/vim-lessmess'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
+"Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'chrisbra/vim-autoread'
+"Plug 'm42e/vim-gcov-marker' " waiting for PR to be merged
+Plug 'mboughaba/vim-gcov-marker'
 Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
@@ -84,8 +87,6 @@ if empty($WORK_ENV)
     "
     " Signature currently crashes with gitgutter
     "Plug 'kshenoy/vim-signature'
-    " Ack can be slow sometime, let dispath search in background
-    "Plug 'tpope/vim-dispatch'
     " those are a bit too much
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'taiansu/nerdtree-ag'
@@ -97,7 +98,6 @@ el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
     Plug '~/prj/ttser'
-    Plug 'm42e/vim-gcov-marker'
 en
 if has("gui_running")
     Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
@@ -398,6 +398,12 @@ en
 "
 "
 "
+"
+" Gcov marker
+"
+let g:gcov_marker_auto_lopen = 0
+let g:gcov_marker_covered    = '✓'
+let g:gcov_marker_uncovered  = 'X'
 "
 " Projectionist
 "
@@ -723,7 +729,7 @@ let g:syntastic_python_checkers = ['pylint']
 "" Disable folding miscellaneous
 "let Tex_FoldedMisc=''
 "if has("win32")
-    "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
+"let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
 "en
 "
 " Gist
