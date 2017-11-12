@@ -46,7 +46,6 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'mboughaba/vim-lessmess'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-"Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'chrisbra/vim-autoread'
 "Plug 'm42e/vim-gcov-marker' " waiting for PR to be merged
@@ -88,12 +87,12 @@ if empty($WORK_ENV)
     " Signature currently crashes with gitgutter
     "Plug 'kshenoy/vim-signature'
     " those are a bit too much
+    "Plug 'tpope/vim-dispatch'
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'taiansu/nerdtree-ag'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     "Plug 'mattn/webapi-vim'
-    "Plug 'vim-latex/vim-latex'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
@@ -715,22 +714,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_python_checkers = ['pylint']
-"
-" LaTeX
-"
-"let g:Tex_DefaultTargetFormat = 'pdf'
-"let g:Tex_MultipleCompileFormats='pdf, aux'
-"" Disable mappings
-"let g:Imap_FreezeImap=1
-"" Disable folding sections
-"let Tex_FoldedSections=''
-"" Disable folding environments
-"let Tex_FoldedEnvironments=''
-"" Disable folding miscellaneous
-"let Tex_FoldedMisc=''
-"if has("win32")
-"let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance'
-"en
 "
 " Gist
 "
