@@ -39,6 +39,7 @@ Plug 'felikz/ctrlp-py-matcher'
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
+Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -47,29 +48,28 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " I will end up removing this as well once used to blind ctags
 "Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 if empty($opendev)
-    Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
-    Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
-    Plug 'airblade/vim-gitgutter'
+    "Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'airblade/vim-gitgutter'
+    "Plug 'groenewege/vim-less',                     { 'for': 'less' }
+    "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
+    "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
+    "Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+    "Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
+    "Plug 'scrooloose/syntastic'
+    "Plug 'shougo/vimproc.vim',                      { 'for': ['typescript', 'javascript', 'css', 'html'] }
+    "Plug 'tpope/vim-fugitive'
     Plug 'ap/vim-css-color'
     Plug 'elzr/vim-json',                           { 'for': 'json' }
-    Plug 'groenewege/vim-less',                     { 'for': 'less' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
-    Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
-    Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
-    Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
-    Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-    Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
-    Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
-    Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
-    Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
-    Plug 'scrooloose/syntastic'
-    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
-    Plug 'tpope/vim-fugitive'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
@@ -342,6 +342,19 @@ se noeb vb t_vb=
 " Ctags Find .tags recursively
 "
 se tags=.tags;
+if has("cscope")
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    se cscopetag
+    " check cscope for definition of a symbol after checking ctags: set to 0
+    " if you want the reverse search order.
+    set csto=1
+    " add any cscope database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    en
+    " show msg when any other cscope db added
+    se cscopeverbose
+en
 "
 " Statusline
 "
@@ -581,7 +594,7 @@ no ` '
 nn n nzzzv
 nn N Nzzzv
 " Easy find/replace (replacement of basic multiple cursors)
-nn <Leader>r :,$s/\v\<<C-r><C-w>\>//gc<Left><Left><Left>
+nn <Leader>r :,$s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " visual star search
 vn * y/<C-R>"<CR>
 "
