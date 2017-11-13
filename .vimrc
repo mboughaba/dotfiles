@@ -34,76 +34,53 @@ call plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
 "
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'moll/vim-bbye'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-repeat'
-Plug 'will133/vim-dirdiff'
-Plug 'bronson/vim-visual-star-search'
-Plug 'mboughaba/vim-lessmess'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'tpope/vim-projectionist'
-Plug 'chrisbra/vim-autoread'
-"Plug 'm42e/vim-gcov-marker' " waiting for PR to be merged
-Plug 'mboughaba/vim-gcov-marker'
-Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
-Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
+Plug 'mboughaba/vim-lessmess'
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
-Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
-Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
-if empty($WORK_ENV)
-    Plug 'Raimondi/delimitMate'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'scrooloose/syntastic'
-    Plug 'ap/vim-css-color'
-    Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
-    Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-    Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
-    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-projectionist'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+" Maybe I can live without this
+"Plug 'scrooloose/nerdcommenter'
+" I will end up removing this as well once used to blind ctags
+"Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
+" Can I merge without this?
+"Plug 'will133/vim-dirdiff'
+if empty($opendev)
+    Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
-    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
-    Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
+    Plug 'airblade/vim-gitgutter'
+    Plug 'ap/vim-css-color'
+    Plug 'elzr/vim-json',                           { 'for': 'json' }
+    Plug 'groenewege/vim-less',                     { 'for': 'less' }
+    Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
+    Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
     Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
-    Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
-    Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
-    Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
-    Plug 'groenewege/vim-less',                     { 'for': 'less' }
-    Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
-    Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
-    Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
-    Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
-    Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    "
-    " Disabled Plugs
-    "
-    " Signature currently crashes with gitgutter
-    "Plug 'kshenoy/vim-signature'
-    " those are a bit too much
-    "Plug 'tpope/vim-dispatch'
-    "Plug 'ryanoasis/vim-devicons'
-    "Plug 'taiansu/nerdtree-ag'
-    "Plug 'Xuyuanp/nerdtree-git-plugin'
-    "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    "Plug 'mattn/webapi-vim'
+    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
+    Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
+    Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
+    Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+    Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
+    Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
+    Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
+    Plug 'scrooloose/syntastic'
+    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
+    Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'tpope/vim-fugitive'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
     Plug '~/prj/ttser'
 en
 if has("gui_running")
-    Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     Plug 'derekmcloughlin/gvimfullscreen_win32'
     Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
-    "Plug 'dracula/vim'
 el
     Plug 'altercation/vim-colors-solarized'
     if has("unix") && has("python")
@@ -139,9 +116,6 @@ if has("gui_running")
 el
     " Force 256 colors
     se t_Co=256
-    " We shouldn't force xterm because we want it to be set to screen-256color
-    " when using gnu screen.
-    "se term=xterm-256color
 en
 "
 " Cursor, Line & Sign
@@ -187,6 +161,14 @@ call s:patch_colorscheme()
 "
 "
 "
+"
+" Make vim find search in subdirectories
+"
+se path+=**
+"
+" Show menu
+"
+se wildmenu
 "
 " Hide buffers
 "
@@ -310,9 +292,6 @@ se nojoinspaces
 se ttimeout
 " Set timeout time to 80 ms
 se ttimeoutlen=80
-" Set default timeout for CursorHold
-" We should keep default value which is 4s to limit performance impact.
-"se updatetime=250
 " Backspace Delete over line breaks
 se backspace=indent,eol,start
 "
@@ -397,13 +376,6 @@ en
 "
 "
 "
-"
-" Gcov marker
-"
-let g:gcov_marker_auto_lopen = 0
-let g:gcov_marker_covered    = '✓'
-let g:gcov_marker_uncovered  = 'X'
-"
 " Projectionist
 "
 let g:projectionist_heuristics = {
@@ -447,11 +419,6 @@ let g:projectionist_heuristics = {
             \ }
             \}
 "
-" Goyo
-"
-"let g:goyo_linenr = 1
-let g:goyo_width = 160
-"
 " Ack & Ag
 "
 if executable('ag')
@@ -459,10 +426,6 @@ if executable('ag')
 el
     echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
-" Make Ack highlight results
-"let g:ackhighlight = 1
-"let g:ack_use_dispatch = 1
-"let g:ack_qhandler = "copen"
 "
 " GitGutter & Signature
 "
@@ -472,26 +435,10 @@ let g:gitgutter_eager = 0
 let g:gitgutter_max_signs = 500
 let g:gitgutter_grep_command="ag --nocolor"
 "
-" Molokai
-"
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"
 " Solarized
 "
 " Support transparent terminal emulators
 let g:solarized_termtrans=1
-"let g:solarized_termcolors=256
-"
-" C++ Syntax highlighting
-" Extended c++ Syntax highlighting is very heavy on scrolling
-"
-"let g:cpp_class_scope_highlight = 1
-"let g:cpp_member_variable_highlight = 1
-"let g:cpp_class_decl_highlight = 1
-"let g:cpp_experimental_simple_template_highlight = 1
-""let g:cpp_experimental_template_highlight = 1
-"let g:cpp_concepts_highlight = 1
 "
 " vimdiff
 "
@@ -501,15 +448,6 @@ let g:DirDiffDynamicDiffText = 1
 "
 let g:tagbar_right = 1
 let g:tagbar_width = 35
-"
-" NetRW
-"
-"let g:netrw_preview = 1
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 15
 "
 " NERDTree
 "
@@ -521,104 +459,37 @@ let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
 let NERDTreeDirArrowExpandable = " "
 let NERDTreeDirArrowCollapsible = " "
-"let NERDTreeShowHidden=1
 "
-" NERDTree File highlighting
-"
-"let g:NERDTreeFileExtensionHighlightFullName = 1
-"let g:NERDTreeExactMatchHighlightFullName = 1
-"let g:NERDTreePatternMatchHighlightFullName = 1
-"let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-"let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-"let s:brown = "905532"
-"let s:aqua =  "3AFFDB"
-"let s:blue = "689FB6"
-"let s:darkBlue = "44788E"
-"let s:purple = "834F79"
-"let s:lightPurple = "834F79"
-"let s:red = "AE403F"
-"let s:beige = "F5C06F"
-"let s:yellow = "F09F17"
-"let s:orange = "D4843E"
-"let s:darkOrange = "F16529"
-"let s:pink = "CB6F6F"
-"let s:salmon = "EE6E73"
-"let s:green = "8FAA54"
-"let s:lightGreen = "31B53E"
-"let s:white = "FFFFFF"
-"let s:rspec_red = 'FE405F'
-"let s:git_orange = 'F54D27'
-"let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error"
-"let g:NERDTreePatternMatchHighlightColor['src\/'] = s:blue
-"let g:NERDTreePatternMatchHighlightColor['include\/'] = s:green
-"let g:NERDTreePatternMatchHighlightColor['test\/'] = s:salmon
-"let g:NERDTreePatternMatchHighlightColor['demo\/'] = s:beige
-"let g:NERDTreePatternMatchHighlightColor['obj\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['lib\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['bin\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['links\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['logs\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['etc\/'] = s:green
-"let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
-"let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
-"let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
-"
-" NERDTree git plugin
-"
-"let g:NERDTreeIndicatorMapCustom = {
-"\ "Modified"  : "*",
-"\ "Staged"    : "Ă",
-"\ "Untracked" : "?",
-"\ "Renamed"   : "Ř",
-"\ "Unmerged"  : "Û",
-"\ "Deleted"   : "Ð",
-"\ 'Ignored'   : '‼',
-"\ "Dirty"     : "Ø",
-"\ "Clean"     : "⌐",
-"\ "Unknown"   : "¿"
-"\ }
 " YouCompleteMe
 "
-if has("unix")
-    if has("python")
-        let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-        let g:ycm_max_diagnostics_to_display = 1000
-        let g:ycm_min_num_of_chars_for_completion = 0
-        let g:ycm_min_num_identifier_candidate_chars = 0
-        let g:ycm_collect_identifiers_from_tags_files = 1
-        let g:ycm_auto_trigger = 1
-        let g:ycm_register_as_syntastic_checker = 0
-        let g:ycm_use_ultisnips_completer = 0
-        let g:ycm_filetype_blacklist = {
-                    \ 'vim' : 1,
-                    \ 'tagbar' : 1,
-                    \ 'qf' : 1,
-                    \ 'notes' : 1,
-                    \ 'markdown' : 1,
-                    \ 'md' : 1,
-                    \ 'unite' : 1,
-                    \ 'text' : 1,
-                    \ 'vimwiki' : 1,
-                    \ 'pandoc' : 1,
-                    \ 'infolog' : 1,
-                    \ 'tts' : 1,
-                    \ 'edi' : 1,
-                    \ 'valgrind' : 1,
-                    \ 'mail' : 1
-                    \}
-        nn <F12> :YcmForceCompileAndDiagnostics<CR>
-        nn <C-LeftMouse> :YcmCompleter GoTo<CR>
-    el
-        " omnicppcomplete
-        let OmniCpp_GlobalScopeSearch = 1
-        let OmniCpp_NamespaceSearch = 1
-    en
-el
-    "
-    " omnicppcomplete
-    "
-    let OmniCpp_GlobalScopeSearch = 1
-    let OmniCpp_NamespaceSearch = 1
+if has("unix") && has("python")
+    let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+    let g:ycm_max_diagnostics_to_display = 1000
+    let g:ycm_min_num_of_chars_for_completion = 0
+    let g:ycm_min_num_identifier_candidate_chars = 0
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_auto_trigger = 1
+    let g:ycm_register_as_syntastic_checker = 0
+    let g:ycm_use_ultisnips_completer = 0
+    let g:ycm_filetype_blacklist = {
+                \ 'vim' : 1,
+                \ 'tagbar' : 1,
+                \ 'qf' : 1,
+                \ 'notes' : 1,
+                \ 'markdown' : 1,
+                \ 'md' : 1,
+                \ 'unite' : 1,
+                \ 'text' : 1,
+                \ 'vimwiki' : 1,
+                \ 'pandoc' : 1,
+                \ 'infolog' : 1,
+                \ 'tts' : 1,
+                \ 'edi' : 1,
+                \ 'valgrind' : 1,
+                \ 'mail' : 1
+                \}
+    nn <F12> :YcmForceCompileAndDiagnostics<CR>
+    nn <C-LeftMouse> :YcmCompleter GoTo<CR>
 en
 "
 " Airline
@@ -631,17 +502,11 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#whitespace#enabled = 0
 if has("gui_running")
     let g:airline_theme = 'molokai'
-    "let g:airline_theme = 'dracula'
 el
     let g:airline_theme = 'solarized'
 en
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 let g:airline_highlighting_cache = 1
-"
-" Devicons
-"
-"let g:webdevicons_enable_denite = 0
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 "
 " CtrlP
 "
@@ -659,13 +524,9 @@ let g:ctrlp_show_hidden = 0
 if executable('ag')
     " Make CtrlP even faster using the silver search
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-    " Who needs caching? Ag is fast enough
-    "let g:ctrlp_use_caching = 0
     let g:ctrlp_clear_cache_on_exit = 1
 elsei executable('ack')
     let g:ctrlp_user_command = 'ack -k --nocolor -g "" %s'
-    " Who needs caching? Ack is fast enough
-    "let g:ctrlp_use_caching = 0
     let g:ctrlp_clear_cache_on_exit = 1
 en
 " Make CtrlP open files in new buffer
@@ -693,18 +554,6 @@ let g:ctrlp_funky_sort_by_mru = 1
 let g:ctrlp_funky_use_cache = 1
 let g:ctrlp_funky_nolim = 1
 "
-" UltiSnips
-"
-if has("unix")
-    let g:UltiSnipsSnippetDirectories = [$HOME . '/.vim/UltiSnips', 'UltiSnips']
-el
-    let g:UltiSnipsSnippetDirectories = [$HOME . '/vimfiles/UltiSnips', 'UltiSnips']
-en
-let g:UltiSnipsUsePythonVersion = 2
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<c-l>"
-"
 " Syntastic
 "
 let g:syntastic_always_populate_loc_list = 1
@@ -715,30 +564,10 @@ let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_python_checkers = ['pylint']
 "
-" Gist
-"
-" Private by default
-let g:gist_post_private = 1
-" Detect type from the file name
-let g:gist_detect_filetype = 1
-" Only :w! updates a gist
-let g:gist_update_on_write = 2
-"
 " Javascript
 "
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-" source: https://github.com/pangloss/vim-javascript/issues/101#issuecomment-45543789
-se cole=0
-" Enable javascript concealing
-"let g:javascript_conceal = 1
-"let g:javascript_conceal_function   = 'ƒ'
-"let g:javascript_conceal_null       = 'ø'
-"let g:javascript_conceal_this       = '@'
-"let g:javascript_conceal_return     = '⇚'
-"let g:javascript_conceal_undefined  = '¿'
-"let g:javascript_conceal_NaN        = 'ℕ'
-"let g:javascript_conceal_prototype  = '¶'
 " }}}
 
 " Keymap {{{
@@ -752,17 +581,21 @@ se cole=0
 no ' `
 no ` '
 "
-" Keep search matches in the middle of the window and pulse the line when moving to them.
+" Searches
 "
+" Keep search matches in the middle of the window and pulse the line when moving to them.
 nn n nzzzv
 nn N Nzzzv
+" Easy find/replace (replacement of basic multiple cursors)
+nn <Leader>r :,$s/\v\<<C-r><C-w>\>//gc<Left><Left><Left>
+" visual star search
+vn * y/<C-R>"<CR>
+"
+" Files
 "
 " Edit .notes
-"
 nn <silent> <Leader>0 :e! ~/.notes<CR>
-"
 " Edit .vimrc
-"
 nn <silent> <Leader>v :e! $MYVIMRC<CR>
 "
 " lessmess
@@ -809,7 +642,10 @@ nm Q gqap
 "
 nn <silent> <Tab> :bnext<CR>
 nn <silent> <S-Tab> :bprevious<CR>
-nn <silent> <F4>    :Bdelete<CR>
+"
+" Closing buffer without a lot of mess
+"
+nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
 nn <silent> <F3>  <C-w>q
 "
 " Enable scroll bind
@@ -823,7 +659,7 @@ nn dj ]c
 " previous difference
 nn dk [c
 " de-hexify
-if $WORK_ENV
+if $opendev
     nn dh :%s/\\x1D/+/ge <CR> :%s/\\x1F/:/ge <CR> :%s/\\x1C/'/ge <CR> :%s/\\x19/*/ge <CR> :diffupdate<CR>
 en
 "
@@ -872,31 +708,24 @@ nn <Esc><Esc> :nohl<CR>
 " Distraction free mode
 "
 nn <silent> <Leader>g :cal DistractionFeeMode()<CR>
-nn <silent> <Leader>G :Goyo<CR>
 "
 " NERDTree
 "
 nn <F9> :NERDTreeFind<CR>
 nn <F10> :NERDTreeToggle<CR>
-"
-" Enable Copy/Paste, no thanks :)
-"
-"vm <C-c> "+yi
-"vm <C-x> "+c
-"vm <C-v> c<ESC>"+p
-"im <C-v> <ESC>"+pa
 " }}}
 
 " Autocommand {{{
 "
 "
 "
-"if !&diff
-"aug toggle_tagbar
-"au!
-"au FileType * nested :cal tagbar#autoopen(0)
-"aug end
-"en
+"
+" Disable paste mode on InsertLeave
+"
+aug auto_disable_paste
+    au!
+    au InsertLeave * se nopaste
+aug end
 "
 " JSON
 "
@@ -943,15 +772,6 @@ if $CODING_GAME
         au BufWritePost * sil! exe "! codingame-merge >/dev/null 2>&1" | redraw!
     aug end
 en
-"
-" NetRW
-"
-"aug netrw_project_drawer
-"au!
-"" Open NetRW when no file is selected
-"au StdinReadPre * let s:std_in = 1
-"au VimEnter * if argc() == 0 && !exists("s:std_in") | Vexplore | en
-"aug end
 "
 " NERDTree
 "
