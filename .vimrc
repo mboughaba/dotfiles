@@ -46,8 +46,6 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 "Plug 'scrooloose/nerdcommenter'
 " I will end up removing this as well once used to blind ctags
 "Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
-" Can I merge without this?
-"Plug 'will133/vim-dirdiff'
 if empty($opendev)
     Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
@@ -439,10 +437,6 @@ let g:gitgutter_grep_command="ag --nocolor"
 "
 " Support transparent terminal emulators
 let g:solarized_termtrans=1
-"
-" vimdiff
-"
-let g:DirDiffDynamicDiffText = 1
 "
 " Tagbar
 "
