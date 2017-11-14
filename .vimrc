@@ -42,29 +42,16 @@ Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow',
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-projectionist'
+"waiting for fix: https://github.com/tpope/vim-projectionist/issues/89
+"Plug 'tpope/vim-projectionist'
+Plug 'mboughaba/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 if empty($opendev)
-    "Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'groenewege/vim-less',                     { 'for': 'less' }
-    "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
-    "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    "Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
-    "Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
-    "Plug 'scrooloose/syntastic'
-    "Plug 'shougo/vimproc.vim',                      { 'for': ['typescript', 'javascript', 'css', 'html'] }
     Plug 'ap/vim-css-color'
-    Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
-    Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
@@ -89,7 +76,6 @@ filet plugin indent on
 " }}}
 
 " Eye Candy {{{
-"
 "
 "
 "
@@ -433,23 +419,10 @@ el
     echoerr "ag Silver Searcher was not found, check if it is installed!"
 en
 "
-" GitGutter & Signature
-"
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-let g:gitgutter_max_signs = 500
-let g:gitgutter_grep_command="ag --nocolor"
-"
 " Solarized
 "
 " Support transparent terminal emulators
 let g:solarized_termtrans=1
-"
-" Tagbar
-"
-let g:tagbar_right = 1
-let g:tagbar_width = 35
 "
 " NERDTree
 "
@@ -615,12 +588,6 @@ nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK\|NOTE"<CR>
 "
 nn <F2> :se invpaste paste?<CR>
 "
-" CtrlP & CtrlPFunky
-"
-nn <silent> <Leader>p :CtrlPBuffer<CR>
-nn <c-h> :CtrlPFunky<CR>
-nn <s-h> :exe 'CtrlPFunky ' . expand('<cword>')<CR>
-"
 " Spell Checking
 "
 nn <silent> <F7> :se spell!<CR>
@@ -676,10 +643,6 @@ no <C-x> <NOP>
 "
 nn <F5> :UndotreeToggle<CR>
 "
-" Tagbar
-"
-nn <F8> :TagbarToggle<CR>
-"
 " Projectionist
 "
 " I use Alt+z because it is convenient to hold Alt while switching between companions.
@@ -717,15 +680,6 @@ nn <F10> :NERDTreeToggle<CR>
 aug auto_disable_paste
     au!
     au InsertLeave * se nopaste
-aug end
-"
-" JSON
-"
-" Syntax not working for certain colorscheme
-" source: https://github.com/elzr/vim-json/issues/50
-aug patch_json_syntax_hi
-    au!
-    au FileType json hi! def link jsonKeyword Identifier
 aug end
 "
 " Lessmess disable by FileType
@@ -772,9 +726,10 @@ aug nerdtree_custom
     " Close vim if NERDTree is the only window left
     au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
     " Open NERDTree when no file is selected
-    au StdinReadPre * let s:std_in=1
-    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
-    au FileType nerdtree setl nolist
+    " I prefer not to open NERDTree at startup
+    "au StdinReadPre * let s:std_in=1
+    "au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+    "au FileType nerdtree setl nolist
 aug end
 "
 " Pretty print xml
@@ -836,9 +791,6 @@ endf
 fun! DistractionFeeMode()
     if exists(":NERDTreeClose")
         :NERDTreeClose
-    en
-    if exists(":TagbarClose")
-        :TagbarClose
     en
 endf
 " }}}
