@@ -59,7 +59,6 @@ el
 en
 if has("gui_running")
     Plug 'derekmcloughlin/gvimfullscreen_win32'
-    Plug 'kkoenig/wimproved.vim'
     Plug 'tomasr/molokai'
 el
     Plug 'altercation/vim-colors-solarized'
@@ -738,16 +737,6 @@ aug pretty_print
     au!
     au BufNewFile,BufRead *.xml nm <silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
 aug end
-"
-" Windows gliches patch
-"
-" Fix display gliches on Windows?
-if has("gui_running")
-    aug windows_gliches
-        au!
-        au GUIEnter * sil! WToggleClean
-    aug end
-en
 "
 " Re-patch colorscheme
 "
