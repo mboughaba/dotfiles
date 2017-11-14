@@ -40,16 +40,12 @@ Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-" Maybe I can live without this
-"Plug 'scrooloose/nerdcommenter'
-" I will end up removing this as well once used to blind ctags
-"Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 if empty($opendev)
     "Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'airblade/vim-gitgutter'
     "Plug 'groenewege/vim-less',                     { 'for': 'less' }
     "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
     "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
@@ -62,7 +58,6 @@ if empty($opendev)
     "Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
     "Plug 'scrooloose/syntastic'
     "Plug 'shougo/vimproc.vim',                      { 'for': ['typescript', 'javascript', 'css', 'html'] }
-    "Plug 'tpope/vim-fugitive'
     Plug 'ap/vim-css-color'
     Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
@@ -472,7 +467,7 @@ let NERDTreeDirArrowCollapsible = " "
 if has("unix") && has("python")
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
     let g:ycm_max_diagnostics_to_display = 1000
-    let g:ycm_min_num_of_chars_for_completion = 0
+    let g:ycm_min_num_of_chars_for_completion = 3
     let g:ycm_min_num_identifier_candidate_chars = 0
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_auto_trigger = 1
@@ -550,16 +545,6 @@ let g:ctrlp_dont_split = 'NERD'
 let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
-"
-" CtrlP Funcky
-"
-" let CtrlP Funky do some nice highlighting
-let g:ctrlp_funky_matchtype = 'path'
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_funky_multi_buffers = 1
-let g:ctrlp_funky_sort_by_mru = 1
-let g:ctrlp_funky_use_cache = 1
-let g:ctrlp_funky_nolim = 1
 "
 " Syntastic
 "
