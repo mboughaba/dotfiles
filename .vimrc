@@ -30,28 +30,40 @@ let g:mapleader=" "
 "
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
+" TODO: use vim native pack
 call plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
 "
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
+Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
 Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-"waiting for fix: https://github.com/tpope/vim-projectionist/issues/89
-"Plug 'tpope/vim-projectionist'
-Plug 'mboughaba/vim-projectionist'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 if empty($opendev)
+    Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
     Plug 'ap/vim-css-color'
+    Plug 'elzr/vim-json',                           { 'for': 'json' }
+    Plug 'groenewege/vim-less',                     { 'for': 'less' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
+    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
+    Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
+    Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
+    Plug 'scrooloose/syntastic'
+    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
+    Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'vim-scripts/Flex-Development-Support'
+
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
