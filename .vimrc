@@ -63,7 +63,39 @@ if empty($opendev)
     Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
     Plug 'vim-scripts/Flex-Development-Support'
-
+    "
+    " Disabled plugs
+    "
+    "Plug 'Raimondi/delimitMate'
+    "Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
+    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'airblade/vim-gitgutter'
+    "Plug 'bronson/vim-visual-star-search'
+    "Plug 'chrisbra/vim-autoread'
+    "Plug 'dracula/vim'
+    "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
+    "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
+    "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
+    "Plug 'kkoenig/wimproved.vim'
+    "Plug 'kshenoy/vim-signature'
+    "Plug 'm42e/vim-gcov-marker'
+    "Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
+    "Plug 'mattn/webapi-vim'
+    "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+    "Plug 'mboughaba/vim-gcov-marker'
+    "Plug 'moll/vim-bbye'
+    "Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
+    "Plug 'ryanoasis/vim-devicons'
+    "Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
+    "Plug 'taiansu/nerdtree-ag'
+    "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    "Plug 'tpope/vim-dispatch'
+    "Plug 'tpope/vim-fugitive'
+    "Plug 'tpope/vim-repeat'
+    "Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
+    "Plug 'will133/vim-dirdiff'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
     Plug '~/prj/tts.vim'
@@ -435,6 +467,11 @@ en
 " Support transparent terminal emulators
 let g:solarized_termtrans=1
 "
+" Tagbar
+"
+let g:tagbar_right = 1
+let g:tagbar_width = 35
+"
 " NERDTree
 "
 let g:NERDTreeAutoDeleteBuffer = 1
@@ -654,6 +691,10 @@ no <C-x> <NOP>
 "
 nn <F5> :UndotreeToggle<CR>
 "
+" Tagbar
+"
+nn <F8> :TagbarToggle<CR>
+"
 " Projectionist
 "
 " I use Alt+z because it is convenient to hold Alt while switching between companions.
@@ -730,6 +771,15 @@ if $CODING_GAME
     aug end
 en
 "
+" Tagbar
+"
+"if !&diff
+"    aug toggle_tagbar
+"        au!
+"        au FileType * nested :cal tagbar#autoopen(0)
+"    aug end
+"en
+"
 " NERDTree
 "
 aug nerdtree_custom
@@ -748,6 +798,14 @@ aug end
 aug pretty_print
     au!
     au BufNewFile,BufRead *.xml nm <silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
+aug end
+"
+" Syntax not working for certain colorscheme
+" source: https://github.com/elzr/vim-json/issues/50
+"
+aug patch_json_syntax_hi
+    au!
+    au FileType json hi! def link jsonKeyword Identifier
 aug end
 "
 " Re-patch colorscheme
@@ -792,6 +850,9 @@ endf
 fun! DistractionFeeMode()
     if exists(":NERDTreeClose")
         :NERDTreeClose
+    en
+    if exists(":TagbarClose")
+        :TagbarClose
     en
 endf
 " }}}
