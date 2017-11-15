@@ -71,15 +71,12 @@ if empty($opendev)
     "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'airblade/vim-gitgutter'
-    "Plug 'bronson/vim-visual-star-search'
     "Plug 'chrisbra/vim-autoread'
     "Plug 'dracula/vim'
     "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
     "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
     "Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
     "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    "Plug 'kkoenig/wimproved.vim'
-    "Plug 'kshenoy/vim-signature'
     "Plug 'm42e/vim-gcov-marker'
     "Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
     "Plug 'mattn/webapi-vim'
@@ -94,7 +91,6 @@ if empty($opendev)
     "Plug 'tpope/vim-dispatch'
     "Plug 'tpope/vim-fugitive'
     "Plug 'tpope/vim-repeat'
-    "Plug 'vim-scripts/OmniCppComplete', { 'for': ['cpp', 'c'] } | Plug 'ervandew/supertab'
     "Plug 'will133/vim-dirdiff'
 el
     Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
