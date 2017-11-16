@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Set blue
+echo -n $(tput setaf 4)
+
+# Display blanker
+cat $HOME/.blanker/.blanker_text
+
+# Set yellow
+echo -n $(tput setaf 3)
+cat $HOME/.blanker/.blanker_smiley
+
+# Reset color
+echo -n $(tput setaf 0)

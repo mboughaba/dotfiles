@@ -362,19 +362,19 @@ se noeb vb t_vb=
 " Ctags Find .tags recursively
 "
 se tags=.tags;
-if has("cscope")
-    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    se cscopetag
-    " check cscope for definition of a symbol after checking ctags: set to 0
-    " if you want the reverse search order.
-    set csto=1
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    en
-    " show msg when any other cscope db added
-    se cscopeverbose
-en
+"if has("cscope")
+    "" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    "se cscopetag
+    "" check cscope for definition of a symbol after checking ctags: set to 0
+    "" if you want the reverse search order.
+    "set csto=1
+    "" add any cscope database in current directory
+    "if filereadable("cscope.out")
+        "cs add cscope.out
+    "en
+    "" show msg when any other cscope db added
+    "se cscopeverbose
+"en
 "
 " Statusline
 "
