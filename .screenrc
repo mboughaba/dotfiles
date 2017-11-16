@@ -4,7 +4,7 @@ term screen-256color
 # Status bar
 hardstatus off
 
-hardstatus alwayslastline "%{= Mw}  %{w}%S  %{GG}%{Cw} %{+b bW} #%n-%t%? [%h]%? %{GG} %{= mG} %{d}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+ub M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+B BW} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
+hardstatus alwayslastline "%{= rw}  %{+b w}%S  %{GG}%{Cw} %{+b bW} #%n: %t%? [%h]%? %{GG} %{+b yG} %{d}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+ub M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+bB mW} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
 
 # Caption bar only on split
 caption splitonly "%?%F%{+bu kM}%:%{KK} %?Active split: #%n %t %h "
@@ -56,7 +56,7 @@ defmonitor on
 defnonblock on
 
 # Display screen saver after some seconds of inactivity
-idle 30
+idle 60
 
 # Custom blanker (screen saver/blanker) program
 blankerprg $HOME/.blanker/.blanker

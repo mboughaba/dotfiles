@@ -179,6 +179,12 @@ call s:patch_colorscheme()
 "
 "
 "
+" Splits
+"
+" Open new split panes to right and bottom
+se splitbelow
+se splitright
+"
 "
 " Make vim find search in subdirectories
 "
