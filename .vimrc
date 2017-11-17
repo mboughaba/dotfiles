@@ -30,8 +30,8 @@ let g:mapleader=" "
 "
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
-" TODO: use vim native pack
-call plug#begin('~/.vim/plugged')
+" TODO: try vim native pack
+cal plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
 "
@@ -110,7 +110,7 @@ en
 " Let there be dragons
 "
 " Initialize plugin system
-call plug#end()
+cal plug#end()
 filet plugin indent on
 " }}}
 
@@ -130,7 +130,7 @@ if has("gui_running")
     se guioptions-=L
     se guifont=InconsolataGo\ NF:h10
     au GUIEnter * simalt ~x
-    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 el
     " Force 256 colors
     se t_Co=256
@@ -172,7 +172,7 @@ if has("gui_running")
 el
     colo solarized
 en
-call s:patch_colorscheme()
+cal s:patch_colorscheme()
 " }}}
 
 " Vim Settings {{{
@@ -389,6 +389,8 @@ se laststatus=2
 " Linux/MacOSX, Excluding version control directories
 se wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf
+" Hide showmode as we are uing statusline plugin
+se noshowmode
 "
 " Configure statusline for laster Syntastic use
 "
@@ -814,7 +816,7 @@ aug end
 "
 aug patch_colors
     au!
-    au ColorScheme * call s:patch_colorscheme()
+    au ColorScheme * cal s:patch_colorscheme()
 aug end
 "
 " Watch $MYVIMRC
