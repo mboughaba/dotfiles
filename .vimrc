@@ -92,9 +92,9 @@ if empty($opendev)
     "Plug 'tpope/vim-repeat'
     "Plug 'will133/vim-dirdiff'
 el
-    Plug 'mboughaba/edifact.vim', { 'for': ['edi', 'play', 'gsv'] }
-    Plug '~/prj/tts.vim'
-    Plug '~/prj/ttser'
+    "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
+    Plug '~/prj/tts.vim',         { 'for': 'tts' }
+    Plug '~/prj/ttser',           { 'for': 'tts' }
 en
 if has("gui_running")
     Plug 'derekmcloughlin/gvimfullscreen_win32'
