@@ -34,6 +34,7 @@ cal plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
 "
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
@@ -61,13 +62,12 @@ if empty($opendev)
     Plug 'scrooloose/syntastic'
     Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
-    Plug 'vim-scripts/Flex-Development-Support'
+    Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
     "
     " Disabled plugs
     "
     "Plug 'Raimondi/delimitMate'
     "Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
-    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'airblade/vim-gitgutter'
     "Plug 'chrisbra/vim-autoread'
@@ -374,7 +374,7 @@ se tags=tags;
 "    se cscopetag
 "    " check cscope for definition of a symbol after checking ctags: set to 0
 "    " if you want the reverse search order.
-"    set csto=1
+"    se csto=1
 "    " add any cscope database in current directory
 "    if filereadable("cscope.out")
 "        cs add cscope.out
@@ -424,6 +424,18 @@ en
 " Plugin Settings {{{
 "
 "
+"
+" UltiSnips
+"
+if has("unix")
+    let g:UltiSnipsSnippetDirectories = [$HOME . '/.vim/UltiSnips', 'UltiSnips']
+el
+    let g:UltiSnipsSnippetDirectories = [$HOME . '/vimfiles/UltiSnips', 'UltiSnips']
+en
+let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 "
 " Projectionist
 "
@@ -737,6 +749,13 @@ nn <F10> :NERDTreeToggle<CR>
 " Autocommand {{{
 "
 "
+"
+" ftdetect actionscript
+"
+aug actionscript_ft_detection
+    au!
+    au BufNewFile,BufRead *.mxml,*.as,*.MXML,*.AS     se ft=actionscript
+aug end
 "
 " Auto DeHexify
 "
