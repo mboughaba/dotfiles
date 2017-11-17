@@ -368,7 +368,7 @@ se noeb vb t_vb=
 "
 " Ctags Find .tags recursively
 "
-se tags=tags;
+se tags=.tags;
 "if has("cscope")
 "    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
 "    se cscopetag
@@ -389,7 +389,7 @@ se tags=tags;
 se laststatus=2
 " Linux/MacOSX, Excluding version control directories
 se wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf,*/tags,*/cscope.*
+se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf,*/.tags,*/cscope.*
 "
 " Display less
 "
@@ -503,7 +503,7 @@ let g:tagbar_width = 35
 let g:NERDTreeAutoDeleteBuffer = 1
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
-let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.playconf$']
+let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.patch$', '\.playconf$', '\.tags$', 'cscope\.out$']
 let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
 let NERDTreeDirArrowExpandable = " "

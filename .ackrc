@@ -1,0 +1,11 @@
+--ignore-dir=nytprof
+--ignore-file=is:tags
+--type-add=md=.md
+--type-set=md=.mkd
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-dir=vendor
+--ignore-dir=.idea
+--ignore-dir=nbproject
+--smart-case
+--sort-files

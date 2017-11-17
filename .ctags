@@ -1,0 +1,12 @@
+-f .tags
+-R
+--exclude=.git
+--exclude=.hg
+--exclude=vendor/*
+--exclude=node_modules/*
+--exclude=db/*
+--exclude=log/*
+--exclude=component/*
+--c++-kinds=+p
+--extra=+q+f
+--fields=+i+a+S+n
