@@ -645,6 +645,10 @@ nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 map <silent> <Leader>i mzgg=G`z
 "
+" Async Job
+"
+nn <Leader>j :Jobdo<Space>
+"
 " Ack
 "
 nn <Leader>a :Ack!<Space>''<Left>
