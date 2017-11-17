@@ -30,7 +30,6 @@ let g:mapleader=" "
 "
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
-" TODO: try vim native pack
 cal plug#begin('~/.vim/plugged')
 "
 " Custom Plugins
@@ -139,24 +138,26 @@ en
 " Cursor, Line & Sign
 "
 fun! s:patch_colorscheme()
-    " Line number column same background as vim itself
-    hi clear LineNr
-    " Vertical split line same background as vim itself
-    hi clear VertSplit
-    " Sign column same background as line numbers
-    hi clear SignColumn
-    " Hide '~' character at the end of buffer
-    hi EndOfBuffer ctermfg=240 guifg=bg
-    " customize linenr on gui only
-    hi LineNr guifg=#d78787
-    hi SignColumn guibg=bg
-    " Make cursor stand out
-    hi Cursor ctermbg=198 guibg=#D13A82
-    hi iCursor ctermbg=201 guibg=#D13A82
-    se guicursor=n-v-c:block-Cursor
-    se guicursor+=i:ver100-iCursor
-    se guicursor+=n-v-c:blinkon0
-    se guicursor+=i:blinkwait10
+    if !&diff
+        " Line number column same background as vim itself
+        hi clear LineNr
+        " Vertical split line same background as vim itself
+        hi clear VertSplit
+        " Sign column same background as line numbers
+        hi clear SignColumn
+        " Hide '~' character at the end of buffer
+        hi EndOfBuffer ctermfg=240 guifg=bg
+        " customize linenr on gui only
+        hi LineNr guifg=#d78787
+        hi SignColumn guibg=bg
+        " Make cursor stand out
+        hi Cursor ctermbg=198 guibg=#D13A82
+        hi iCursor ctermbg=201 guibg=#D13A82
+        se guicursor=n-v-c:block-Cursor
+        se guicursor+=i:ver100-iCursor
+        se guicursor+=n-v-c:blinkon0
+        se guicursor+=i:blinkwait10
+    en
 endf
 "
 " Colorscheme
@@ -367,19 +368,19 @@ se noeb vb t_vb=
 "
 " Ctags Find .tags recursively
 "
-se tags=.tags;
+se tags=tags;
 "if has("cscope")
-    "" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    "se cscopetag
-    "" check cscope for definition of a symbol after checking ctags: set to 0
-    "" if you want the reverse search order.
-    "set csto=1
-    "" add any cscope database in current directory
-    "if filereadable("cscope.out")
-        "cs add cscope.out
-    "en
-    "" show msg when any other cscope db added
-    "se cscopeverbose
+"    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+"    se cscopetag
+"    " check cscope for definition of a symbol after checking ctags: set to 0
+"    " if you want the reverse search order.
+"    set csto=1
+"    " add any cscope database in current directory
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+"    en
+"    " show msg when any other cscope db added
+"    se cscopeverbose
 "en
 "
 " Statusline
@@ -388,15 +389,24 @@ se tags=.tags;
 se laststatus=2
 " Linux/MacOSX, Excluding version control directories
 se wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf
-" Hide showmode as we are uing statusline plugin
-se noshowmode
+se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf,*/tags,*/cscope.*
+"
+" Display less
+"
+if !&diff
+    " Hide showmode as we are uing statusline plugin
+    se noshowmode
+el
+    se nonu
+en
 "
 " Configure statusline for laster Syntastic use
 "
-se statusline+=%#warningmsg#
-if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
-se statusline+=%*
+if !&diff
+    se statusline+=%#warningmsg#
+    if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
+    se statusline+=%*
+en
 "
 " Typos
 "
@@ -603,7 +613,7 @@ no ` '
 " Keep search matches in the middle of the window and pulse the line when moving to them.
 nn n nzzzv
 nn N Nzzzv
-" Easy find/replace (replacement of basic multiple cursors)
+" Easy find/replace
 nn <Leader>r :,$s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " visual star search
 vn * y/<C-R>"<CR>
@@ -627,7 +637,7 @@ map <silent> <Leader>i mzgg=G`z
 "
 nn <Leader>a :Ack!<Space>''<Left>
 nn <Leader>A :AckWindow!<Space>''<Left>
-nn <silent> <Leader>n AckFromSearch!<CR>
+nn <silent> <Leader>n :AckFromSearch!<CR>
 "
 " View Tasks
 "
@@ -665,13 +675,11 @@ nm <silent> <Leader>scb :se scb!<CR>
 "
 " Vimdiff
 "
-" next difference
-nn dj ]c
-" previous difference
-nn dk [c
-" de-hexify
-if $opendev
-    nn dh :%s/\\x1D/+/ge <CR> :%s/\\x1F/:/ge <CR> :%s/\\x1C/'/ge <CR> :%s/\\x19/*/ge <CR> :diffupdate<CR>
+if &diff
+    " next difference
+    nn dj ]c
+    " previous difference
+    nn dk [c
 en
 "
 " File utilities
@@ -730,6 +738,14 @@ nn <F10> :NERDTreeToggle<CR>
 "
 "
 "
+" Auto DeHexify
+"
+if &diff
+    aug auto_de_hexify
+        au!
+        au BufRead *.play.log,*.gsv.log :cal DeHexify()
+    aug end
+en
 "
 " Disable paste mode on InsertLeave
 "
@@ -802,6 +818,9 @@ aug end
 aug pretty_print
     au!
     au BufNewFile,BufRead *.xml nm <silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
+    if &diff
+        au BufNewFile,BufRead *.gsv.log,*.play.log nm <silent> <Leader>fs :cal FormatSplitXml()<CR>
+    en
 aug end
 "
 " Syntax not working for certain colorscheme
@@ -859,5 +878,20 @@ fun! DistractionFeeMode()
         :TagbarClose
     en
 endf
+"
+" DeHexify & Format XML
+"
+if &diff
+    fun! DeHexify()
+        :sil %s/\\x1D/+/ge
+        :sil %s/\\x1F/:/ge
+        :sil %s/\\x1C/'/ge
+        :sil %s/\\x19/*/ge
+        :sil diffupdate
+    endf
+    fun! FormatSplitXml()
+        :sil s/>/>\&\r''/ge
+    endf
+en
 " }}}
 " vim: se sw=4 sts=4 et fdm=marker:
