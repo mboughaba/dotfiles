@@ -912,5 +912,39 @@ if &diff
         :sil s/>/>\&\r''/ge
     endf
 en
+"
+" Run Async Job
+"
+fun! StartJob(command)
+    if !has('job')
+        retu
+    en
+
+    cal job_start(a:command, {'out_cb': 'JobHandler', 'err_cb': 'ErrHandler', 'close_cb': 'CloseHandler'})
+endf
+"
+" Job output handler
+fun! JobHandler(channel, msg)
+    echomsg "Job running: " . a:msg
+endf
+"
+" Job error handler
+fun! ErrHandler(channel, msg)
+    echomsg "Job encountered err: " . a:msg
+endf
+"
+" Channel close handler
+fun! CloseHandler(channel)
+    echomsg "Job closed"
+endf
 " }}}
+
+
+" Commands {{{
+"
+" Start Async Job
+"
+com! -nargs=1 Jobdo :cal StartJob(<f-args>)
+" }}}
+
 " vim: se sw=4 sts=4 et fdm=marker:
