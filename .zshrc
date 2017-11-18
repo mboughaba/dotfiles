@@ -1,5 +1,14 @@
+################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
 # Disable process suspend so that we can use Ctrl-S in vim
-stty -ixon
+#stty -ixon
 
 # Disable closing the terminal using Ctrl+D
 set -o ignoreeof

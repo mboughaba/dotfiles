@@ -1,5 +1,14 @@
 #!/bin/sh
 
+################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
 # Send the header so that i3bar knows we want to use JSON:
 echo '{"version":1}'
 

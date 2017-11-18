@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
 # Set blue
 echo -n $(tput setaf 4)
 

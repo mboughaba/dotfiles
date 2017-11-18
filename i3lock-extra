@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
 cfg_tmpdir="/run/user/$UID/i3lock-extra"
 cfg_lockfile="$cfg_tmpdir/locked"
 cfg_pixelize_scale='10'

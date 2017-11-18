@@ -63,36 +63,7 @@ if empty($opendev)
     Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
     Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
-    "
-    " Disabled plugs
-    "
-    "Plug 'Raimondi/delimitMate'
-    "Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
-    "Plug 'Xuyuanp/nerdtree-git-plugin'
-    "Plug 'airblade/vim-gitgutter'
-    "Plug 'chrisbra/vim-autoread'
-    "Plug 'dracula/vim'
-    "Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
-    "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
-    "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
-    "Plug 'm42e/vim-gcov-marker'
-    "Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'mattn/webapi-vim'
-    "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
-    "Plug 'mboughaba/vim-gcov-marker'
-    "Plug 'moll/vim-bbye'
-    "Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
-    "Plug 'ryanoasis/vim-devicons'
-    "Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
-    "Plug 'taiansu/nerdtree-ag'
-    "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    "Plug 'tpope/vim-dispatch'
-    "Plug 'tpope/vim-fugitive'
-    "Plug 'tpope/vim-repeat'
-    "Plug 'will133/vim-dirdiff'
 el
-    "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
     Plug '~/prj/tts.vim',         { 'for': 'tts' }
     Plug '~/prj/ttser',           { 'for': 'tts' }
 en
@@ -105,6 +76,36 @@ el
         Plug 'valloric/youcompleteme'
     en
 en
+"
+" Disabled plugs
+"
+"Plug 'Raimondi/delimitMate'
+"Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'chrisbra/vim-autoread'
+"Plug 'dracula/vim'
+"Plug 'ervandew/supertab'
+"Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
+"Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
+"Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
+"Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
+"Plug 'm42e/vim-gcov-marker'
+"Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
+"Plug 'mattn/webapi-vim'
+"Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
+"Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
+"Plug 'mboughaba/vim-gcov-marker'
+"Plug 'moll/vim-bbye'
+"Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
+"Plug 'taiansu/nerdtree-ag'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'tpope/vim-dispatch'
+"Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-repeat'
+"Plug 'will133/vim-dirdiff'
 "
 " Let there be dragons
 "

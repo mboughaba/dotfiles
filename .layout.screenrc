@@ -1,4 +1,13 @@
 ################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
+################################################################################
 # Layout & Default windows
 ################################################################################
 # First let's close all splits
@@ -12,7 +21,7 @@ title vim
 # ^M -> Enter
 # ^L -> clear screen
 stuff "cd ~/prj^M^L"
-# create new windows 
+# create new windows
 screen -t tst  1 zsh
 screen -t log  2 zsh
 screen -t cov  3 zsh
