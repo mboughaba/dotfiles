@@ -1,0 +1,28 @@
+################################################################################
+# Layout & Default windows
+################################################################################
+# First let's close all splits
+# Split will be restored when we will source screenrc
+# only (Q) keep only the current window visible
+only
+# on a fresh screen session window 0 already exists
+# so let's set its title instead on creating new one.
+title vim
+# stuff: run command
+# ^M -> Enter
+# ^L -> clear screen
+stuff "cd ~/prj^M^L"
+# create new windows 
+screen -t tst  1 zsh
+screen -t log  2 zsh
+screen -t cov  3 zsh
+screen -t doc  4 zsh
+screen -t com  5 zsh
+screen -t mon  6 zsh
+stuff "psmy^M^L"
+screen -t zsh  7 zsh
+stuff "top^M^L"
+select 0
+
+# Reload screenrc
+eval 'source $HOME/.screenrc'

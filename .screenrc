@@ -1,20 +1,39 @@
+################################################################################
+# Color
+################################################################################
 # Use 256 colors
 term screen-256color
+#attrcolor b ".I"
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#defbce on
 
+################################################################################
 # Status bar
+################################################################################
 hardstatus off
-
 hardstatus alwayslastline "%{= rw}  %{+b w}%S  %{GG}%{Cw} %{+b bW} #%n: %t%? [%h]%? %{GG} %{+b yG} %{d}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+ub M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+bB mW} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
 
 # Caption bar only on split
 caption splitonly "%?%F%{+bu kM}%:%{KK} %?Active split: #%n %t %h "
 
+################################################################################
 # Activity
+################################################################################
 activity "%c activity -> %n%f %t"
 bell "%c bell -> %n%f %t"
 
+# Enable activity monitoring for windows.
+defmonitor on
+
+################################################################################
+# Settings
+################################################################################
 # Turn welcome message off
 startup_message off
+
+# mouse tracking allows to switch region focus by clicking
+# NOTE: I don't use this but it can be useful when you are not in front of the keyboard
+mousetrack on
 
 # Use X scrolling mechanism
 termcapinfo xterm* ti@:te@
@@ -27,9 +46,6 @@ altscreen on
 
 # Increase the scrollback buffer size
 defscrollback 30000
-
-# Reload screenrc
-bind R eval 'source $HOME/.screenrc' 'echo "reloaded!"'
 
 # Always start screen with utf8 enabled. (screen -U)
 defutf8 on
@@ -49,14 +65,41 @@ ignorecase on
 # Suppress trailing blank lines when scrolling up in the history buffer.
 compacthist on
 
-# Enable activity monitoring for windows.
-defmonitor on
-
 # Deal with dead terminals.
 defnonblock on
 
 # Display screen saver after some seconds of inactivity
 idle 60
 
+################################################################################
+# Binding
+################################################################################
+# Reload screenrc
+bind R eval 'source $HOME/.screenrc' 'echo "reloaded!"'
+
+# Setup default layout
+bind B eval 'source $HOME/.layout.screenrc' 'echo "layout setup!"'
+
+# Easy split
+# use V instead or | for vertical split
+bind V split -v
+
+# Save layout
+layout autosave on
+layout new hacker
+select 0
+split
+resize 80%
+focus down
+select 4
+split -v
+resize 60%
+focus right
+select 3
+focus up
+
+################################################################################
+# Blanker/screensaver
+################################################################################
 # Custom blanker (screen saver/blanker) program
 blankerprg $HOME/.blanker/.blanker
