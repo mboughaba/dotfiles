@@ -170,7 +170,6 @@ se background=dark
 " Set color scheme
 if has("gui_running")
     colo molokai
-    "colo dracula
 el
     colo solarized
 en
@@ -370,6 +369,9 @@ se noeb vb t_vb=
 " Ctags Find .tags recursively
 "
 se tags=.tags;
+" In large projects with so many dependencies, working with cscope is just too
+" much for a humain being to deal with.
+" Maybe I am using cscope the wrong way, TODO: find a better use of cscope.
 "if has("cscope")
 "    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
 "    se cscopetag
@@ -388,7 +390,7 @@ se tags=.tags;
 "
 " Always display status line
 se laststatus=2
-" Linux/MacOSX, Excluding version control directories
+" Excluding version control directories
 se wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 se wildignore+=*/.res,*/.rex,*/.log,*/.playconf,*/.gsvconf,*/.tags,*/cscope.*
 "
@@ -398,6 +400,7 @@ if !&diff
     " Hide showmode as we are uing statusline plugin
     se noshowmode
 el
+    " Hide line number in diff mode
     se nonu
 en
 "
@@ -627,9 +630,21 @@ no ` '
 nn n nzzzv
 nn N Nzzzv
 " Easy find/replace
-nn <Leader>r :,$s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+" Normal mode
+" Prepares substitute command to replace word under cursor
+" globally and with confirmation
+nn <Leader>r :,$s/\<<C-R><C-w>\>//gc<Left><Left><Left>
+" Visual mode
+" Prepares substitute command to replace selected chunck
+" globally and with confirmation
+vn <Leader>r y<Esc>:,$s/<C-R>"//gc<Left><Left><Left>
+"
 " visual star search
 vn * y/<C-R>"<CR>
+"
+" Easy help
+nn <Leader>h :he <C-R><C-w><CR>
+vn <Leader>h y<Esc>:he <C-R>"<CR>
 "
 " Files
 "
@@ -644,7 +659,10 @@ nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 "
 " Basic indentation fix
 "
-map <silent> <Leader>i mzgg=G`z
+" Formats the entire file and returns to the line
+" = can be used in visual mode to format the block
+" to format current line == can be used
+nn <silent> <Leader>i mzgg=G`z
 "
 " Async Job
 "
@@ -678,13 +696,13 @@ nm Q gqap
 "
 " Buffers & Window Navigation
 "
-nn <silent> <Tab> :bnext<CR>
+nn <silent> <Tab>   :bnext<CR>
 nn <silent> <S-Tab> :bprevious<CR>
 "
 " Closing buffer without a lot of mess
 "
 nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
-nn <silent> <F3>  <C-w>q
+nn <silent> <F3>    <C-w>q
 "
 " Enable scroll bind
 "
@@ -732,9 +750,9 @@ nn <M-z> :A<CR>
 "
 " keymap (habit breaking)
 "
-no <Up> <NOP>
-no <Down> <NOP>
-no <Left> <NOP>
+no <Up>    <NOP>
+no <Down>  <NOP>
+no <Left>  <NOP>
 no <Right> <NOP>
 "
 " Clean the mess after highlight search
@@ -747,7 +765,7 @@ nn <silent> <Leader>g :cal DistractionFeeMode()<CR>
 "
 " NERDTree
 "
-nn <F9> :NERDTreeFind<CR>
+nn <F9>  :NERDTreeFind<CR>
 nn <F10> :NERDTreeToggle<CR>
 " }}}
 
@@ -799,12 +817,12 @@ aug end
 "
 aug disable_bell
     au!
+    if has("gui_running")
+        au GUIEnter * se vb t_vb=
+    el
+        au VimEnter * se vb t_vb=
+    en
 aug end
-if has("gui_running")
-    au disable_bell GUIEnter * se vb t_vb=
-el
-    au disable_bell VimEnter * se vb t_vb=
-en
 "
 " codingame cpp merge
 "
@@ -817,6 +835,8 @@ en
 "
 " Tagbar
 "
+" I don't read tags that often on projects I am working on, but it can be useful for
+" unfamiliar source code.
 "if !&diff
 "    aug toggle_tagbar
 "        au!
