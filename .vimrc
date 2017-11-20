@@ -649,7 +649,7 @@ vn <Leader>h y<Esc>:he <C-R>"<CR>
 " Files
 "
 " Edit .notes
-nn <Leader>0 :e! ~/.notes/.
+nn <Leader>0 :e! $HOME/.notes/index.md<CR>
 " Edit .vimrc
 nn <silent> <Leader>v :e! $MYVIMRC<CR>
 "
