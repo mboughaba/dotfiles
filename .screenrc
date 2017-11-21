@@ -41,8 +41,9 @@ defmonitor on
 startup_message off
 
 # mouse tracking allows to switch region focus by clicking
-# NOTE: I don't use this but it can be useful when you are not in front of the keyboard
-mousetrack on
+# This will make the terminal painful to work with. Mouse cursor will be stack in arrow shape
+# which means we cannot highlight, select .. text.
+#mousetrack on
 
 # Use X scrolling mechanism
 termcapinfo xterm* ti@:te@
