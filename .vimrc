@@ -745,8 +745,10 @@ nn <F8> :TagbarToggle<CR>
 " Projectionist
 "
 " I use Alt+z because it is convenient to hold Alt while switching between companions.
+" But most of the times I end up using :AV and :AS to make my splits
 exe "se <M-z>=\ez"
 nn <M-z> :A<CR>
+nn <silent> <Leader>sp :AV<CR> <C-w>l :AS<CR> <C-w>h
 "
 " keymap (habit breaking)
 "
@@ -920,6 +922,9 @@ fun! DistractionFeeMode()
     en
     if exists(":TagbarClose")
         :TagbarClose
+    en
+    if exists(":UndotreeHide")
+        :UndotreeHide
     en
 endf
 "
