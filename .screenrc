@@ -12,9 +12,6 @@
 ################################################################################
 # Use 256 colors
 term screen-256color
-#attrcolor b ".I"
-#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-#defbce on
 
 ################################################################################
 # Status bar
@@ -79,7 +76,7 @@ compacthist on
 defnonblock on
 
 # Display screen saver after some seconds of inactivity
-idle 60
+idle 90
 
 ################################################################################
 # Binding
@@ -88,28 +85,19 @@ idle 60
 bind R eval 'source $HOME/.screenrc' 'echo "reloaded!"'
 
 # Setup default layout
-bind B eval 'source $HOME/.layout.screenrc' 'echo "layout setup!"'
+bind B eval 'source $HOME/.gnuscreen/.window' 'echo "windows setup!"'
 
 # Easy split
 # use V instead or | for vertical split
 bind V split -v
 
-# Save layout
-layout autosave on
-layout new hacker
-select 0
-split
-resize 80%
-focus down
-select 4
-split -v
-resize 60%
-focus right
-select 3
-focus up
+################################################################################
+# Layout
+################################################################################
+eval 'source $HOME/.gnuscreen/.layout' 'echo "layout setup!"'
 
 ################################################################################
 # Blanker/screensaver
 ################################################################################
 # Custom blanker (screen saver/blanker) program
-blankerprg $HOME/.blanker/.blanker
+blankerprg $HOME/.gnuscreen/.matrix

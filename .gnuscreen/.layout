@@ -1,0 +1,26 @@
+################################################################################
+#                           Author: Mohamed Boughaba                           #
+#              Repository: https://github.com/mboughaba/dotfiles               #
+#                     Description: My own taste of dotfiles                    #
+#                       ╔╗ ┌─┐  ┬╔╦╗┌─┐┬─┐┌─┐┬  ┬┌─┐┌┬┐                        #
+#                       ╠╩╗├┤   │║║║├─┘├┬┘│ │└┐┌┘├┤  ││                        #
+#                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        #
+################################################################################
+
+################################################################################
+# Layout
+################################################################################
+# Save layout
+layout autosave on
+layout new hacker
+select 0
+only
+split
+resize 80%
+focus down
+select 4
+split -v
+resize 60%
+focus right
+select 3
+focus up
