@@ -502,6 +502,10 @@ let g:solarized_termtrans=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
 "
+" NERDCommenter
+"
+let g:NERDDefaultAlign = 'left'
+"
 " NERDTree
 "
 let g:NERDTreeAutoDeleteBuffer = 1

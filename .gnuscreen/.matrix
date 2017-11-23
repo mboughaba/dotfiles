@@ -17,13 +17,17 @@ cols=$(tput cols)
 
 awkscript='
   {
-    letters="010101010101010101010101010101010101010101010101010101010101010101010101010101010101"
+    binarystr="01010101010101010101010101010101010101Ø101010101010101010101010101010101010101010101"
 
     lines=$1
     random_col=$3
 
     c=$4
-    letter=substr(letters,c,1)
+    random_col_2 = $5
+    random_col_3 = $6
+    random_col_4 = $7
+    letter = substr(binarystr, c, 1)
+    space = " "
 
     cols[random_col]=0;
 
@@ -33,6 +37,10 @@ awkscript='
 
       printf "\033[%s;%sH\033[2;32m%s", line, col, letter;
       printf "\033[%s;%sH\033[1;37m%s\033[0;0H", cols[col], col, letter;
+      printf "\033[%s;%sH\033[1;238m%s\033[0;0H", cols[col], random_col, space;
+      printf "\033[%s;%sH\033[1;238m%s\033[0;0H", cols[col], random_col_2, space;
+      printf "\033[%s;%sH\033[1;238m%s\033[0;0H", cols[col], random_col_3, space;
+      printf "\033[%s;%sH\033[1;238m%s\033[0;0H", cols[col], random_col_4, space;
 
       if (cols[col] >= lines) {
         cols[col]=0;
@@ -45,6 +53,6 @@ echo -e "\e[1;40m"
 clear
 
 while :; do
-  echo $lines $cols $(( $RANDOM % $cols)) $(( $RANDOM % 72 ))
+    echo $lines $cols $(( $RANDOM % $cols)) $(( $RANDOM % 72 )) $(( $RANDOM % $cols)) $(( $RANDOM % $cols)) $(( $RANDOM % $cols))
   sleep 0.05
 done | awk "$awkscript"

@@ -24,3 +24,6 @@ resize 60%
 focus right
 select 3
 focus up
+# In case ViM is open on the first split, we force redraw
+# this avoids visual gliches.
+stuff "^L"
