@@ -17,10 +17,12 @@ term screen-256color
 # Status bar
 ################################################################################
 hardstatus off
-hardstatus alwayslastline "%{= bw}  %{+b k}%S  %{GG}%{+b yW} (%n) %t%? [%h]%? %{+b bG} %{k}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+b M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+b Ck} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
+hardstatus alwayslastline "%{= bw} %{+b k}%S %{yb}%{+b yW} %t%? [%h]%? %{by}%{+b bG} %{k}$LOGNAME %{Kb} %H %{= kK}%{kk}%= %{= kG}%?%-Lw%?%{+b kb}%n*%f %t%{= kG}%+Lw%= %{= kB}%{+b Bk} BDD %{Br}%{+b rw} C++ %{rg}%{+b gw} ViM %{gy}%{+b yw} JS %{= G}%{yC}%{+b Ck} Load: %l %{CG}%{GG}%{-B d} %D %Y-%m-%d %{W}%c:%s %{G}"
+# Watch out! requires decent utf-8 support due to use of powerline patched font
+#hardstatus alwayslastline "%{= bw} %{+b k}%S %{yb}%{+b yW} %t%? [%h]%? %{by}%{+b bG} %{k}$LOGNAME %{Kb} %H %{= kK}%{kk}%= %{= kG}%?%-Lw%?%{+b kb}%n*%f %t%{= kG}%+Lw%= %{= kB}%{+b Bk} BDD %{Br}%{+b rw} C++ %{rg}%{+b gw} ViM %{gy}%{+b yw} JS %{= G}%{yC}%{+b Ck} Load: %l %{CG}%{GG}%{-B d} %D %Y-%m-%d %{W}%c:%s  %{G}"
 
 # Caption bar only on split
-caption splitonly "%?%F%{+buB kM}%:%{KK} %?    ACTIVE SPLIT: #%n %t %h "
+caption splitonly "%?%F%{+buB Kb}%:%{KK} %?     ACTIVE SPLIT: %t %h "
 
 ################################################################################
 # Activity
@@ -50,7 +52,9 @@ altscreen on
 defscrollback 30000
 
 # Always start screen with utf8 enabled. (screen -U)
+# requires setting the language in shell init: export LANG=en_US.UTF-8
 defutf8 on
+utf8 on on
 
 # Shorten the time a message is displayed in seconds.
 msgwait 2
