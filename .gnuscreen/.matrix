@@ -17,7 +17,7 @@ cols=$(tput cols)
 
 awkscript='
   {
-    binarystr="01010101010101010101010101010101010101Ø101010101010101010101010101010101010101010101"
+    binarystr="010101010101010101010101010101010101010101010101010101010101010101010101010101010101"
 
     lines=$1
     random_col=$3
@@ -54,5 +54,5 @@ clear
 
 while :; do
     echo $lines $cols $(( $RANDOM % $cols)) $(( $RANDOM % 72 )) $(( $RANDOM % $cols)) $(( $RANDOM % $cols)) $(( $RANDOM % $cols))
-  sleep 0.05
+  sleep 0.07
 done | awk "$awkscript"

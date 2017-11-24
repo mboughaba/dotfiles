@@ -17,10 +17,10 @@ term screen-256color
 # Status bar
 ################################################################################
 hardstatus off
-hardstatus alwayslastline "%{= rw}  %{+b w}%S  %{GG}%{Cw} %{+b bW} #%n: %t%? [%h]%? %{GG} %{+b yG} %{d}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+ub M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+bB mW} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
+hardstatus alwayslastline "%{= bw}  %{+b k}%S  %{GG}%{+b yW} (%n) %t%? [%h]%? %{+b bG} %{k}$LOGNAME@%H %{G}%{Kw} %{BG}%{= kG}%= %{= G}%?%-Lw%?%{+b M}%n*%f %t%?%{= k}(%u)%?%{= G}%+Lw%?%= %{= G}%{Kg} %{+b ow}  BDD %{+b rw}  C++ %{+b gw}  ViM %{+b yw}   JS %{= G}%{Yg} %{+b Ck} Load: %l %{YG} %{GG} %{-B d}%D %Y-%m-%d %{W}%c:%s %{G}"
 
 # Caption bar only on split
-caption splitonly "%?%F%{+bu kM}%:%{KK} %?Active split: #%n %t %h "
+caption splitonly "%?%F%{+buB kM}%:%{KK} %?    ACTIVE SPLIT: #%n %t %h "
 
 ################################################################################
 # Activity
@@ -36,11 +36,6 @@ defmonitor on
 ################################################################################
 # Turn welcome message off
 startup_message off
-
-# mouse tracking allows to switch region focus by clicking
-# This will make the terminal painful to work with. Mouse cursor will be stack in arrow shape
-# which means we cannot highlight, select .. text.
-#mousetrack on
 
 # Use X scrolling mechanism
 termcapinfo xterm* ti@:te@
@@ -77,6 +72,10 @@ defnonblock on
 
 # Display screen saver after some seconds of inactivity
 idle 90
+
+# Hide white bars (vertical, command bar, ...)
+# it make the workspace much cleaner and distraction free.
+rendition so "="
 
 ################################################################################
 # Binding
