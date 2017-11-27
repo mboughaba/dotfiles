@@ -638,10 +638,12 @@ nn N Nzzzv
 " Prepares substitute command to replace word under cursor
 " globally and with confirmation
 nn <Leader>r :,$s/\<<C-R><C-w>\>//gc<Left><Left><Left>
+nn <Leader>R :%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 " Visual mode
 " Prepares substitute command to replace selected chunck
 " globally and with confirmation
 vn <Leader>r y<Esc>:,$s/<C-R>"//gc<Left><Left><Left>
+vn <Leader>R y<Esc>:,$s/<C-R>"//gc<Left><Left><Left>
 "
 " visual star search
 vn * y/<C-R>"<CR>
