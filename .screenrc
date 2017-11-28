@@ -17,7 +17,7 @@ term screen-256color
 # Status bar
 ################################################################################
 hardstatus off
-hardstatus alwayslastline "%{= bw} %{+b k}%S %{yb}%{+b yW} %t%? [%h]%? %{by}%{+b bG} %{k}$LOGNAME %{Kb} %H %{= kK}%{kk}%= %{= kG}%?%-Lw%?%{+b kb}%n*%f %t%{= kG}%+Lw%= %{= kB}%{+b Bk} BDD %{Br}%{+b rw} C++ %{rg}%{+b gw} ViM %{gy}%{+b yw} JS %{= G}%{yC}%{+b Ck} Load: %l %{CG}%{GG}%{-B d} %D %Y-%m-%d %{W}%c:%s %{G}"
+hardstatus alwayslastline "%{= bw} %{+b k}%S %{yb}%{+b yW} %t%? [%h]%? %{by}%{+b bG} %{k}$LOGNAME %{Kb} %H %{= kK}%{kk}%= %{= kG}%?%-Lw%?%{+b kb}%n*%f %t%{= kG}%+Lw%= %{= kB}%{+b Bk} BDD %{Br}%{+b rw} C++ %{rg}%{+b gw} ViM %{gy}%{+b yw}  JS %{= G}%{yC}%{+b Ck} Load: %l %{CG}%{GG}%{-B d} %D %Y-%m-%d %{W}%c:%s %{G}"
 # Watch out! requires decent utf-8 support due to use of powerline patched font
 #hardstatus alwayslastline "%{= bw} %{+b k}%S %{yb}%{+b yW} %t%? [%h]%? %{by}%{+b bG} %{k}$LOGNAME %{Kb} %H %{= kK}%{kk}%= %{= kG}%?%-Lw%?%{+b kb}%n*%f %t%{= kG}%+Lw%= %{= kB}%{+b Bk} BDD %{Br}%{+b rw} C++ %{rg}%{+b gw} ViM %{gy}%{+b yw} JS %{= G}%{yC}%{+b Ck} Load: %l %{CG}%{GG}%{-B d} %D %Y-%m-%d %{W}%c:%s  %{G}"
 
@@ -75,7 +75,7 @@ compacthist on
 defnonblock on
 
 # Display screen saver after some seconds of inactivity
-idle 90
+idle 120
 
 # Hide white bars (vertical, command bar, ...)
 # it make the workspace much cleaner and distraction free.
