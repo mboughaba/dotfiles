@@ -423,6 +423,12 @@ if executable('ag')
     " Use ag over grep
     se grepprg=ag\ --nogroup\ --nocolor
 en
+"
+" Copy from GViM
+"
+if has("gui_running")
+    se clipboard=unnamedplus
+en
 " }}}
 
 " Plugin Settings {{{
@@ -775,6 +781,13 @@ nn <silent> <Leader>g :cal DistractionFeeMode()<CR>
 "
 nn <F9>  :NERDTreeFind<CR>
 nn <F10> :NERDTreeToggle<CR>
+"
+" Copy from GViM
+"
+if has("gui_running")
+    nn y "+y
+    vn y "+y
+en
 " }}}
 
 " Autocommand {{{
