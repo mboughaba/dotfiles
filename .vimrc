@@ -40,7 +40,7 @@ Plug 'felikz/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
-Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch'] }
+Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -128,7 +128,7 @@ if has("gui_running")
     se guioptions-=m
     "remove left-hand scroll bar
     se guioptions-=L
-    se guifont=InconsolataGo\ NF:h10
+    se guifont=InconsolataGo\ NF:h12
     au GUIEnter * simalt ~x
     map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 el
