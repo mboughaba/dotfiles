@@ -40,7 +40,8 @@ Plug 'felikz/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
-Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
+"Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
+Plug 'mboughaba/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
 Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -59,10 +60,11 @@ if empty($opendev)
     Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
-    Plug 'scrooloose/syntastic'
+    "Plug 'scrooloose/syntastic'
     Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
     Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
+    Plug 'digitaltoad/vim-pug',                     { 'for': 'pug' }
 el
     Plug '~/prj/tts.vim',         { 'for': 'tts' }
     Plug '~/prj/ttser',           { 'for': 'tts' }
@@ -406,11 +408,11 @@ en
 "
 " Configure statusline for laster Syntastic use
 "
-if !&diff
-    se statusline+=%#warningmsg#
-    if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
-    se statusline+=%*
-en
+"if !&diff
+"    se statusline+=%#warningmsg#
+"    if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
+"    se statusline+=%*
+"en
 "
 " Typos
 "
@@ -434,6 +436,10 @@ en
 " Plugin Settings {{{
 "
 "
+"
+" Ack
+"
+let g:ackhighlight = 1
 "
 " UltiSnips
 "
@@ -609,13 +615,13 @@ let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
 "
 " Syntastic
 "
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_cpp_checkers = ['cppcheck']
-let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_signs = 0
+"let g:syntastic_cpp_checkers = ['cppcheck']
+"let g:syntastic_python_checkers = ['pylint']
 "
 " Javascript
 "
