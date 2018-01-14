@@ -518,20 +518,20 @@ let g:projectionist_heuristics = {
             \   "type": "ghost"
             \  },
             \  "src/app/*.ts": {
-            \   "alternate": ["src/app/{}.html","src/app/{}.scss", "src/app/{}.spec.ts"],
+            \   "alternate": ["src/app/{}.spec.ts"],
             \   "type": "ts"
             \  },
             \  "src/app/*.spec.ts": {
-            \   "alternate": ["src/app/{}.ts", "src/app/{}.html","src/app/{}.scss"],
+            \   "alternate": ["src/app/{}.ts"],
             \   "type": "spec"
             \  },
             \  "src/app/*.scss": {
-            \   "alternate": ["src/app/{}.spec.ts", "src/app/{}.ts","src/app/{}.html"],
-            \   "type": "spec"
+            \   "alternate": ["src/app/{}.html"],
+            \   "type": "sass"
             \  },
             \  "src/app/*.html": {
-            \   "alternate": ["src/app/{}.scss", "src/app/{}.ts","src/app/{}.spec.ts"],
-            \   "type": "spec"
+            \   "alternate": ["src/app/{}.scss"],
+            \   "type": "html"
             \  },
             \ }
             \}
