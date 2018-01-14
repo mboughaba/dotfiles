@@ -47,6 +47,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
 if empty($opendev)
     Plug 'Quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
@@ -79,7 +80,8 @@ el
 en
 if has("gui_running")
     Plug 'derekmcloughlin/gvimfullscreen_win32'
-    Plug 'tomasr/molokai'
+    "Plug 'tomasr/molokai'
+    Plug 'morhetz/gruvbox'
 el
     Plug 'altercation/vim-colors-solarized'
     if has("unix") && has("python")
@@ -156,6 +158,11 @@ fun! s:patch_colorscheme()
         " customize linenr on gui only
         hi LineNr guifg=#d78787
         hi SignColumn guibg=bg
+        " NOTE: Workaround to fix GitGutter sign column when using Gruvbox colorscheme
+        hi GitGutterAdd          guibg=#282828 guifg=green  ctermfg=22  ctermbg=235
+        hi GitGutterChange       guibg=#282828 guifg=orange ctermfg=202 ctermbg=235
+        hi GitGutterDelete       guibg=#282828 guifg=red    ctermfg=1   ctermbg=235
+        hi GitGutterChangeDelete guibg=#282828 guifg=blue   ctermfg=12  ctermbg=235
         " Make cursor stand out
         hi Cursor ctermbg=198 guibg=#D13A82
         hi iCursor ctermbg=201 guibg=#D13A82
@@ -174,7 +181,8 @@ syn enable
 se background=dark
 " Set color scheme
 if has("gui_running")
-    colo molokai
+    "colo molokai
+    colo gruvbox
 el
     colo solarized
 en
@@ -665,7 +673,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " This is handled by lessmess
 let g:airline#extensions#whitespace#enabled = 0
 if has("gui_running")
-    let g:airline_theme = 'molokai'
+    "let g:airline_theme = 'molokai'
+    let g:airline_theme = 'gruvbox'
 el
     let g:airline_theme = 'solarized'
 en
@@ -899,6 +908,16 @@ en
 "
 "
 "
+" Startify at startup
+"
+aug startify_at_startup
+    au!
+    au VimEnter *
+                \   if !argc()
+                \ |   Startify
+                \ | en
+aug end
+"
 " Typescript Tsu
 "
 aug typescript_balloon
@@ -980,9 +999,9 @@ aug nerdtree_custom
     " Close vim if NERDTree is the only window left
     au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
     " Open NERDTree when no file is selected
-    au StdinReadPre * let s:std_in=1
-    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
-    au FileType nerdtree setl nolist
+    "au StdinReadPre * let s:std_in=1
+    "au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+    "au FileType nerdtree setl nolist
 aug end
 "
 " Pretty print xml
