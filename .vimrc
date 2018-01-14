@@ -42,30 +42,38 @@ Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
 "Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
 Plug 'mboughaba/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
-Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 if empty($opendev)
+    Plug 'Quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
+    Plug 'airblade/vim-gitgutter'
     Plug 'ap/vim-css-color'
+    Plug 'digitaltoad/vim-pug',                     { 'for': 'pug' }
     Plug 'elzr/vim-json',                           { 'for': 'json' }
     Plug 'groenewege/vim-less',                     { 'for': 'less' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
+    Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
     Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
     Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
-    "Plug 'scrooloose/syntastic'
-    Plug 'shougo/vimproc.vim',                      { 'for': ['javascript', 'css', 'html'] }
+    Plug 'scrooloose/syntastic'
+    Plug 'shougo/vimproc.vim',                      { 'for': ['typescript', 'javascript', 'css', 'html'] }
     Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
+    Plug 'tpope/vim-fugitive'
     Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
-    Plug 'digitaltoad/vim-pug',                     { 'for': 'pug' }
+    Plug 'chrisbra/vim-autoread'
+    Plug '~/.vim/plugged/zoom.vim'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'mattn/emmet-vim',                         { 'for': ['typescript', 'javascript', 'css', 'html'] }
 el
+    Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
     Plug '~/prj/tts.vim',         { 'for': 'tts' }
     Plug '~/prj/ttser',           { 'for': 'tts' }
 en
@@ -81,31 +89,26 @@ en
 "
 " Disabled plugs
 "
+"Plug 'ervandew/supertab'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'burnettk/vim-angular'
 "Plug 'Raimondi/delimitMate'
-"Plug 'Shougo/vimproc.vim',                      { 'for': 'typescript' }
 "Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'airblade/vim-gitgutter'
-"Plug 'chrisbra/vim-autoread'
 "Plug 'dracula/vim'
 "Plug 'ervandew/supertab'
-"Plug 'herringtondarkholme/yats.vim',            { 'for': 'typescript' }
 "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
 "Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
 "Plug 'm42e/vim-gcov-marker'
-"Plug 'mattn/emmet-vim',                         { 'for': ['javascript', 'css', 'html'] }
 "Plug 'mattn/webapi-vim'
 "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
 "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
 "Plug 'mboughaba/vim-gcov-marker'
 "Plug 'moll/vim-bbye'
-"Plug 'quramy/tsuquyomi',                        { 'for': 'typescript' }
-"Plug 'ryanoasis/vim-devicons'
 "Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
 "Plug 'taiansu/nerdtree-ag'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'tpope/vim-dispatch'
-"Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-repeat'
 "Plug 'will133/vim-dirdiff'
 "
@@ -181,6 +184,10 @@ cal s:patch_colorscheme()
 " Vim Settings {{{
 "
 "
+"
+" Display tooltip (used for angular)
+"
+se ballooneval
 "
 " Splits
 "
@@ -370,7 +377,7 @@ se noeb vb t_vb=
 "
 " Ctags Find .tags recursively
 "
-se tags=.tags;
+"se tags=.tags;
 " In large projects with so many dependencies, working with cscope is just too
 " much for a humain being to deal with.
 " Maybe I am using cscope the wrong way, TODO: find a better use of cscope.
@@ -408,11 +415,11 @@ en
 "
 " Configure statusline for laster Syntastic use
 "
-"if !&diff
-"    se statusline+=%#warningmsg#
-"    if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
-"    se statusline+=%*
-"en
+if !&diff
+    se statusline+=%#warningmsg#
+    if exists(":SyntasticStatuslineFlag") | se statusline+=%{SyntasticStatuslineFlag()} | en
+    se statusline+=%*
+en
 "
 " Typos
 "
@@ -436,6 +443,23 @@ en
 " Plugin Settings {{{
 "
 "
+"
+" vim-json
+"
+let g:vim_json_syntax_conceal = 0
+"
+" devicons
+"
+let g:webdevicons_enable_denite = 0
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+"
+" tsuquyomi
+"
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_single_quote_import = 1
+let g:tsuquyomi_shortest_import_path = 1
 "
 " Ack
 "
@@ -493,6 +517,22 @@ let g:projectionist_heuristics = {
             \   "alternate": ["{}.play"],
             \   "type": "ghost"
             \  },
+            \  "src/app/*.ts": {
+            \   "alternate": ["src/app/{}.html","src/app/{}.scss", "src/app/{}.spec.ts"],
+            \   "type": "ts"
+            \  },
+            \  "src/app/*.spec.ts": {
+            \   "alternate": ["src/app/{}.ts", "src/app/{}.html","src/app/{}.scss"],
+            \   "type": "spec"
+            \  },
+            \  "src/app/*.scss": {
+            \   "alternate": ["src/app/{}.spec.ts", "src/app/{}.ts","src/app/{}.html"],
+            \   "type": "spec"
+            \  },
+            \  "src/app/*.html": {
+            \   "alternate": ["src/app/{}.scss", "src/app/{}.ts","src/app/{}.spec.ts"],
+            \   "type": "spec"
+            \  },
             \ }
             \}
 "
@@ -511,8 +551,23 @@ let g:solarized_termtrans=1
 "
 " Tagbar
 "
+let g:tagbar_autofocus=0
+let g:tagbar_compact=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
 "
 " NERDCommenter
 "
@@ -528,6 +583,46 @@ let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
 let NERDTreeDirArrowExpandable = " "
 let NERDTreeDirArrowCollapsible = " "
+"
+" NERDTree File highlighting
+"
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error"
+let g:NERDTreePatternMatchHighlightColor['src\/'] = s:blue
+let g:NERDTreePatternMatchHighlightColor['include\/'] = s:green
+let g:NERDTreePatternMatchHighlightColor['test\/'] = s:salmon
+let g:NERDTreePatternMatchHighlightColor['demo\/'] = s:beige
+let g:NERDTreePatternMatchHighlightColor['obj\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['lib\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['bin\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['links\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['logs\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['etc\/'] = s:green
+let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
+let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
 "
 " YouCompleteMe
 "
@@ -587,16 +682,18 @@ let g:ctrlp_use_caching = 1
 " Set the directory to store the cache files
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 " Enable cross-session caching by not deleting the cache files upon exiting
-let g:ctrlp_clear_cache_on_exit = 0
 " Scan dotfiles and dotdirs
 let g:ctrlp_show_hidden = 0
+let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
     " Make CtrlP even faster using the silver search
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-    let g:ctrlp_clear_cache_on_exit = 1
+    " Ag on windows is much slower so better keep the caching
+    if has("unix")
+        let g:ctrlp_clear_cache_on_exit = 1
+    en
 elsei executable('ack')
     let g:ctrlp_user_command = 'ack -k --nocolor -g "" %s'
-    let g:ctrlp_clear_cache_on_exit = 1
 en
 " Make CtrlP open files in new buffer
 let g:ctrlp_switch_buffer = 0
@@ -615,13 +712,15 @@ let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
 "
 " Syntastic
 "
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_enable_signs = 0
-"let g:syntastic_cpp_checkers = ['cppcheck']
-"let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 0
+let g:syntastic_cpp_checkers = ['cppcheck']
+let g:syntastic_python_checkers = ['pylint']
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 "
 " Javascript
 "
@@ -695,9 +794,9 @@ nn <silent> <Leader>n :AckFromSearch!<CR>
 " View Tasks
 "
 " In file
-nn <silent> <Leader>t /\vFIXME\|TODO\|HACK\|NOTE<CR>
+nn <silent> <Leader>t /\vFIXME\|TODO\|HACK<CR>
 " In cwd
-nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK\|NOTE"<CR>
+nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK"<CR>
 "
 " Paste Toggle
 "
@@ -800,6 +899,14 @@ en
 "
 "
 "
+" Typescript Tsu
+"
+aug typescript_balloon
+    au!
+    au FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+    au FileType typescript nmap <buffer> <Leader>? : <C-u>echo tsuquyomi#hint()<CR>
+aug end
+"
 " ftdetect actionscript
 "
 aug actionscript_ft_detection
@@ -860,28 +967,22 @@ if $CODING_GAME
     aug end
 en
 "
-" Tagbar
-"
-" I don't read tags that often on projects I am working on, but it can be useful for
-" unfamiliar source code.
-"if !&diff
-"    aug toggle_tagbar
-"        au!
-"        au FileType * nested :cal tagbar#autoopen(0)
-"    aug end
-"en
-"
 " NERDTree
 "
+" devicon integration with nerdtree
+"aug devicon_nerdtree_hack
+"    au!
+"    au FileType nerdtree syntax match hideBracketsInNerdTree "\]" conceal
+"    au FileType nerdtree syntax match hideBracketsInNerdTree "\[" conceal
+"aug end
 aug nerdtree_custom
     au!
     " Close vim if NERDTree is the only window left
     au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | en
     " Open NERDTree when no file is selected
-    " I prefer not to open NERDTree at startup
-    "au StdinReadPre * let s:std_in=1
-    "au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
-    "au FileType nerdtree setl nolist
+    au StdinReadPre * let s:std_in=1
+    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | en
+    au FileType nerdtree setl nolist
 aug end
 "
 " Pretty print xml
