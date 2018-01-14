@@ -48,6 +48,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'Chiel92/vim-autoformat'
 if empty($opendev)
     Plug 'Quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
@@ -564,18 +565,18 @@ let g:tagbar_compact=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
 let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
+            \ 'ctagstype': 'typescript',
+            \ 'kinds': [
+            \ 'c:classes',
+            \ 'n:modules',
+            \ 'f:functions',
+            \ 'v:variables',
+            \ 'v:varlambdas',
+            \ 'm:members',
+            \ 'i:interfaces',
+            \ 'e:enums',
+            \ ]
+            \ }
 "
 " NERDCommenter
 "
@@ -630,7 +631,7 @@ let g:NERDTreePatternMatchHighlightColor['logs\/'] = s:lightPurple
 let g:NERDTreePatternMatchHighlightColor['etc\/'] = s:green
 let g:NERDTreePatternMatchHighlightColor['data\/'] = s:green
 let g:NERDTreePatternMatchHighlightColor['bower_components\/'] = s:lightPurple
-let g:NERDTreePatternMatchHighlightColor['node_components\/'] = s:lightPurple
+let g:NERDTreePatternMatchHighlightColor['node_modules\/'] = s:lightPurple
 "
 " YouCompleteMe
 "
@@ -697,10 +698,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
     " Make CtrlP even faster using the silver search
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-    " Ag on windows is much slower so better keep the caching
-    if has("unix")
-        let g:ctrlp_clear_cache_on_exit = 1
-    en
+    let g:ctrlp_clear_cache_on_exit = 1
 elsei executable('ack')
     let g:ctrlp_user_command = 'ack -k --nocolor -g "" %s'
 en
@@ -711,7 +709,8 @@ let g:ctrlp_working_path_mode = 0
 " Enable searching by filename instead of full path
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-            \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$'
+            \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$',
+            \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|bower_components|coverage|dist)$'
             \ }
 " HACK: Legacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
@@ -907,6 +906,13 @@ en
 " Autocommand {{{
 "
 "
+"
+" Autoformat on save
+"
+aug auto_format_onsave
+    au!
+    au BufWrite * :Autoformat
+aug end
 "
 " Startify at startup
 "
