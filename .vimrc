@@ -194,6 +194,15 @@ cal s:patch_colorscheme()
 "
 "
 "
+" Autoformat
+"
+let g:formatdef_js_editorconfig = '"js-beautify --editorconfig"'
+let g:formatdef_json_editorconfig = '"js-beautify --editorconfig"'
+let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
+let g:formatters_javascript = ['js_editorconfig']
+let g:formatters_json = ['json_editorconfig']
+let g:formatters_html = ['html_editorconfig']
+"
 " Display tooltip (used for angular)
 "
 se ballooneval
@@ -781,6 +790,16 @@ nn <silent> <Leader>v :e! $MYVIMRC<CR>
 " lessmess
 "
 nn <silent> <Leader>l :LessmessDisplayToggle<CR>
+"
+" Autoformat
+"
+exe "se <M-i>=\ei"
+nn <M-i> :Autoformat<CR>
+"
+" tsuquyomi Typescript Import
+"
+exe "se <M-l>=\el"
+nn <M-l> :TsuImport<CR>
 "
 " Basic indentation fix
 "
