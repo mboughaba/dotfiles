@@ -47,20 +47,19 @@ Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-startify'
-Plug 'Chiel92/vim-autoformat'
 if empty($opendev)
+    Plug 'mhinz/vim-startify'
+    Plug 'Chiel92/vim-autoformat'
     Plug 'Quramy/tsuquyomi',                        { 'for': 'typescript' }
     Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
     Plug 'airblade/vim-gitgutter'
     Plug 'ap/vim-css-color'
     Plug 'digitaltoad/vim-pug',                     { 'for': 'pug' }
     Plug 'elzr/vim-json',                           { 'for': 'json' }
-    Plug 'groenewege/vim-less',                     { 'for': 'less' }
+    Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
     Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
     Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
-    Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
     Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
     Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
     Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
@@ -92,14 +91,8 @@ en
 "
 " Disabled plugs
 "
-"Plug 'ervandew/supertab'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'burnettk/vim-angular'
-"Plug 'Raimondi/delimitMate'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'dracula/vim'
-"Plug 'ervandew/supertab'
+"Plug 'groenewege/vim-less',                     { 'for': 'less' }
+"Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
 "Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
 "Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
 "Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
@@ -107,12 +100,6 @@ en
 "Plug 'mattn/webapi-vim'
 "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
 "Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
-"Plug 'mboughaba/vim-gcov-marker'
-"Plug 'moll/vim-bbye'
-"Plug 'tacahiroy/ctrlp-funky',                       { 'on': 'CtrlPFunky' }
-"Plug 'taiansu/nerdtree-ag'
-"Plug 'tpope/vim-dispatch'
-"Plug 'tpope/vim-repeat'
 "Plug 'will133/vim-dirdiff'
 "
 " Let there be dragons
@@ -194,18 +181,9 @@ cal s:patch_colorscheme()
 "
 "
 "
-" Autoformat
-"
-let g:formatdef_js_editorconfig = '"js-beautify --editorconfig"'
-let g:formatdef_json_editorconfig = '"js-beautify --editorconfig"'
-let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
-let g:formatters_javascript = ['js_editorconfig']
-let g:formatters_json = ['json_editorconfig']
-let g:formatters_html = ['html_editorconfig']
-"
 " Display tooltip (used for angular)
 "
-se ballooneval
+"se ballooneval
 "
 " Splits
 "
@@ -461,6 +439,32 @@ en
 " Plugin Settings {{{
 "
 "
+"
+" Lessmess
+"
+" Autocommand will be added manually
+"let g:enable_lessmess_onsave = 0
+"
+" Startify
+"
+let g:startify_change_to_dir          = 1
+let g:startify_change_to_vcs_root     = 1
+let g:startify_enable_special         = 1
+let g:startify_files_number           = 8
+let g:startify_fortune_use_unicode    = 1
+let g:startify_session_autoload       = 0
+let g:startify_session_persistence    = 1
+let g:startify_update_oldfiles        = 0
+let g:startify_use_env                = 1
+"
+" Autoformat
+"
+let g:formatdef_js_editorconfig = '"js-beautify --editorconfig"'
+let g:formatdef_json_editorconfig = '"js-beautify --editorconfig"'
+let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
+let g:formatters_javascript = ['js_editorconfig']
+let g:formatters_json = ['json_editorconfig']
+let g:formatters_html = ['html_editorconfig']
 "
 " vim-json
 "
@@ -930,7 +934,8 @@ en
 "
 aug auto_format_onsave
     au!
-    au BufWrite * :Autoformat
+    au BufWritePre *.ts :Autoformat
+    au BufWritePost *.ts :execute "normal! O\<ESC>dd"
 aug end
 "
 " Startify at startup
@@ -947,7 +952,7 @@ aug end
 "
 aug typescript_balloon
     au!
-    au FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+    "    au FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
     au FileType typescript nmap <buffer> <Leader>? : <C-u>echo tsuquyomi#hint()<CR>
 aug end
 "
