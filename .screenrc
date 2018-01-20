@@ -75,7 +75,8 @@ compacthist on
 defnonblock on
 
 # Display screen saver after some seconds of inactivity
-idle 120
+#idle 120
+idle 600
 
 # Hide white bars (vertical, command bar, ...)
 # it make the workspace much cleaner and distraction free.
