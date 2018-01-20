@@ -70,9 +70,9 @@ if empty($opendev)
     Plug 'tpope/vim-fugitive'
     Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
     Plug 'chrisbra/vim-autoread'
-    Plug '~/.vim/plugged/zoom.vim'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'mattn/emmet-vim',                         { 'for': ['typescript', 'javascript', 'css', 'html'] }
+    Plug 'vim-scripts/zoom.vim'
 el
     Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
     Plug '~/prj/tts.vim',         { 'for': 'tts' }
@@ -181,7 +181,7 @@ cal s:patch_colorscheme()
 "
 "
 "
-" Display tooltip (used for angular)
+" Display tooltip (used for typescript)
 "
 "se ballooneval
 "
@@ -457,7 +457,9 @@ let g:startify_session_persistence    = 1
 let g:startify_update_oldfiles        = 0
 let g:startify_use_env                = 1
 let g:startify_session_before_save = [
-        \ 'silent! NERDTreeClose'
+        \ 'silent! NERDTreeClose',
+        \ 'silent! UndotreeHide',
+        \ 'silent! TagbarClose'
         \ ]
 "
 " Autoformat
