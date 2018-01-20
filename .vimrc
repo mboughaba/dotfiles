@@ -456,6 +456,9 @@ let g:startify_session_autoload       = 0
 let g:startify_session_persistence    = 1
 let g:startify_update_oldfiles        = 0
 let g:startify_use_env                = 1
+let g:startify_session_before_save = [
+        \ 'silent! NERDTreeClose'
+        \ ]
 "
 " Autoformat
 "
