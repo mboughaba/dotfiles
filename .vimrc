@@ -37,25 +37,19 @@ cal plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'majutsushi/tagbar',                           { 'on': 'TagbarToggle' }
-Plug 'mbbill/undotree',                             { 'on': 'UndotreeToggle' }
+Plug 'majutsushi/tagbar',                         { 'on': 'TagbarToggle' }
+Plug 'mbbill/undotree',                           { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
-"Plug 'mileszs/ack.vim',                             { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
-Plug 'mboughaba/ack.vim',                           { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
+"Plug 'mileszs/ack.vim',                           { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
+Plug 'mboughaba/ack.vim',                         { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'octol/vim-cpp-enhanced-highlight',            { 'for': ['cpp', 'c'] }
-Plug 'junegunn/goyo.vim',                           { 'on': 'Goyo' }
-if has("gui_running")
-  Plug 'morhetz/gruvbox'
-  "Plug 'tomasr/molokai'
-el
-  Plug 'altercation/vim-colors-solarized'
-  "Plug 'dracula/vim'
-en
+Plug 'octol/vim-cpp-enhanced-highlight',          { 'for': ['cpp', 'c'] }
+Plug 'junegunn/goyo.vim',                         { 'on': 'Goyo' }
+Plug 'altercation/vim-colors-solarized'
 if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
@@ -82,8 +76,8 @@ if empty($opendev)
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim',                         { 'for': ['typescript', 'javascript', 'css', 'html'] }
 el
-  Plug '~/prj/tts.vim',         { 'for': 'tts' }
-  Plug '~/prj/ttser',           { 'for': 'tts' }
+  Plug '~/prj/tts.vim',                           { 'for': 'tts' }
+  Plug '~/prj/ttser',                             { 'for': 'tts' }
 en
 if has("win32")
   Plug 'derekmcloughlin/gvimfullscreen_win32'
@@ -154,11 +148,6 @@ fun! s:patch_colorscheme()
     " customize linenr on gui only
     hi LineNr guifg=#d78787
     hi SignColumn guibg=bg
-    " NOTE: Workaround to fix GitGutter sign column when using Gruvbox colorscheme
-    "hi GitGutterAdd          guibg=#282828 guifg=green  ctermfg=22  ctermbg=235
-    "hi GitGutterChange       guibg=#282828 guifg=orange ctermfg=202 ctermbg=235
-    "hi GitGutterDelete       guibg=#282828 guifg=red    ctermfg=1   ctermbg=235
-    "hi GitGutterChangeDelete guibg=#282828 guifg=blue   ctermfg=12  ctermbg=235
     " Make cursor stand out
     hi Cursor ctermbg=198 guibg=#D13A82
     hi iCursor ctermbg=201 guibg=#D13A82
@@ -176,20 +165,12 @@ syn enable
 " Dark background color
 se background=dark
 " Set color scheme
-if has("gui_running")
-  "colo molokai
-  colo gruvbox
-el
-  "
-  " Solarized
-  "
-  " Support transparent terminal emulators
-  let g:solarized_contrast = "low"
-  let g:solarized_termtrans = 1
-  let g:solarized_termcolors = 256
-  colo solarized
-  "colo dracula
-en
+" Solarized Support transparent terminal emulators
+let g:solarized_contrast = "low"
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
+colo solarized
+" Apply colorscheme changes
 cal s:patch_colorscheme()
 " }}}
 
@@ -702,13 +683,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " This is handled by lessmess
 let g:airline#extensions#whitespace#enabled = 0
-if has("gui_running")
-  let g:airline_theme = 'gruvbox'
-  "let g:airline_theme = 'molokai'
-el
-  let g:airline_theme = 'solarized'
-  "let g:airline_theme = 'dracula'
-en
+let g:airline_theme = 'solarized'
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 let g:airline_highlighting_cache = 1
 "
@@ -952,6 +927,7 @@ en
 "
 aug auto_format_onsave
   au!
+  au FileType pug let b:autoformat_autoindent = 0
   au BufWritePre *.ts :Autoformat
   au BufWritePost *.ts :execute "normal! O\<ESC>dd"
 aug end
