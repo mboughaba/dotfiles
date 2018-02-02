@@ -64,7 +64,7 @@ if empty($opendev)
   Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
   Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
   Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-  Plug 'marijnh/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
+  Plug 'ternjs/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
   Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
   Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
   Plug 'scrooloose/syntastic'
@@ -841,8 +841,11 @@ nn <silent> <S-Tab> :bprevious<CR>
 "
 " Closing buffer without a lot of mess
 "
-nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
-nn <silent> <F3>    <C-w>q
+" Get rid of function key bindings
+"nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
+" No longer useful, <C-w>q is good enough
+"nn <silent> <F3>    <C-w>q
+nn <silent> <C-w>w    :bp<bar>sp<bar>bn<bar>bd<CR>
 "
 " Enable scroll bind
 "
@@ -925,12 +928,12 @@ en
 "
 " Autoformat on save
 "
-aug auto_format_onsave
-  au!
-  au FileType pug let b:autoformat_autoindent = 0
-  au BufWritePre *.ts :Autoformat
-  au BufWritePost *.ts :execute "normal! O\<ESC>dd"
-aug end
+"aug auto_format_onsave
+"  au!
+"  au FileType pug let b:autoformat_autoindent = 0
+"  au BufWritePre *.ts :Autoformat
+"  au BufWritePost *.ts :execute "normal! O\<ESC>dd"
+"aug end
 "
 " Startify at startup
 "
