@@ -846,6 +846,7 @@ nn <silent> <S-Tab> :bprevious<CR>
 " No longer useful, <C-w>q is good enough
 "nn <silent> <F3>    <C-w>q
 nn <silent> <C-w>w    :bp<bar>sp<bar>bn<bar>bd<CR>
+nn <silent> <C-w>a :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
 "
 " Enable scroll bind
 "
