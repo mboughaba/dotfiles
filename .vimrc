@@ -50,6 +50,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'octol/vim-cpp-enhanced-highlight',          { 'for': ['cpp', 'c'] }
 Plug 'junegunn/goyo.vim',                         { 'on': 'Goyo' }
 Plug 'altercation/vim-colors-solarized'
+Plug 'mboughaba/i3config.vim',                    { 'for': 'i3config' }
 if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
@@ -75,6 +76,7 @@ if empty($opendev)
   Plug 'chrisbra/vim-autoread'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim',                         { 'for': ['typescript', 'javascript', 'css', 'html'] }
+  Plug '~/def.vim.git',                           { 'for': 'def' }
 el
   Plug '~/prj/tts.vim',                           { 'for': 'tts' }
   Plug '~/prj/ttser',                             { 'for': 'tts' }
@@ -95,7 +97,6 @@ en
 "Plug 'm42e/vim-gcov-marker'
 "Plug 'mattn/webapi-vim'
 "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
-"Plug 'mboughaba/i3config.vim',                  { 'for': 'i3config' }
 "Plug 'will133/vim-dirdiff'
 "
 " Let there be dragons
@@ -119,14 +120,20 @@ if has("gui_running")
   se guioptions-=m
   "remove left-hand scroll bar
   se guioptions-=L
-  se guifont=InconsolataGo\ NF:h12
+  se guifont=InconsolataGo\ NF:h10
   aug maximize_window
     au!
     au GUIEnter * simalt ~x
   aug end
   se lines=999 columns=999
-  if has("gui_running")
+  se guioptions=icpM
+  if has('win32') || has('win64')
     map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    " Improve rendering in GViM
+    if (v:version == 704 && has("patch393")) || v:version > 704
+      se renderoptions=type:directx,level:0.75,gamma:1.25,contrast:0.25,
+            \geom:1,renmode:5,taamode:1
+    en
   en
 el
   " Force 256 colors
@@ -166,6 +173,7 @@ syn enable
 se background=dark
 " Set color scheme
 " Solarized Support transparent terminal emulators
+let g:solarized_italic = 0
 let g:solarized_contrast = "low"
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
