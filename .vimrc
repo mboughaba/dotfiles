@@ -495,7 +495,7 @@ let g:tsuquyomi_shortest_import_path = 1
 "
 " Ack
 "
-let g:ackhighlight = 1
+let g:ackhighlight = 0
 "
 " UltiSnips
 "
