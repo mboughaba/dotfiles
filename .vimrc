@@ -65,7 +65,7 @@ if empty($opendev)
   Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
   Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
   Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-  Plug 'ternjs/tern_for_vim',                    { 'for': ['javascript', 'css', 'html'] }
+  Plug 'ternjs/tern_for_vim',                     { 'for': ['javascript', 'css', 'html'] }
   Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
   Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
   Plug 'scrooloose/syntastic'
@@ -759,6 +759,17 @@ let g:javascript_plugin_flow = 1
 "
 no ' `
 no ` '
+"
+" Easy surround
+"
+vn ' di''<ESC>P
+vn " di""<ESC>P
+vn ` di``<ESC>P
+vn : di::<ESC>P
+vn [ di[]<ESC>P
+vn { di{}<ESC>P
+vn {{ di{{  }}<ESC><LEFT><LEFT>P
+vn ( di()<ESC>P
 "
 " Searches
 "
