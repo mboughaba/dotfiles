@@ -763,7 +763,8 @@ no ` '
 " Easy surround
 "
 vn ' di''<ESC>P
-vn " di""<ESC>P
+" FIXME: This is conflicting with paste mode S-Insert
+"vn " di""<ESC>P
 vn ` di``<ESC>P
 vn : di::<ESC>P
 vn [ di[]<ESC>P
