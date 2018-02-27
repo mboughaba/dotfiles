@@ -120,7 +120,7 @@ if has("gui_running")
   se guioptions-=m
   "remove left-hand scroll bar
   se guioptions-=L
-  se guifont=InconsolataGo\ NF:h10
+  se guifont=Source_Code_Pro_for_Powerline:h10:cANSI:qDRAFT
   aug maximize_window
     au!
     au GUIEnter * simalt ~x
