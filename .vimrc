@@ -764,7 +764,9 @@ no ` '
 "
 vn ' di''<ESC>P
 " FIXME: This is conflicting with paste mode S-Insert
-"vn " di""<ESC>P
+if !has("gui_running")
+  vn " di""<ESC>P
+en
 vn ` di``<ESC>P
 vn : di::<ESC>P
 vn [ di[]<ESC>P
