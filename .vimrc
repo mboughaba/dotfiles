@@ -37,49 +37,55 @@ cal plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'felikz/ctrlp-py-matcher'
-Plug 'majutsushi/tagbar',                         { 'on': 'TagbarToggle' }
-Plug 'mbbill/undotree',                           { 'on': 'UndotreeToggle' }
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'mboughaba/vim-lessmess'
-"Plug 'mileszs/ack.vim',                           { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
-Plug 'mboughaba/ack.vim',                         { 'on': ['Ack', 'AckWindow', 'AckFromSearch', 'LAck', 'LAckWindow', 'LAckFromSearch'] }
+"Plug 'mileszs/ack.vim', { 'on': [
+Plug 'mboughaba/ack.vim', { 'on': [
+      \ 'Ack',
+      \ 'AckWindow',
+      \ 'AckFromSearch',
+      \ 'LAck',
+      \ 'LAckWindow',
+      \ 'LAckFromSearch'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-projectionist'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'octol/vim-cpp-enhanced-highlight',          { 'for': ['cpp', 'c'] }
-Plug 'junegunn/goyo.vim',                         { 'on': 'Goyo' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'altercation/vim-colors-solarized'
-Plug 'mboughaba/i3config.vim',                    { 'for': 'i3config' }
+Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
-  Plug 'Quramy/tsuquyomi',                        { 'for': 'typescript' }
-  Plug 'Shutnik/jshint2.vim',                     { 'for': ['javascript', 'css', 'html'] }
+  Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
   Plug 'airblade/vim-gitgutter'
   Plug 'ap/vim-css-color'
-  Plug 'digitaltoad/vim-pug',                     { 'for': 'pug' }
-  Plug 'elzr/vim-json',                           { 'for': 'json' }
-  Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
-  Plug 'hail2u/vim-css3-syntax',                  { 'for': ['javascript', 'css', 'html'] }
-  Plug 'isRuslan/vim-es6',                        { 'for': ['javascript', 'css', 'html'] }
-  Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
-  Plug 'marcweber/vim-addon-mw-utils',            { 'for': ['javascript', 'css', 'html'] }
-  Plug 'ternjs/tern_for_vim',                     { 'for': ['javascript', 'css', 'html'] }
-  Plug 'othree/html5.vim',                        { 'for': ['javascript', 'css', 'html'] }
-  Plug 'pangloss/vim-javascript',                 { 'for': ['javascript', 'css', 'html'] }
+  Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+  Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+  Plug 'hail2u/vim-css3-syntax', { 'for': ['javascript', 'css', 'html'] }
+  Plug 'isRuslan/vim-es6', { 'for': ['javascript', 'css', 'html'] }
+  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+  Plug 'marcweber/vim-addon-mw-utils', { 'for': ['javascript', 'css', 'html'] }
+  Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'css', 'html'] }
+  Plug 'othree/html5.vim', { 'for': ['javascript', 'css', 'html'] }
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'css', 'html'] }
   Plug 'scrooloose/syntastic'
-  Plug 'shougo/vimproc.vim',                      { 'for': ['typescript', 'javascript', 'css', 'html'] }
-  Plug 'tomtom/tlib_vim',                         { 'for': ['javascript', 'css', 'html'] }
+  Plug 'shougo/vimproc.vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
+  Plug 'tomtom/tlib_vim', { 'for': ['javascript', 'css', 'html'] }
   Plug 'tpope/vim-fugitive'
-  Plug 'vim-scripts/Flex-Development-Support',    { 'for': 'actionscript' }
+  Plug 'vim-scripts/Flex-Development-Support', { 'for': 'actionscript' }
   Plug 'chrisbra/vim-autoread'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'mattn/emmet-vim',                         { 'for': ['typescript', 'javascript', 'css', 'html'] }
-  Plug '~/def.vim.git',                           { 'for': 'def' }
+  Plug 'mattn/emmet-vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
+  Plug '~/def.vim.git', { 'for': 'def' }
 el
-  Plug '~/prj/tts.vim',                           { 'for': 'tts' }
-  Plug '~/prj/ttser',                             { 'for': 'tts' }
+  Plug '~/prj/tts.vim', { 'for': 'tts' }
+  Plug '~/prj/ttser', { 'for': 'tts' }
 en
 if has("win32")
   Plug 'derekmcloughlin/gvimfullscreen_win32'
@@ -90,10 +96,11 @@ en
 "
 " Disabled plugs
 "
-"Plug 'groenewege/vim-less',                     { 'for': 'less' }
-"Plug 'maksimr/vim-jsbeautify',                  { 'for': ['javascript', 'css', 'html'] }
-"Plug 'hushicai/tagbar-javascript.vim',          { 'for': ['javascript', 'css', 'html'] }
-"Plug 'junegunn/vader.vim',                      { 'for': 'vader' }
+"Plug 'Shutnik/jshint2.vim', { 'for': ['javascript', 'css', 'html'] }
+"Plug 'groenewege/vim-less', { 'for': 'less' }
+"Plug 'maksimr/vim-jsbeautify', { 'for': ['javascript', 'css', 'html'] }
+"Plug 'hushicai/tagbar-javascript.vim', { 'for': ['javascript', 'css', 'html'] }
+"Plug 'junegunn/vader.vim', { 'for': 'vader' }
 "Plug 'm42e/vim-gcov-marker'
 "Plug 'mattn/webapi-vim'
 "Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
@@ -121,14 +128,15 @@ if has("gui_running")
   "remove left-hand scroll bar
   se guioptions-=L
   se guifont=Source_Code_Pro_for_Powerline:h10:cANSI:qDRAFT
-  aug maximize_window
-    au!
-    au GUIEnter * simalt ~x
-  aug end
+  "aug maximize_window
+  "  au!
+  "  au GUIEnter * simalt ~x
+  "aug end
   se lines=999 columns=999
   se guioptions=icpM
   if has('win32') || has('win64')
-    map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    "map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    map <Leader>11 <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
     " Improve rendering in GViM
     if (v:version == 704 && has("patch393")) || v:version > 704
       se renderoptions=type:directx,level:0.75,gamma:1.25,contrast:0.25,
@@ -265,7 +273,7 @@ if version >= 703
   set formatoptions-=o
   " Line Numbers
   " Relative line numbers, no thanks :)
-  "se rnu
+  se rnu
 en
 "
 " Line Numbers
@@ -295,7 +303,7 @@ se showmatch
 " Searches wrap around the end of the file.
 se wrapscan
 if has("gui_running")
-  " Hack to make multiple cursor highlight work properly in gvim
+  " Hack to make multiple cursor highlight word properly in gvim
   se selection=inclusive
 en
 "
@@ -347,7 +355,6 @@ se wrap
 se linebreak
 " Turn off physical line wrapping
 se textwidth=0
-" Turn off physical line wrapping
 se wrapmargin=0
 " Make sure soft line break is done properly.
 se nolist
@@ -363,7 +370,8 @@ se completeopt=longest,menuone
 "
 " Paste
 "
-se pastetoggle=<F2>
+"se pastetoggle=<F2>
+se pastetoggle=<Leader>2
 "
 " Spell
 "
@@ -378,7 +386,7 @@ se noeb vb t_vb=
 "
 " Ctags Find .tags recursively
 "
-"se tags=.tags;
+se tags=.tags;
 " In large projects with so many dependencies, working with cscope is just too
 " much for a humain being to deal with.
 " Maybe I am using cscope the wrong way, TODO: find a better use of cscope.
@@ -445,11 +453,6 @@ en
 "
 "
 "
-" Lessmess
-"
-" Autocommand will be added manually
-"let g:enable_lessmess_onsave = 0
-"
 " Startify
 "
 let g:startify_change_to_dir          = 1
@@ -471,9 +474,9 @@ let g:startify_session_before_save = [
 "
 let g:formatdef_js_editorconfig = '"js-beautify --editorconfig"'
 let g:formatdef_json_editorconfig = '"js-beautify --editorconfig"'
-let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
 let g:formatters_javascript = ['js_editorconfig']
 let g:formatters_json = ['json_editorconfig']
+let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
 let g:formatters_html = ['html_editorconfig']
 "
 " vim-json
@@ -493,8 +496,13 @@ let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_single_quote_import = 1
 let g:tsuquyomi_shortest_import_path = 1
 "
-" Ack
+" Ack & Ag
 "
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
+el
+  echoerr "ag Silver Searcher was not found, check if it is installed!"
+en
 let g:ackhighlight = 0
 "
 " UltiSnips
@@ -561,20 +569,16 @@ let g:projectionist_heuristics = {
       \   "alternate": ["src/app/{}.html"],
       \   "type": "sass"
       \  },
+      \  "src/app/*.css": {
+      \   "alternate": ["src/app/{}.html"],
+      \   "type": "css"
+      \  },
       \  "src/app/*.html": {
-      \   "alternate": ["src/app/{}.scss"],
+      \   "alternate": ["src/app/{}.scss","src/app/{}.css"],
       \   "type": "html"
       \  },
       \ }
       \}
-"
-" Ack & Ag
-"
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
-el
-  echoerr "ag Silver Searcher was not found, check if it is installed!"
-en
 "
 " Tagbar
 "
@@ -605,7 +609,19 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDTreeAutoDeleteBuffer = 1
 let NERDTreeWinPos = "left"
 let NERDTreeWinSize = 35
-let NERDTreeIgnore = ['\.job$', '^CVS$', '\.orig', '\~$', '\.res$', '\.rex$', '\.log$', '\.patch$', '\.playconf$', '\.tags$', 'cscope\.out$']
+let NERDTreeIgnore = [
+      \ '\.job$',
+      \ '^CVS$',
+      \ '\.orig',
+      \ '\~$',
+      \ '\.res$',
+      \ '\.rex$',
+      \ '\.log$',
+      \ '\.patch$',
+      \ '\.playconf$',
+      \ '\.tags$',
+      \ 'cscope\.out$'
+      \ ]
 let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
 let NERDTreeDirArrowExpandable = " "
@@ -616,8 +632,10 @@ let NERDTreeDirArrowCollapsible = " "
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFolders = 1
+" highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
 let s:blue = "689FB6"
@@ -679,7 +697,8 @@ if has("unix") && has("python")
         \ 'valgrind' : 1,
         \ 'mail' : 1
         \}
-  nn <F12> :YcmForceCompileAndDiagnostics<CR>
+  "nn <F12> :YcmForceCompileAndDiagnostics<CR>
+  nn <Leader>12 :YcmForceCompileAndDiagnostics<CR>
   nn <C-LeftMouse> :YcmCompleter GoTo<CR>
 en
 "
@@ -692,7 +711,11 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " This is handled by lessmess
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'solarized'
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_section_z = airline#section#create([
+      \ 'windowswap',
+      \ '%3p%% ',
+      \ 'linenr',
+      \ ':%3v'])
 let g:airline_highlighting_cache = 1
 "
 " CtrlP
@@ -723,7 +746,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
       \ 'file': '\v\.(res|rex|log|playconf|gsvconf)$',
-      \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|bower_components|coverage|dist)$'
+      \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|bower_components|coverage|doc|dist)$'
       \ }
 " HACK: Legacy hack to avoid opening files in NERDTree split
 let g:ctrlp_dont_split = 'NERD'
@@ -741,7 +764,7 @@ let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_python_checkers = ['pylint']
 let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 "
 " Javascript
 "
@@ -762,17 +785,17 @@ no ` '
 "
 " Easy surround
 "
-vn ' di''<ESC>P
+vn '   di'<ESC>pa'<ESC>
 " FIXME: This is conflicting with paste mode S-Insert
 if !has("gui_running")
-  vn " di""<ESC>P
+  vn " di"<ESC>pa"<ESC>
 en
-vn ` di``<ESC>P
-vn : di::<ESC>P
-vn [ di[]<ESC>P
-vn { di{}<ESC>P
-vn {{ di{{  }}<ESC><LEFT><LEFT>P
-vn ( di()<ESC>P
+vn `   di`<ESC>pa`<ESC>
+vn :   di:<ESC>pa:<ESC>
+vn [   di[<ESC>pa]<ESC>
+vn {   di{<ESC>pa}<ESC>
+vn [(  di[(<ESC>pa)]<ESC>
+vn {{  di{{ <ESC>pa }}<ESC>
 "
 " Searches
 "
@@ -808,6 +831,13 @@ nn <silent> <Leader>v :e! $MYVIMRC<CR>
 " lessmess
 "
 nn <silent> <Leader>l :LessmessDisplayToggle<CR>
+"
+" Smooth scroll
+"
+nn <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+nn <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+nn <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+nn <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 "
 " Autoformat
 "
@@ -845,11 +875,12 @@ nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK"<CR>
 "
 " Paste Toggle
 "
-nn <F2> :se invpaste paste?<CR>
+"nn <F2> :se invpaste paste?<CR>
 "
 " Spell Checking
 "
-nn <silent> <F7> :se spell!<CR>
+"nn <silent> <F7> :se spell!<CR>
+nn <silent> <Leader>7 :se spell!<CR>
 "
 " Wrapping Shortcuts
 "
@@ -867,7 +898,7 @@ nn <silent> <S-Tab> :bprevious<CR>
 "nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
 " No longer useful, <C-w>q is good enough
 "nn <silent> <F3>    <C-w>q
-nn <silent> <C-w>w    :bp<bar>sp<bar>bn<bar>bd<CR>
+nn <silent> <C-w>w :bp<bar>sp<bar>bn<bar>bd<CR>
 nn <silent> <C-w>a :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
 "
 " Enable scroll bind
@@ -902,11 +933,13 @@ no <C-x> <NOP>
 "
 " Undotree
 "
-nn <F5> :UndotreeToggle<CR>
+"nn <F5> :UndotreeToggle<CR>
+nn <Leader>5 :UndotreeToggle<CR>
 "
 " Tagbar
 "
-nn <F8> :TagbarToggle<CR>
+"nn <F8> :TagbarToggle<CR>
+nn <Leader>8 :TagbarToggle<CR>
 "
 " Projectionist
 "
@@ -914,7 +947,7 @@ nn <F8> :TagbarToggle<CR>
 " But most of the times I end up using :AV and :AS to make my splits
 exe "se <M-z>=\ez"
 nn <M-z> :A<CR>
-nn <silent> <Leader>sp :AV<CR> <C-w>l :AS<CR> <C-w>h
+"nn <silent> <Leader>sp :AV<CR> <C-w>l :AS<CR> <C-w>h
 "
 " keymap (habit breaking)
 "
@@ -934,8 +967,10 @@ nn <silent> <Leader>G :Goyo<CR>
 "
 " NERDTree
 "
-nn <F9>  :NERDTreeFind<CR>
-nn <F10> :NERDTreeToggle<CR>
+"nn <F9>  :NERDTreeFind<CR>
+nn <Leader>9  :NERDTreeFind<CR>
+"nn <F10> :NERDTreeToggle<CR>
+nn <Leader>10 :NERDTreeToggle<CR>
 "
 " Copy from GViM
 "
