@@ -795,7 +795,6 @@ if !has("gui_running")
   vn " di"<ESC>pa"<ESC>
 en
 vn `   di`<ESC>pa`<ESC>
-vn :   di:<ESC>pa:<ESC>
 vn [   di[<ESC>pa]<ESC>
 vn {   di{<ESC>pa}<ESC>
 vn [(  di[(<ESC>pa)]<ESC>
