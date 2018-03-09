@@ -606,7 +606,7 @@ let g:tagbar_type_typescript = {
 " flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 " Add speces after comment delimiters by default
-let g:NERDSpeceDelims = 1
+let g:NERDSpaceDelims = 1
 "
 " NERDTree
 "
