@@ -77,7 +77,6 @@ if empty($opendev)
   Plug 'scrooloose/syntastic'
   Plug 'shougo/vimproc.vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
   Plug 'tomtom/tlib_vim', { 'for': ['javascript', 'css', 'html'] }
-  Plug 'tpope/vim-fugitive'
   Plug 'vim-scripts/Flex-Development-Support', { 'for': 'actionscript' }
   Plug 'chrisbra/vim-autoread'
   Plug 'editorconfig/editorconfig-vim'
@@ -96,6 +95,7 @@ en
 "
 " Disabled plugs
 "
+" Plug 'tpope/vim-fugitive'
 "Plug 'Shutnik/jshint2.vim', { 'for': ['javascript', 'css', 'html'] }
 "Plug 'groenewege/vim-less', { 'for': 'less' }
 "Plug 'maksimr/vim-jsbeautify', { 'for': ['javascript', 'css', 'html'] }
@@ -127,11 +127,11 @@ if has("gui_running")
   se guioptions-=m
   "remove left-hand scroll bar
   se guioptions-=L
-  se guifont=Source_Code_Pro_for_Powerline:h10:cANSI:qDRAFT
-  "aug maximize_window
+  se guifont=Source_Code_Pro_for_Powerline:h9:cANSI:qDRAFT
+  " aug maximize_window
   "  au!
   "  au GUIEnter * simalt ~x
-  "aug end
+  " aug end
   se lines=999 columns=999
   se guioptions=icpM
   if has('win32') || has('win64')
@@ -196,7 +196,7 @@ cal s:patch_colorscheme()
 "
 " Display tooltip (used for typescript)
 "
-"se ballooneval
+se ballooneval
 "
 " Splits
 "
@@ -495,6 +495,7 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_single_quote_import = 1
 let g:tsuquyomi_shortest_import_path = 1
+let g:tsuquyomi_search_term_min_length = 3
 "
 " Ack & Ag
 "
@@ -768,6 +769,7 @@ let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_python_checkers = ['pylint']
 let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 "
 " Javascript
@@ -851,6 +853,8 @@ nn <M-i> :Autoformat<CR>
 "
 exe "se <M-l>=\el"
 nn <M-l> :TsuImport<CR>
+exe "se <M-s>=\es"
+nn <M-s> :TsuSearch <C-R><C-w><CR>
 "
 " Basic indentation fix
 "
@@ -1010,8 +1014,15 @@ aug end
 "
 aug typescript_balloon
   au!
-  "    au FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+  au FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
   au FileType typescript nmap <buffer> <Leader>? : <C-u>echo tsuquyomi#hint()<CR>
+  au FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
+  au FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSymbolC)
+  au FileType typescript nmap <buffer> gf :TsuDefinition<CR>
+  au FileType typescript nmap <buffer> gt :TsuTypeDefinition<CR>
+  au FileType typescript nmap <buffer> gr :TsuReferences<CR>
+  au FileType typescript nmap <buffer> gi :TsuImplementation<CR>
+  au FileType typescript setlocal suffixesadd+=.ts
 aug end
 "
 " ftdetect actionscript
