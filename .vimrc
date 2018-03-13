@@ -854,19 +854,19 @@ nn <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 exe "se <M-i>=\ei"
 nn <M-i> :Autoformat<CR>
 "
-" tsuquyomi Typescript Import
-"
-exe "se <M-l>=\el"
-nn <M-l> :TsuImport<CR>
-exe "se <M-s>=\es"
-nn <M-s> :TsuSearch <C-R><C-w><CR>
-"
 " Basic indentation fix
 "
 " Formats the entire file and returns to the line
 " = can be used in visual mode to format the block
 " to format current line == can be used
 nn <silent> <Leader>i mzgg=G`z
+"
+" tsuquyomi Typescript Import
+"
+exe "se <M-l>=\el"
+nn <M-l> :TsuImport<CR>
+exe "se <M-s>=\es"
+nn <M-s> :TsuSearch <C-R><C-w><CR>
 "
 " Async Job
 "
