@@ -759,17 +759,22 @@ let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
 "
+" GitGutter
+"
+let g:gitgutter_max_signs=9999
+"
 " Syntastic
 "
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_cpp_checkers = ['cppcheck']
-let g:syntastic_python_checkers = ['pylint']
+" tell syntastic not to open quickfix or loclist.
 let g:tsuquyomi_disable_quickfix = 1
+" Leave this one commented out if you don't want loc list to be opened
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_aggregate_errors = 1
+" Use sign column to mark errors
+" let g:syntastic_enable_signs = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 "
 " Javascript
