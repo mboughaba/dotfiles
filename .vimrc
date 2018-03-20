@@ -1,3 +1,13 @@
+" ViMproved {{{
+"
+"
+"
+se nocompatible
+se encoding=utf-8
+scriptencoding utf-8
+filet off
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Author: Mohamed Boughaba                           "
 "              Repository: https://github.com/mboughaba/dotfiles               "
@@ -7,20 +17,11 @@
 "                       ╚═╝└─┘  ┴╩ ╩┴  ┴└─└─┘ └┘ └─┘─┴┘                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ViMproved {{{
-"
-"
-"
-se nocompatible
-filet off
-" }}}
-
 " Map Leader {{{
 "
 "
 "
 " Map leader key to space
-let mapleader=" "
 let g:mapleader=" "
 " }}}
 
@@ -58,6 +59,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
+Plug 'syngan/vim-vimlint' | Plug 'ynkdir/vim-vimlparser'
 if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
@@ -220,8 +222,6 @@ se hidden
 se showcmd
 " Show current mode
 se showmode
-" UTF-8 encoding
-se encoding=utf-8
 if has("gui_running")
   se rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 en
@@ -612,9 +612,9 @@ let g:NERDSpaceDelims = 1
 " NERDTree
 "
 let g:NERDTreeAutoDeleteBuffer = 1
-let NERDTreeWinPos = "left"
-let NERDTreeWinSize = 35
-let NERDTreeIgnore = [
+let g:NERDTreeWinPos = "left"
+let g:NERDTreeWinSize = 35
+let g:NERDTreeIgnore = [
       \ '\.job$',
       \ '^CVS$',
       \ '\.orig',
@@ -629,8 +629,8 @@ let NERDTreeIgnore = [
       \ ]
 let g:NERDTreeStatusline = "%f"
 " source: https://github.com/scrooloose/nerdtree/issues/636
-let NERDTreeDirArrowExpandable = " "
-let NERDTreeDirArrowCollapsible = " "
+let g:NERDTreeDirArrowExpandable = " "
+let g:NERDTreeDirArrowCollapsible = " "
 "
 " NERDTree File highlighting
 "
@@ -775,7 +775,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_aggregate_errors = 1
 " Use sign column to mark errors
 " let g:syntastic_enable_signs = 1
+let g:syntastic_typescript_tslint_args = "--project ./"
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+let g:syntastic_xml_checkers = ['xmllint']
+let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_checkers = ['eslint']
+let g:syntastic_vimlint_checkers = ['vimlint']
+let g:syntastic_markdown_checkers = ['mdl']
 "
 " Javascript
 "
@@ -803,6 +810,7 @@ if !has("gui_running")
 en
 vn `   di`<ESC>pa`<ESC>
 vn [   di[<ESC>pa]<ESC>
+vn (   di(<ESC>pa)<ESC>
 vn {   di{<ESC>pa}<ESC>
 vn [(  di[(<ESC>pa)]<ESC>
 vn {{  di{{ <ESC>pa }}<ESC>
@@ -1035,6 +1043,7 @@ aug end
 aug actionscript_ft_detection
   au!
   au BufNewFile,BufRead *.mxml,*.as,*.MXML,*.AS     se ft=actionscript
+  au FileType actionscript setlocal suffixesadd+=.as,.mxml
 aug end
 "
 " Auto DeHexify
@@ -1108,16 +1117,6 @@ aug nerdtree_custom
   "au FileType nerdtree setl nolist
 aug end
 "
-" Pretty print xml
-"
-aug pretty_print
-  au!
-  au BufNewFile,BufRead *.xml nm <silent> <Leader>ff :%!XMLLINT_INDENT='    ' xmllint --format %<CR>
-  if &diff
-    au BufNewFile,BufRead *.gsv.log,*.play.log nm <silent> <Leader>fs :cal FormatSplitXml()<CR>
-  en
-aug end
-"
 " Syntax not working for certain colorscheme
 " source: https://github.com/elzr/vim-json/issues/50
 "
@@ -1177,7 +1176,7 @@ fun! DistractionFeeMode()
   en
 endf
 "
-" DeHexify & Format XML
+" DeHexify
 "
 if &diff
   fun! DeHexify()
@@ -1186,9 +1185,6 @@ if &diff
     :sil %s/\\x1C/'/ge
     :sil %s/\\x19/*/ge
     :sil diffupdate
-  endf
-  fun! FormatSplitXml()
-    :sil s/>/>\&\r''/ge
   endf
 en
 "
@@ -1201,6 +1197,7 @@ fun! StartJob(command)
 
   cal job_start(a:command, {'out_cb': 'JobHandler', 'err_cb': 'ErrHandler', 'close_cb': 'CloseHandler'})
 endf
+" @vimlint(EVL103, 1, a:channel)
 "
 " Job output handler
 fun! JobHandler(channel, msg)
@@ -1216,6 +1213,7 @@ endf
 fun! CloseHandler(channel)
   echomsg "Job closed"
 endf
+" @vimlint(EVL103, 0, a:channel)
 " }}}
 
 " Commands {{{
