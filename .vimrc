@@ -941,15 +941,18 @@ nm <silent> <Leader>ef :!echo %<CR>
 " Echo file
 nm <silent> <Leader>cf :!cat %<CR>
 "
-" Remap number increment and decrement to avoid conflicts with gnu screen
+" Remap number increment and decrement 
+" to avoid conflicts with gnu screen on linux
 "
 " I use Alt+a Alt+x because it is convenient to hold Alt while inc/dec multiple times.
-exe "se <M-a>=\ea"
-nn <M-a> <C-A>
-no <C-a> <NOP>
-exe "se <M-x>=\ex"
-nn <M-x> <C-X>
-no <C-x> <NOP>
+if has("unix")
+  exe "se <M-a>=\ea"
+  nn <M-a> <C-A>
+  no <C-a> <NOP>
+  exe "se <M-x>=\ex"
+  nn <M-x> <C-X>
+  no <C-x> <NOP>
+en
 "
 " Undotree
 "
