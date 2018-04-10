@@ -179,14 +179,24 @@ endf
 "
 " Enable syntax highlighting
 syn enable
-" Dark background color
-se background=dark
+" Dark background color (default)
+se bg=dark
 " Set color scheme
 " Solarized Support transparent terminal emulators
 let g:solarized_italic = 0
 let g:solarized_contrast = "low"
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
+" Switch colorscheme between morning and late hours :X
+fun! s:switch_background()
+  let l:hour = strftime("%H")
+  if l:hour >= 6 && l:hour < 18
+    se bg=light
+  el
+    se bg=dark
+  en
+endf
+cal s:switch_background()
 colo solarized
 " Apply colorscheme changes
 cal s:patch_colorscheme()
@@ -494,7 +504,7 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 "
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_single_quote_import = 1
-let g:tsuquyomi_shortest_import_path = 1
+" let g:tsuquyomi_shortest_import_path = 1
 let g:tsuquyomi_search_term_min_length = 3
 "
 " Ack & Ag
@@ -941,7 +951,7 @@ nm <silent> <Leader>ef :!echo %<CR>
 " Echo file
 nm <silent> <Leader>cf :!cat %<CR>
 "
-" Remap number increment and decrement 
+" Remap number increment and decrement
 " to avoid conflicts with gnu screen on linux
 "
 " I use Alt+a Alt+x because it is convenient to hold Alt while inc/dec multiple times.
