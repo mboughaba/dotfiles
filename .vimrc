@@ -188,7 +188,8 @@ let g:solarized_contrast = "low"
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 " Switch colorscheme between morning and late hours :X
-fun! s:switch_background()
+" @vimlint(EVL103, 1, a:timer)
+fun! SwitchBackground(timer)
   let l:hour = strftime("%H")
   if l:hour >= 6 && l:hour < 18
     se bg=light
@@ -196,7 +197,9 @@ fun! s:switch_background()
     se bg=dark
   en
 endf
-cal s:switch_background()
+" @vimlint(EVL103, 0, a:timer)
+cal SwitchBackground(0)
+let g:bgSwitcherTimer = timer_start(3600000, 'SwitchBackground', {'repeat': -1})
 colo solarized
 " Apply colorscheme changes
 cal s:patch_colorscheme()
