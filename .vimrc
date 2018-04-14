@@ -191,9 +191,11 @@ let g:solarized_termcolors = 256
 " @vimlint(EVL103, 1, a:timer)
 fun! SwitchBackground(timer)
   let l:hour = strftime("%H")
-  if l:hour >= 6 && l:hour < 18
+  if l:hour >= 6 && l:hour < 16
+    let g:solarized_contrast = "high"
     se bg=light
   el
+    let g:solarized_contrast = "low"
     se bg=dark
   en
 endf
@@ -600,19 +602,24 @@ let g:tagbar_autofocus=0
 let g:tagbar_compact=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
-let g:tagbar_type_typescript = {
-      \ 'ctagstype': 'typescript',
-      \ 'kinds': [
-      \ 'c:classes',
-      \ 'n:modules',
-      \ 'f:functions',
-      \ 'v:variables',
-      \ 'v:varlambdas',
-      \ 'm:members',
-      \ 'i:interfaces',
-      \ 'e:enums',
-      \ ]
-      \ }
+let g:tagbar_type_typescript = {                                                  
+  \ 'ctagsbin' : 'tstags',                                                        
+  \ 'ctagsargs' : '-f-',                                                           
+  \ 'kinds': [                                                                     
+    \ 'e:enums:0:1',                                                               
+    \ 'f:function:0:1',                                                            
+    \ 't:typealias:0:1',                                                           
+    \ 'M:Module:0:1',                                                              
+    \ 'I:import:0:1',                                                              
+    \ 'i:interface:0:1',                                                           
+    \ 'C:class:0:1',                                                               
+    \ 'm:method:0:1',                                                              
+    \ 'p:property:0:1',                                                            
+    \ 'v:variable:0:1',                                                            
+    \ 'c:const:0:1',                                                              
+  \ ],                                                                            
+  \ 'sort' : 0                                                                    
+\ }  
 "
 " NERDCommenter
 "
@@ -1052,6 +1059,7 @@ aug typescript_balloon
   au FileType typescript nmap <buffer> gr :TsuReferences<CR>
   au FileType typescript nmap <buffer> gi :TsuImplementation<CR>
   au FileType typescript setlocal suffixesadd+=.ts
+  au FileType typescript setlocal completeopt+=menu,preview
 aug end
 "
 " ftdetect actionscript
