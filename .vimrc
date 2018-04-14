@@ -192,11 +192,15 @@ let g:solarized_termcolors = 256
 fun! SwitchBackground(timer)
   let l:hour = strftime("%H")
   if l:hour >= 6 && l:hour < 16
-    let g:solarized_contrast = "high"
-    se bg=light
+    if &bg == "dark"
+      let g:solarized_contrast = "high"
+      se bg=light
+    en
   el
-    let g:solarized_contrast = "low"
-    se bg=dark
+    if &bg == "light"
+      let g:solarized_contrast = "low"
+      se bg=dark
+    en
   en
 endf
 " @vimlint(EVL103, 0, a:timer)
