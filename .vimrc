@@ -64,7 +64,8 @@ if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
   Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-  Plug 'airblade/vim-gitgutter'
+  " FIXME: This plugin is more annoying than anything else
+  " Plug 'airblade/vim-gitgutter'
   Plug 'ap/vim-css-color'
   Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
   Plug 'elzr/vim-json', { 'for': 'json' }
@@ -83,7 +84,7 @@ if empty($opendev)
   Plug 'chrisbra/vim-autoread'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
-  Plug '~/def.vim.git', { 'for': 'def' }
+  Plug '~/def.vim', { 'for': 'def' }
 el
   Plug '~/prj/tts.vim', { 'for': 'tts' }
   Plug '~/prj/ttser', { 'for': 'tts' }
@@ -441,7 +442,7 @@ el
   se nonu
 en
 "
-" Configure statusline for laster Syntastic use
+" Configure statusline for later Syntastic use
 "
 if !&diff
   se statusline+=%#warningmsg#
@@ -606,24 +607,24 @@ let g:tagbar_autofocus=0
 let g:tagbar_compact=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
-let g:tagbar_type_typescript = {                                                  
-  \ 'ctagsbin' : 'tstags',                                                        
-  \ 'ctagsargs' : '-f-',                                                           
-  \ 'kinds': [                                                                     
-    \ 'e:enums:0:1',                                                               
-    \ 'f:function:0:1',                                                            
-    \ 't:typealias:0:1',                                                           
-    \ 'M:Module:0:1',                                                              
-    \ 'I:import:0:1',                                                              
-    \ 'i:interface:0:1',                                                           
-    \ 'C:class:0:1',                                                               
-    \ 'm:method:0:1',                                                              
-    \ 'p:property:0:1',                                                            
-    \ 'v:variable:0:1',                                                            
-    \ 'c:const:0:1',                                                              
-  \ ],                                                                            
-  \ 'sort' : 0                                                                    
-\ }  
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
 "
 " NERDCommenter
 "
@@ -803,7 +804,7 @@ let g:syntastic_typescript_tslint_args = "--project ./"
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_xml_checkers = ['xmllint']
 let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 let g:syntastic_html_checkers = ['eslint']
 let g:syntastic_vimlint_checkers = ['vimlint']
 let g:syntastic_markdown_checkers = ['mdl']
