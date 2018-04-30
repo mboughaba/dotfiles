@@ -84,6 +84,7 @@ if empty($opendev)
   Plug 'chrisbra/vim-autoread'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
+  Plug 'heavenshell/vim-jsdoc', { 'for': ['typescript', 'javascript'] }
   Plug '~/def.vim', { 'for': 'def' }
 el
   Plug '~/prj/tts.vim', { 'for': 'tts' }
@@ -499,6 +500,10 @@ let g:formatters_json = ['json_editorconfig']
 let g:formatdef_html_editorconfig = '"html-beautify --editorconfig"'
 let g:formatters_html = ['html_editorconfig']
 "
+" JsDoc
+"
+let g:jsdoc_enable_es6 = 1
+"
 " vim-json
 "
 let g:vim_json_syntax_conceal = 0
@@ -804,7 +809,7 @@ let g:syntastic_typescript_tslint_args = "--project ./"
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_xml_checkers = ['xmllint']
 let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['jscs', 'jshint']
 let g:syntastic_html_checkers = ['eslint']
 let g:syntastic_vimlint_checkers = ['vimlint']
 let g:syntastic_markdown_checkers = ['mdl']
