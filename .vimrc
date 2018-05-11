@@ -189,6 +189,7 @@ let g:solarized_italic = 0
 let g:solarized_contrast = "low"
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
 " Switch colorscheme between morning and late hours :X
 " @vimlint(EVL103, 1, a:timer)
 fun! SwitchBackground(timer)
@@ -200,7 +201,7 @@ fun! SwitchBackground(timer)
     en
   el
     if &bg == "light"
-      let g:solarized_contrast = "low"
+      let g:solarized_contrast = "normal"
       se bg=dark
     en
   en
@@ -602,6 +603,10 @@ let g:projectionist_heuristics = {
       \  "src/app/*.html": {
       \   "alternate": ["src/app/{}.scss","src/app/{}.css"],
       \   "type": "html"
+      \  },
+      \  "src/*/environment.ts": {
+      \   "alternate": ["src/{}/environment.prod.ts"],
+      \   "type": "config"
       \  },
       \ }
       \}
@@ -1068,6 +1073,7 @@ aug typescript_balloon
   au FileType typescript nmap <buffer> gt :TsuTypeDefinition<CR>
   au FileType typescript nmap <buffer> gr :TsuReferences<CR>
   au FileType typescript nmap <buffer> gi :TsuImplementation<CR>
+  au FileType typescript,javascript nmap <buffer> gd :JsDoc<CR>
   au FileType typescript setlocal suffixesadd+=.ts
   au FileType typescript setlocal completeopt+=menu,preview
 aug end
