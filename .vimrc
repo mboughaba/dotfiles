@@ -93,6 +93,7 @@ en
 if has("win32")
   Plug 'derekmcloughlin/gvimfullscreen_win32'
   Plug 'vim-scripts/zoom.vim'
+  Plug 'kkoenig/wimproved.vim'
 elsei has("unix") && has("python")
   Plug 'valloric/youcompleteme'
 en
@@ -132,14 +133,9 @@ if has("gui_running")
   "remove left-hand scroll bar
   se guioptions-=L
   se guifont=Source_Code_Pro_for_Powerline:h9:cANSI:qDRAFT
-  " aug maximize_window
-  "  au!
-  "  au GUIEnter * simalt ~x
-  " aug end
   se lines=999 columns=999
   se guioptions=icpM
   if has('win32') || has('win64')
-    "map <F11> <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
     map <Leader>11 <Esc>:cal libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
     " Improve rendering in GViM
     if (v:version == 704 && has("patch393")) || v:version > 704
@@ -392,7 +388,6 @@ se completeopt=longest,menuone
 "
 " Paste
 "
-"se pastetoggle=<F2>
 se pastetoggle=<Leader>2
 "
 " Spell
@@ -618,23 +613,23 @@ let g:tagbar_compact=1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
 let g:tagbar_type_typescript = {
-  \ 'ctagsbin' : 'tstags',
-  \ 'ctagsargs' : '-f-',
-  \ 'kinds': [
-    \ 'e:enums:0:1',
-    \ 'f:function:0:1',
-    \ 't:typealias:0:1',
-    \ 'M:Module:0:1',
-    \ 'I:import:0:1',
-    \ 'i:interface:0:1',
-    \ 'C:class:0:1',
-    \ 'm:method:0:1',
-    \ 'p:property:0:1',
-    \ 'v:variable:0:1',
-    \ 'c:const:0:1',
-  \ ],
-  \ 'sort' : 0
-\ }
+      \ 'ctagsbin' : 'tstags',
+      \ 'ctagsargs' : '-f-',
+      \ 'kinds': [
+      \ 'e:enums:0:1',
+      \ 'f:function:0:1',
+      \ 't:typealias:0:1',
+      \ 'M:Module:0:1',
+      \ 'I:import:0:1',
+      \ 'i:interface:0:1',
+      \ 'C:class:0:1',
+      \ 'm:method:0:1',
+      \ 'p:property:0:1',
+      \ 'v:variable:0:1',
+      \ 'c:const:0:1',
+      \ ],
+      \ 'sort' : 0
+      \ }
 "
 " NERDCommenter
 "
@@ -737,7 +732,6 @@ if has("unix") && has("python")
         \ 'valgrind' : 1,
         \ 'mail' : 1
         \}
-  "nn <F12> :YcmForceCompileAndDiagnostics<CR>
   nn <Leader>12 :YcmForceCompileAndDiagnostics<CR>
   nn <C-LeftMouse> :YcmCompleter GoTo<CR>
 en
@@ -928,13 +922,8 @@ nn <silent> <Leader>t /\vFIXME\|TODO\|HACK<CR>
 " In cwd
 nn <silent> <Leader>T :Ack!<Space>"FIXME\|TODO\|HACK"<CR>
 "
-" Paste Toggle
-"
-"nn <F2> :se invpaste paste?<CR>
-"
 " Spell Checking
 "
-"nn <silent> <F7> :se spell!<CR>
 nn <silent> <Leader>7 :se spell!<CR>
 "
 " Wrapping Shortcuts
@@ -950,9 +939,6 @@ nn <silent> <S-Tab> :bprevious<CR>
 " Closing buffer without a lot of mess
 "
 " Get rid of function key bindings
-"nn <silent> <F4>    :bp<bar>sp<bar>bn<bar>bd<CR>
-" No longer useful, <C-w>q is good enough
-"nn <silent> <F3>    <C-w>q
 nn <silent> <C-w>w :bp<bar>sp<bar>bn<bar>bd<CR>
 nn <silent> <C-w>a :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
 "
@@ -991,12 +977,10 @@ en
 "
 " Undotree
 "
-"nn <F5> :UndotreeToggle<CR>
 nn <Leader>5 :UndotreeToggle<CR>
 "
 " Tagbar
 "
-"nn <F8> :TagbarToggle<CR>
 nn <Leader>8 :TagbarToggle<CR>
 "
 " Projectionist
@@ -1025,9 +1009,7 @@ nn <silent> <Leader>G :Goyo<CR>
 "
 " NERDTree
 "
-"nn <F9>  :NERDTreeFind<CR>
 nn <Leader>9  :NERDTreeFind<CR>
-"nn <F10> :NERDTreeToggle<CR>
 nn <Leader>10 :NERDTreeToggle<CR>
 "
 " Copy from GViM
@@ -1118,6 +1100,23 @@ aug set_spell
   au BufRead,BufNewFile *.txt     setlocal spell
   au FileType           gitcommit setlocal spell
 aug end
+"
+" GViM GUI enhancements
+"
+if has("gui_running")
+  aug enhance_window
+    au!
+    " Maximize window
+    " au GUIEnter * simalt ~x
+    " Make clean GViM display on Windows
+    au! GUIEnter * silent! WToggleClean
+    " Reduce Alpha on focs lost
+    " Alpha range is [0, 255]
+    au! FocusLost * silent! WSetAlpha 204
+    " Restore Alpha on focs gained
+    au! FocusGained * silent! WSetAlpha 255
+  aug end
+en
 "
 " Disable Bells
 "
