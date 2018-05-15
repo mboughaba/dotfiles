@@ -60,6 +60,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'syngan/vim-vimlint' | Plug 'ynkdir/vim-vimlparser'
+Plug 'vim-scripts/BufOnly.vim'
 if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
@@ -93,7 +94,9 @@ en
 if has("win32")
   Plug 'derekmcloughlin/gvimfullscreen_win32'
   Plug 'vim-scripts/zoom.vim'
-  Plug 'kkoenig/wimproved.vim'
+  " FIXME: This plugin doesn't work,
+  " it has very strange display issues on scroll
+  " Plug 'kkoenig/wimproved.vim'
 elsei has("unix") && has("python")
   Plug 'valloric/youcompleteme'
 en
@@ -940,7 +943,10 @@ nn <silent> <S-Tab> :bprevious<CR>
 "
 " Get rid of function key bindings
 nn <silent> <C-w>w :bp<bar>sp<bar>bn<bar>bd<CR>
-nn <silent> <C-w>a :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
+" This load buffer before closing it and causes vim to hang
+" nn <silent> <C-w>a :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
+" Keep current buffer only
+nn <silent> <C-w>a :bd<bar>BufOnly<CR>
 "
 " Enable scroll bind
 "
@@ -1107,14 +1113,14 @@ if has("gui_running")
   aug enhance_window
     au!
     " Maximize window
-    " au GUIEnter * simalt ~x
+    " au! GUIEnter * simalt ~x
     " Make clean GViM display on Windows
-    au! GUIEnter * silent! WToggleClean
+    " au! GUIEnter * silent! WToggleClean
     " Reduce Alpha on focs lost
     " Alpha range is [0, 255]
-    au! FocusLost * silent! WSetAlpha 204
+    " au! FocusLost * silent! WSetAlpha 204
     " Restore Alpha on focs gained
-    au! FocusGained * silent! WSetAlpha 255
+    " au! FocusGained * silent! WSetAlpha 255
   aug end
 en
 "
