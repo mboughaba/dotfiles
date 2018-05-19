@@ -1101,10 +1101,10 @@ aug end
 "
 aug set_spell
   au!
-  au BufRead,BufNewFile *.md      setlocal spell
-  au BufRead,BufNewFile *.tex     setlocal spell
-  au BufRead,BufNewFile *.txt     setlocal spell
-  au FileType           gitcommit setlocal spell
+  au FileType           gitcommit  setlocal spell
+  au FileType           typescript setlocal spell
+  au FileType           javascript setlocal spell
+  au FileType           markdown   setlocal spell
 aug end
 "
 " GViM GUI enhancements
