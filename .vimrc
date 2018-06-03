@@ -65,8 +65,6 @@ if empty($opendev)
   Plug 'mhinz/vim-startify'
   Plug 'Chiel92/vim-autoformat'
   Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-  " FIXME: This plugin is more annoying than anything else
-  " Plug 'airblade/vim-gitgutter'
   Plug 'ap/vim-css-color'
   Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
   Plug 'elzr/vim-json', { 'for': 'json' }
@@ -79,6 +77,11 @@ if empty($opendev)
   Plug 'othree/html5.vim', { 'for': ['javascript', 'css', 'html'] }
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'css', 'html'] }
   Plug 'scrooloose/syntastic'
+  " NOTE: Switch to ale when tsuquyomi support is available
+  " Plug 'w0rp/ale'
+  Plug 'prettier/vim-prettier', {
+        \ 'do': 'npm install',
+        \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
   Plug 'shougo/vimproc.vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
   Plug 'tomtom/tlib_vim', { 'for': ['javascript', 'css', 'html'] }
   Plug 'vim-scripts/Flex-Development-Support', { 'for': 'actionscript' }
@@ -94,25 +97,27 @@ en
 if has("win32")
   Plug 'derekmcloughlin/gvimfullscreen_win32'
   Plug 'vim-scripts/zoom.vim'
-  " FIXME: This plugin doesn't work,
-  " it has very strange display issues on scroll
-  " Plug 'kkoenig/wimproved.vim'
 elsei has("unix") && has("python")
   Plug 'valloric/youcompleteme'
 en
 "
 " Disabled plugs
 "
+" NOTE: This plugin is more annoying than anything else
+" Plug 'airblade/vim-gitgutter'
+" NOTE: This plugin doesn't work,
+" it has very strange display issues on scroll
+" Plug 'kkoenig/wimproved.vim'
 " Plug 'tpope/vim-fugitive'
-"Plug 'Shutnik/jshint2.vim', { 'for': ['javascript', 'css', 'html'] }
-"Plug 'groenewege/vim-less', { 'for': 'less' }
-"Plug 'maksimr/vim-jsbeautify', { 'for': ['javascript', 'css', 'html'] }
-"Plug 'hushicai/tagbar-javascript.vim', { 'for': ['javascript', 'css', 'html'] }
-"Plug 'junegunn/vader.vim', { 'for': 'vader' }
-"Plug 'm42e/vim-gcov-marker'
-"Plug 'mattn/webapi-vim'
-"Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
-"Plug 'will133/vim-dirdiff'
+" Plug 'Shutnik/jshint2.vim', { 'for': ['javascript', 'css', 'html'] }
+" Plug 'groenewege/vim-less', { 'for': 'less' }
+" Plug 'maksimr/vim-jsbeautify', { 'for': ['javascript', 'css', 'html'] }
+" Plug 'hushicai/tagbar-javascript.vim', { 'for': ['javascript', 'css', 'html'] }
+" Plug 'junegunn/vader.vim', { 'for': 'vader' }
+" Plug 'm42e/vim-gcov-marker'
+" Plug 'mattn/webapi-vim'
+" Plug 'mboughaba/edifact.vim', { 'for': 'edi' }
+" Plug 'will133/vim-dirdiff'
 "
 " Let there be dragons
 "
@@ -795,6 +800,18 @@ let g:ctrlp_cmd = 'cal CtrlPCustomCommand()'
 "
 let g:gitgutter_max_signs=9999
 "
+" ALE
+"
+" let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \   'html': ['eslint'],
+      \   'javascript': ['jshint'],
+      \   'json': ['jsonlint'],
+      \   'markdown': ['mdl'],
+      \   'scss': ['prettier'],
+      \   'typescript': ['tslint','prettier'],
+      \}
+"
 " Syntastic
 "
 let g:syntastic_always_populate_loc_list = 1
@@ -811,7 +828,8 @@ let g:syntastic_typescript_tslint_args = "--project ./"
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_xml_checkers = ['xmllint']
 let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_javascript_checkers = ['jscs', 'jshint']
+" let g:syntastic_javascript_checkers = ['jscs', 'jshint']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_checkers = ['eslint']
 let g:syntastic_vimlint_checkers = ['vimlint']
 let g:syntastic_markdown_checkers = ['mdl']
@@ -892,7 +910,8 @@ nn <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " Autoformat
 "
 exe "se <M-i>=\ei"
-nn <M-i> :Autoformat<CR>
+" nn <M-i> :Autoformat<CR>
+nn <M-i> :Prettier<CR>
 "
 " Basic indentation fix
 "
