@@ -81,7 +81,7 @@ if empty($opendev)
   " Plug 'w0rp/ale'
   Plug 'prettier/vim-prettier', {
         \ 'do': 'npm install',
-        \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+        \ 'for': ['javascript', 'typescript'] }
   Plug 'shougo/vimproc.vim', { 'for': ['typescript', 'javascript', 'css', 'html'] }
   Plug 'tomtom/tlib_vim', { 'for': ['javascript', 'css', 'html'] }
   Plug 'vim-scripts/Flex-Development-Support', { 'for': 'actionscript' }
@@ -907,12 +907,6 @@ nn <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 nn <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 nn <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 "
-" Autoformat
-"
-exe "se <M-i>=\ei"
-" nn <M-i> :Autoformat<CR>
-nn <M-i> :Prettier<CR>
-"
 " Basic indentation fix
 "
 " Formats the entire file and returns to the line
@@ -999,6 +993,11 @@ if has("unix")
   nn <M-x> <C-X>
   no <C-x> <NOP>
 en
+"
+" Autoformat
+"
+exe "se <M-i>=\ei"
+nn <M-i> :Autoformat<CR>
 "
 " Undotree
 "
@@ -1091,6 +1090,13 @@ aug actionscript_ft_detection
   au!
   au BufNewFile,BufRead *.mxml,*.as,*.MXML,*.AS     se ft=actionscript
   au FileType actionscript setlocal suffixesadd+=.as,.mxml
+aug end
+"
+" Autoformat
+"
+aug autoindent
+  au!
+  au FileType typescript exe "se <M-i>=\ei" | nn <M-i> :Prettier<CR>
 aug end
 "
 " Auto DeHexify
